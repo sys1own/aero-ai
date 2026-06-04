@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Execute Optimization Loop (With Cycle Override)
+      - name: Execute Optimization Loop (Quiet & Efficient Mode)
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -35,10 +35,9 @@ jobs:
         run: |
           REPO_ROOT=$(pwd)
           
-          # Locating the evolution code block dynamically
           EVOLVE_SCRIPT=$(find . -name "evolve_loop.py" -print -quit)
           if [ -z "$EVOLVE_SCRIPT" ]; then
-            echo "❌ Error: evolve_loop.py could not be found anywhere!"
+            echo "❌ Error: evolve_loop.py not found!"
             exit 1
           fi
           
@@ -46,32 +45,28 @@ jobs:
           cd "$SCRIPT_DIR"
           export PYTHONPATH="$PYTHONPATH:$REPO_ROOT"
           
-          # Smart Time Parsing Layer
+          # Time parsing logic
           RAW_INPUT="${{ github.event.inputs.duration }}"
           NUM=$(echo "$RAW_INPUT" | awk '{print $1}')
           UNIT=$(echo "$RAW_INPUT" | awk '{print $2}')
           
-          if [ "$UNIT" = "h" ]; then
-            MINUTES=$((NUM * 60))
-          else
-            MINUTES=$NUM
-          fi
+          if [ "$UNIT" = "h" ]; then MINUTES=$((NUM * 60)); else MINUTES=$NUM; fi
           SECONDS=$((MINUTES * 60))
           
           if grep -q "duration \* 60" evolve_loop.py || grep -q "duration\*60" evolve_loop.py; then
             FINAL_DURATION=$MINUTES
-            echo "⏱️ Passing minutes: $FINAL_DURATION"
           else
             FINAL_DURATION=$SECONDS
-            echo "⏱️ Passing seconds: $FINAL_DURATION"
           fi
           
-          # CRITICAL FIX: Pass --max-cycles 99999 to force the engine to use the full timeline
-          python evolve_loop.py --duration "$FINAL_DURATION" --max-cycles 99999
+          echo "⏱️ Operational timeline set to $RAW_INPUT. Streamlining execution stdout..."
+          
+          # EFFICIENCY FIX: Pipe to line-buffered grep to strip worker spam and protect performance
+          python evolve_loop.py --duration "$FINAL_DURATION" --max-cycles 99999 2>&1 | grep --line-buffered -E "=== cycle|\[evolve\]|Error|❌|⏱️"
 
       - name: Post-Build Workspace Sanitation (The Purge)
         run: |
-          echo "🧹 Wiping temporary orchestration scripts and test beds from local runner workspace..."
+          echo "🧹 Wiping temporary orchestration scripts and testing sets..."
           find . -name "llm_client.py" -delete
           find . -name "evolve_loop.py" -delete
           find . -type d -name "testbed" -exec rm -rf {} + || true
@@ -81,11 +76,10 @@ jobs:
           git config --global user.name "Aero Evolution Engine"
           git config --global user.email "evolute@aero-auto-sdk.local"
           
-          # Track and stage final distribution targets
           find . -type d -name "dist" -exec git add {}/* \; || true
           
           if git diff-index --quiet HEAD; then
-            echo "No optimization anomalies or performance improvements to freeze."
+            echo "No performance deltas to freeze."
           else
             git commit -m "chore: freeze hyper-optimized static aero bytecode [duration: ${{ github.event.inputs.duration }}]"
             git push origin main
