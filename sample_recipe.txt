@@ -1,0 +1,74 @@
+# ===========================================================================
+# Sample Aero Auto SDK build recipe (declarative — no Aero syntax required).
+#
+# Compile it with:
+#     cd aero_auto_sdk
+#     python meta_compiler.py sample_recipe.txt --show --run
+#
+# The meta-compiler lowers this high-level intent to .aero source and then
+# compiles it down to verified .aeroc bytecode.
+# ===========================================================================
+
+[project]
+name   = demo_pipeline
+output = build_sandbox/recipes/demo_pipeline.aeroc
+
+[task:banner]
+op   = print
+text = == Building ${name} ==
+
+# A reusable helper function, declared without writing Aero by hand.
+[task:square]
+op      = func
+name    = square
+params  = n
+returns = n * n
+
+[task:base]
+op    = set
+name  = base
+value = 7
+
+# Uses the generated `square` function; runs only after both deps are ready.
+[task:area]
+op    = set
+name  = area
+value = square(base)
+needs = base, square
+
+# Declarative arithmetic: area + area, no operator syntax in the recipe.
+[task:doubled]
+op      = compute
+name    = doubled
+a       = area
+op_kind = add
+b       = area
+needs   = area
+
+[task:report_area]
+op    = print
+value = area
+needs = area, banner
+
+[task:report_doubled]
+op    = print
+value = doubled
+needs = doubled, report_area
+
+# Native build hooks: scaffold a directory, then drop a manifest file.
+[task:scaffold]
+op    = call
+fn    = create_dir
+args  = "build_sandbox/recipes_out"
+needs = report_doubled
+
+[task:manifest]
+op    = call
+fn    = write_file
+args  = "build_sandbox/recipes_out/manifest.txt", "built demo_pipeline"
+needs = scaffold
+
+[task:done]
+op    = print
+text  = ${name} build complete
+needs = manifest
