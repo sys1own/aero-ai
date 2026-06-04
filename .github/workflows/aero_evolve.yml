@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Execute Optimization Loop (Path-Independent)
+      - name: Execute Optimization Loop (With Smart Time Parsing)
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -35,22 +35,40 @@ jobs:
         run: |
           REPO_ROOT=$(pwd)
           
-          # Dynamically locate where Claude hid the evolution orchestrator
+          # Locating the evolution code block
           EVOLVE_SCRIPT=$(find . -name "evolve_loop.py" -print -quit)
-          
           if [ -z "$EVOLVE_SCRIPT" ]; then
-            echo "❌ Error: evolve_loop.py could not be found anywhere in the repository!"
+            echo "❌ Error: evolve_loop.py could not be found anywhere!"
             exit 1
           fi
           
           SCRIPT_DIR=$(dirname "$EVOLVE_SCRIPT")
-          echo "🎯 Found evolution hub at: $SCRIPT_DIR"
-          
-          # Navigate to target space and append repo root to environment paths
           cd "$SCRIPT_DIR"
           export PYTHONPATH="$PYTHONPATH:$REPO_ROOT"
           
-          python evolve_loop.py --duration "${{ github.event.inputs.duration }}"
+          # --- SMART TIME PARSING LAYER ---
+          RAW_INPUT="${{ github.event.inputs.duration }}"
+          NUM=$(echo "$RAW_INPUT" | awk '{print $1}')
+          UNIT=$(echo "$RAW_INPUT" | awk '{print $2}')
+          
+          if [ "$UNIT" = "h" ]; then
+            MINUTES=$((NUM * 60))
+          else
+            MINUTES=$NUM
+          fi
+          SECONDS=$((MINUTES * 60))
+          
+          # Automatically detect if Claude expects minutes or raw seconds
+          if grep -q "duration \* 60" evolve_loop.py || grep -q "duration\*60" evolve_loop.py; then
+            FINAL_DURATION=$MINUTES
+            echo "⏱️ Engine handles conversion internally. Passing minutes: $FINAL_DURATION"
+          else
+            FINAL_DURATION=$SECONDS
+            echo "⏱️ Engine reads direct seconds. Passing computed seconds: $FINAL_DURATION"
+          fi
+          # --------------------------------
+          
+          python evolve_loop.py --duration "$FINAL_DURATION"
 
       - name: Post-Build Workspace Sanitation (The Purge)
         run: |
@@ -64,7 +82,7 @@ jobs:
           git config --global user.name "Aero Evolution Engine"
           git config --global user.email "evolute@aero-auto-sdk.local"
           
-          # Force track and stage any distribution folders discovered
+          # Track and stage final distribution targets
           find . -type d -name "dist" -exec git add {}/* \; || true
           
           if git diff-index --quiet HEAD; then
