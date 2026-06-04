@@ -26,12 +26,80 @@
       3
     ],
     [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
       "PUSH_STRING",
       4
     ],
     [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      6
+    ],
+    [
       "CALL_DIRECT",
       2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      8
+    ],
+    [
+      "CALL",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      9
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "PUSH_STRING",
+      6
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      11
+    ],
+    [
+      "PUSH_STRING",
+      3
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -42,10 +110,17 @@
   ],
   "functions": [],
   "constants": [
+    "data_source/raw_mesh_input.json",
+    "read_file",
     "\"-- Processing Parallel Computations --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",
-    "write_file"
+    "write_file",
+    "aero_mesh_core/aero_mesh_core/schemas/interim_data.json",
+    "validate_schema",
+    "build_sandbox/mesh_outputs/final_processed_data.aero",
+    "validated_processed",
+    "\"-- Mesh Processing Cycle Concluded. Results Stored. --\""
   ]
 }

@@ -1,6 +1,11 @@
 [project]
 name = processing_mesh
-output = build_sandbox/recipes/processing_mesh.aeroc
+output = "build_sandbox/recipes/processing_mesh.aeroc"
+
+[task:ingest_data]
+op = call
+fn = read_file
+args = "data_source/raw_mesh_input.json"
 
 [task:compute]
 op = print
@@ -11,3 +16,20 @@ op = call
 fn = write_file
 args = "aero_mesh_core/aero_mesh_core/dist/interim.tmp", "processed"
 needs = compute
+
+[task:validate_transform]
+op = call
+fn = validate_schema
+args = "aero_mesh_core/aero_mesh_core/schemas/interim_data.json", "processed"
+needs = transform
+
+[task:store_results]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/final_processed_data.aero", "validated_processed"
+needs = validate_transform
+
+[task:generate_summary]
+op = print
+text = "-- Mesh Processing Cycle Concluded. Results Stored. --"
+needs = store_results
