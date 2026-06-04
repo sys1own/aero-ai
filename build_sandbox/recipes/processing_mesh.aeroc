@@ -42,7 +42,7 @@
   ],
   "functions": [],
   "constants": [
-    "-- Processing Parallel Computations --",
+    "\"-- Processing Parallel Computations --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",

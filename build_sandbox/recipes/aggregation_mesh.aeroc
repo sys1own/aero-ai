@@ -42,7 +42,7 @@
   ],
   "functions": [],
   "constants": [
-    "-- Aggregating Distributed State --",
+    "\"-- Aggregating Distributed State --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",

@@ -11,3 +11,40 @@ op = call
 fn = read_file
 args = "testbed/scans/raw_telemetry_0"
 needs = init
+
+[task:archive_raw_telemetry]
+op = call
+fn = store_raw_data
+args = "ingest_output_buffer"
+needs = ingest
+
+[task:validate_telemetry_payload]
+op = call
+fn = validate_mesh_schema
+args = "ingest_output_buffer"
+needs = ingest
+
+[task:normalize_telemetry_structure]
+op = call
+fn = transform_to_canonical_format
+args = "validated_data_stream"
+needs = validate_telemetry_payload
+
+[task:add_ingress_metadata]
+op = call
+fn = enrich_data_with_metadata
+args = "normalized_data_packet"
+metadata_keys = "ingress_timestamp_ms,ingress_node_id,source_ip_v4,telemetry_version"
+needs = normalize_telemetry_structure
+
+[task:route_telemetry_to_next_stage]
+op = call
+fn = dispatch_to_mesh_router
+args = "enriched_data_packet"
+target_mesh = "processing_mesh"
+needs = add_ingress_metadata
+
+[task:complete_ingress]
+op = print
+text = "-- Ingress Mesh Processing Complete --"
+needs = route_telemetry_to_next_stage

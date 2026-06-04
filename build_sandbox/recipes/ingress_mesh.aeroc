@@ -33,14 +33,114 @@
       "POP"
     ],
     [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "CALL",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "PUSH_STRING",
+      6
+    ],
+    [
+      "CALL",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      8
+    ],
+    [
+      "CALL",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      9
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "CALL",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      11
+    ],
+    [
+      "PUSH_STRING",
+      12
+    ],
+    [
+      "CALL",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      13
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "-- Initializing Ingress Nodes --",
+    "\"-- Initializing Ingress Nodes --\"",
     "print",
-    "testbed/scans/raw_telemetry_0.dat",
-    "read_file"
+    "testbed/scans/raw_telemetry_0",
+    "read_file",
+    "ingest_output_buffer",
+    "store_raw_data",
+    "validate_mesh_schema",
+    "validated_data_stream",
+    "transform_to_canonical_format",
+    "normalized_data_packet",
+    "enrich_data_with_metadata",
+    "enriched_data_packet",
+    "dispatch_to_mesh_router",
+    "\"-- Ingress Mesh Processing Complete --\""
   ]
 }
