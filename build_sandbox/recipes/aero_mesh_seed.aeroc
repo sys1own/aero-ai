@@ -136,11 +136,30 @@
     ],
     [
       "PUSH_STRING",
+      13
+    ],
+    [
+      "PUSH_STRING",
       16
     ],
     [
       "PUSH_STRING",
       17
+    ],
+    [
+      "CALL",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      18
+    ],
+    [
+      "PUSH_STRING",
+      19
     ],
     [
       "PUSH_STRING",
@@ -155,7 +174,7 @@
     ],
     [
       "PUSH_STRING",
-      18
+      20
     ],
     [
       "PUSH_STRING",
@@ -163,7 +182,7 @@
     ],
     [
       "PUSH_STRING",
-      19
+      21
     ],
     [
       "CALL",
@@ -174,7 +193,7 @@
     ],
     [
       "PUSH_STRING",
-      20
+      22
     ],
     [
       "PUSH_STRING",
@@ -209,8 +228,10 @@
     "aero_mesh_core/dist/mesh_viz_data.json",
     "{\"nodes\": [\"alpha\", \"beta\", \"gamma\"], \"links\": [{\"source\": \"alpha\", \"target\": \"beta\"}, {\"source\": \"beta\", \"target\": \"gamma\"}]}",
     "generate_json_viz_data",
+    "schemas/mesh_viz_schema.json",
+    "validate_json_schema",
     "aero_mesh_core/dist/index_manifest.txt",
-    "mesh index manifest map complete",
+    "mesh index manifest map complete (schema validated)",
     "build_sandbox/${name}_topology.zip",
     "create_archive",
     "aero_mesh_seed topology pass complete. Output package: build_sandbox/aero_mesh_seed_topology.zip"

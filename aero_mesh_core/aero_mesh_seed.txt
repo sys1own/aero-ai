@@ -48,11 +48,17 @@ fn    = generate_json_viz_data
 args  = "aero_mesh_core/dist/mesh_viz_data.json", "{\"nodes\": [\"alpha\", \"beta\", \"gamma\"], \"links\": [{\"source\": \"alpha\", \"target\": \"beta\"}, {\"source\": \"beta\", \"target\": \"gamma\"}]}"
 needs = linker_ab, linker_bg
 
+[task:validate_viz_schema]
+op    = call
+fn    = validate_json_schema
+args  = "aero_mesh_core/dist/mesh_viz_data.json", "schemas/mesh_viz_schema.json"
+needs = generate_viz_data
+
 [task:aggregate]
 op    = call
 fn    = write_file
-args  = "aero_mesh_core/dist/index_manifest.txt", "mesh index manifest map complete"
-needs = linker_ab, linker_bg, generate_viz_data
+args  = "aero_mesh_core/dist/index_manifest.txt", "mesh index manifest map complete (schema validated)"
+needs = validate_viz_schema
 
 [task:finalize_mesh_package]
 op    = call
