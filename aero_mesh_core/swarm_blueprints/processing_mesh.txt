@@ -1,0 +1,13 @@
+[project]
+name = processing_mesh
+output = build_sandbox/recipes/processing_mesh.aeroc
+
+[task:compute]
+op = print
+text = -- Processing Parallel Computations --
+
+[task:transform]
+op = call
+fn = write_file
+args = "aero_mesh_core/aero_mesh_core/dist/interim.tmp", "processed"
+needs = compute

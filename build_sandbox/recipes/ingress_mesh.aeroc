@@ -1,0 +1,46 @@
+{
+  "format": "aeroc",
+  "version": 1,
+  "main_code": [
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      2
+    ],
+    [
+      "PUSH_STRING",
+      3
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "HALT"
+    ]
+  ],
+  "functions": [],
+  "constants": [
+    "-- Initializing Ingress Nodes --",
+    "print",
+    "testbed/scans/raw_telemetry_0.dat",
+    "read_file"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "format": "aeroc",
+  "version": 1,
+  "main_code": [
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      2
+    ],
+    [
+      "PUSH_STRING",
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "HALT"
+    ]
+  ],
+  "functions": [],
+  "constants": [
+    "-- Processing Parallel Computations --",
+    "print",
+    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
+    "processed",
+    "write_file"
+  ]
+}
