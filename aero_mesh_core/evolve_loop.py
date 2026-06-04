@@ -17,10 +17,9 @@ from meta_compiler import compile_recipe
 def generate_swarm_environment():
     """Initializes the multi-tiered directory matrix required for independent swarm components"""
     os.makedirs(os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints"), exist_ok=True)
-    os.makedirs(os.path.join(_ROOT, "build_sandbox", "swarm_box"), exist_ok=True)
+    os.makedirs(os.path.join(_ROOT, "build_sandbox", "recipes"), exist_ok=True)
     os.makedirs(os.path.join(_ROOT, "testbed", "scans"), exist_ok=True)
     
-    # Pre-populate some rich mock data packets for testing deep routing operations
     for i in range(5):
         with open(os.path.join(_ROOT, "testbed", "scans", f"raw_telemetry_{i}.dat"), "w") as f:
             f.write(f"PACKET_ID={1000+i}\nPAYLOAD_HEX={hex(random.randint(100000,999999))}\nMETRIC=STABLE\n")
@@ -29,19 +28,19 @@ def ensure_swarm_blueprints():
     """Guarantees that all three distinct architectural meshes are present on disk before running"""
     blueprints = {
         "ingress_mesh.txt": (
-            "[project]\nname = ingress_mesh\noutput = build_sandbox/swarm_box/ingress.aeroc\n\n"
+            "[project]\nname = ingress_mesh\noutput = build_sandbox/recipes/ingress_mesh.aeroc\n\n"
             "[task:init]\nop = print\ntext = -- Initializing Ingress Nodes --\n\n"
             "[task:ingest]\nop = call\nfn = read_file\nargs = \"testbed/scans/raw_telemetry_0.dat\"\nneeds = init\n"
         ),
         "processing_mesh.txt": (
-            "[project]\nname = processing_mesh\noutput = build_sandbox/swarm_box/processing.aeroc\n\n"
+            "[project]\nname = processing_mesh\noutput = build_sandbox/recipes/processing_mesh.aeroc\n\n"
             "[task:compute]\nop = print\ntext = -- Processing Parallel Computations --\n\n"
-            "[task:transform]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/dist/interim.tmp\", \"processed\"\nneeds = compute\n"
+            "[task:transform]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/aero_mesh_core/dist/interim.tmp\", \"processed\"\nneeds = compute\n"
         ),
         "aggregation_mesh.txt": (
-            "[project]\nname = aggregation_mesh\noutput = build_sandbox/swarm_box/aggregation.aeroc\n\n"
+            "[project]\nname = aggregation_mesh\noutput = build_sandbox/recipes/aggregation_mesh.aeroc\n\n"
             "[task:consolidate]\nop = print\ntext = -- Aggregating Distributed State --\n\n"
-            "[task:freeze]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/dist/index_manifest.txt\", \"state complete\"\nneeds = consolidate\n"
+            "[task:freeze]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/aero_mesh_core/dist/index_manifest.txt\", \"state complete\"\nneeds = consolidate\n"
         )
     }
     
@@ -112,7 +111,7 @@ CURRENT BLUEPRINT DEFINITION:
     return current_recipe
 
 def push_git_checkpoint(reason, metrics):
-    """Commits and pushes the evolving multi-mesh code bases completely relative to the root folder"""
+    """Commits and pushes the evolving multi-mesh databases using targeted directory paths"""
     print(f"📦 [Checkpoint] Pushing Evolved Swarm State: {reason}", flush=True)
     
     dist_dir = os.path.join(_ROOT, "aero_mesh_core", "dist")
@@ -122,7 +121,13 @@ def push_git_checkpoint(reason, metrics):
 
     os.system(f'git -C "{_ROOT}" config user.name "Aero Evolution Engine" 2>&1')
     os.system(f'git -C "{_ROOT}" config user.email "evolute@aero-auto-sdk.local" 2>&1')
-    os.system(f'git -C "{_ROOT}" add aero_mesh_core/swarm_blueprints/* build_sandbox/swarm_box/* aero_mesh_core/dist/* 2>&1')
+    
+    # FIX: Add the exact folders from the untracked log manifest without using wildcard expansions
+    os.system(f'git -C "{_ROOT}" add aero_mesh_core/swarm_blueprints 2>&1')
+    os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
+    os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
+    os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
+    
     os.system(f'git -C "{_ROOT}" commit -m "chore: optimize distributed swarm infrastructure assets [metrics updated]" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main 2>&1')
 
@@ -143,10 +148,7 @@ def main():
     total_rounds = 0
     rounds_in_interval = 0
     
-    # Swarm component manifests
     meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
-    
-    # Store real performance metrics to pass back to the LLM optimizer
     fitness_history = {m: {"compiled_successfully": True, "total_executions": 0, "last_execution_wall_ms": 0} for m in meshes}
 
     LLM_COOLDOWN = 120        
@@ -163,8 +165,6 @@ def main():
         total_rounds += 1
         rounds_in_interval += 1
         
-        # --- NATIVE HIGH-SPEED COMPILATION & EXECUTION RING ---
-        # The engine sweeps through all active components of the swarm at blistering speeds
         for mesh in meshes:
             mesh_path = os.path.join(bp_dir, mesh)
             try:
@@ -180,10 +180,8 @@ def main():
             except Exception:
                 fitness_history[mesh]["compiled_successfully"] = False
 
-        # --- MULTI-MESH STRATEGIC LLM MUTATION CYCLE ---
         if (current_time - last_llm_time) >= LLM_COOLDOWN:
             last_llm_time = current_time
-            # Pick a different mesh component to evolve each rotation interval
             target_mesh = random.choice(meshes)
             target_path = os.path.join(bp_dir, target_mesh)
             
@@ -201,13 +199,11 @@ def main():
             except Exception as e:
                 print(f"⚠️ Mutation hold: {e}", flush=True)
 
-        # --- REAL-TIME LIVENESS HEARTBEAT ---
         if (current_time - last_heartbeat_time) >= HEARTBEAT_COOLDOWN:
             print(f"⏳ [Heartbeat] Processing Swarm. Cycles in last 10s: {rounds_in_interval}. Cumulative Swarm Cycles: {total_rounds}. Runtime: {elapsed}s", flush=True)
             rounds_in_interval = 0
             last_heartbeat_time = current_time
 
-        # --- TIMED SYSTEM-WIDE GIT SAVER ---
         if (current_time - last_git_time) >= GIT_COOLDOWN:
             last_git_time = current_time
             push_git_checkpoint(f"Swarm network stable at {elapsed}s mark", fitness_history)
