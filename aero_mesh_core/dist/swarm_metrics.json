@@ -6,12 +6,12 @@
   },
   "processing_mesh.txt": {
     "compiled_successfully": true,
-    "total_executions": 248941,
-    "last_execution_wall_ms": 0.657
+    "total_executions": 104471,
+    "last_execution_wall_ms": 0.5411
   },
   "aggregation_mesh.txt": {
     "compiled_successfully": true,
-    "total_executions": 248941,
-    "last_execution_wall_ms": 0.7951
+    "total_executions": 104471,
+    "last_execution_wall_ms": 0.5462
   }
 }
