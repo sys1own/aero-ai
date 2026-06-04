@@ -8,7 +8,7 @@ import random
 import contextlib
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_ROOT = os.path.dirname(_HERE) # Strictly maps to the true root of your repository
+_ROOT = os.path.dirname(_HERE)
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
@@ -136,7 +136,7 @@ def call_live_llm_cluster(current_recipe):
     return current_recipe
 
 def push_git_checkpoint(reason, total_rounds, elapsed):
-    """Executes root-anchored pushes and redirects verbose streams to the main shell console"""
+    """Executes background pushes using explicit folder tracking without shell wildcards"""
     print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}", flush=True)
     
     dist_dir = os.path.join(_ROOT, "aero_mesh_core", "dist")
@@ -149,12 +149,11 @@ def push_git_checkpoint(reason, total_rounds, elapsed):
         sf.write(f"ELAPSED_TIME_SECONDS: {elapsed}\n")
         sf.write(f"HEARTBEAT_TIMESTAMP: {time.time()}\n")
 
-    # FIX: Use git -C to force execution explicitly context-mapped to the true repo root
     os.system(f'git -C "{_ROOT}" config user.name "Aero Evolution Engine" 2>&1')
     os.system(f'git -C "{_ROOT}" config user.email "evolute@aero-auto-sdk.local" 2>&1')
     
-    # Force add using repo-relative targeting specs and forward stderr directly to workflow console
-    os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_seed.txt aero_mesh_core/dist/* build_sandbox/recipes/* 2>&1')
+    # CRITICAL FIX: Pass explicit recursive directory paths instead of shell-expanded asterisks
+    os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_seed.txt aero_mesh_core/dist build_sandbox/recipes 2>&1')
     os.system(f'git -C "{_ROOT}" commit -m "chore: evolutionary checkpoint update [metrics]" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main 2>&1')
 
@@ -179,7 +178,6 @@ def main():
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
     
-    # Establish a reliable, deterministic recipe path location at the repository layer
     recipe_path = os.path.join(_ROOT, "aero_mesh_core", "aero_mesh_seed.txt")
     if not os.path.exists(recipe_path):
         generate_default_seed_recipe(recipe_path)
