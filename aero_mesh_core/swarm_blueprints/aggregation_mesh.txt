@@ -4,30 +4,30 @@ output = build_sandbox/recipes/aggregation_mesh.aeroc
 
 [task:consolidate]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843053 --"
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964951 --"
 
 [task:freeze]
 op = call
 fn = write_file
 args = "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt", "state complete"
-needs = standalone_boxer_node_2416
+needs = standalone_boxer_node_104
 
 
 [task:manifest_signer_node_1]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843127 --"
-needs = manifest_signer_node_588
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964956 --"
+needs = index_mapper_node_5059
 
 
 [task:manifest_signer_node_4]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843128 --"
-needs = index_mapper_node_40
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964951 --"
+needs = standalone_boxer_node_77
 
 
 [task:manifest_signer_node_6]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843127 --"
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964951 --"
 needs = manifest_signer_node_4
 
 
@@ -42,44 +42,44 @@ needs = standalone_boxer_node_109
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/cluster_map_32.idx", "sync"
-needs = manifest_signer_node_6
+needs = index_mapper_node_21
 
 
 [task:index_mapper_node_40]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/cluster_map_40.idx", "sync"
-needs = index_mapper_node_5059
+needs = standalone_boxer_node_77
 
 
 [task:standalone_boxer_node_77]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843127 --"
-needs = index_mapper_node_32
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964934 --"
+needs = manifest_signer_node_588
 
 
 [task:standalone_boxer_node_104]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843124 --"
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964934 --"
 needs = manifest_signer_node_588
 
 
 [task:standalone_boxer_node_109]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843127 --"
-needs = manifest_signer_node_4
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964956 --"
+needs = index_mapper_node_5059
 
 
 [task:manifest_signer_node_588]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843127 --"
-needs = index_mapper_node_32
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964951 --"
+needs = manifest_signer_node_1
 
 
 [task:standalone_boxer_node_2416]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2843128 --"
-needs = manifest_signer_node_6
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #2964935 --"
+needs = standalone_boxer_node_104
 
 
 [task:index_mapper_node_5059]
