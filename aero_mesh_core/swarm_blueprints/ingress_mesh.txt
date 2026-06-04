@@ -11,3 +11,45 @@ op = call
 fn = read_file
 args = "testbed/scans/raw_telemetry_0.dat"
 needs = init
+
+[task:validate_raw_payload]
+op = call
+fn = data_validator.checksum_and_size
+args = "@ingest.output"
+comment = "Validates the raw ingested payload for integrity (e.g., checksum, expected size range)."
+needs = ingest
+
+[task:parse_telemetry_stream]
+op = call
+fn = data_parser.parse_binary_to_structured_json
+args = "@validate_raw_payload.output"
+comment = "Parses the validated raw binary stream into a structured JSON format."
+needs = validate_raw_payload
+
+[task:apply_telemetry_schema]
+op = call
+fn = schema_enforcer.validate_and_transform_json
+args = "@parse_telemetry_stream.output", "configs/schemas/telemetry_schema_v1.json"
+comment = "Applies a defined schema to the parsed telemetry, ensuring data types and structure are correct."
+needs = parse_telemetry_stream
+
+[task:enrich_and_normalize_data]
+op = call
+fn = processing_pipeline.apply_standard_enrichments
+args = "@apply_telemetry_schema.output", "configs/pipelines/standard_enrichment_0.json"
+comment = "Applies a processing pipeline for data enrichment (e.g., adding metadata) and normalization."
+needs = apply_telemetry_schema
+
+[task:log_ingress_event]
+op = call
+fn = logging_ring.record_event
+args = "IngressSuccess", "Telemetry processed: @enrich_and_normalize_data.output.metadata.id", "@enrich_and_normalize_data.output"
+comment = "Records a successful ingress event in the system's distributed logging ring."
+needs = enrich_and_normalize_data
+
+[task:route_to_analysis_mesh]
+op = call
+fn = mesh_router.distribute_data
+args = "@enrich_and_normalize_data.output", "analysis_mesh_0", "priority:high"
+comment = "Routes the fully processed and validated telemetry data to the designated analysis mesh."
+needs = log_ingress_event
