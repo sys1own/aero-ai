@@ -17,7 +17,7 @@ jobs:
   evolve:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Grants the runner explicit permission to commit back to main
+      contents: write
     steps:
       - name: Checkout Repository Code
         uses: actions/checkout@v4
@@ -27,29 +27,46 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Execute Optimization Loop
+      - name: Execute Optimization Loop (Path-Independent)
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
+          REPO_ROOT=$(pwd)
+          
+          # Dynamically locate where Claude hid the evolution orchestrator
+          EVOLVE_SCRIPT=$(find . -name "evolve_loop.py" -print -quit)
+          
+          if [ -z "$EVOLVE_SCRIPT" ]; then
+            echo "❌ Error: evolve_loop.py could not be found anywhere in the repository!"
+            exit 1
+          fi
+          
+          SCRIPT_DIR=$(dirname "$EVOLVE_SCRIPT")
+          echo "🎯 Found evolution hub at: $SCRIPT_DIR"
+          
+          # Navigate to target space and append repo root to environment paths
+          cd "$SCRIPT_DIR"
+          export PYTHONPATH="$PYTHONPATH:$REPO_ROOT"
+          
           python evolve_loop.py --duration "${{ github.event.inputs.duration }}"
 
       - name: Post-Build Workspace Sanitation (The Purge)
         run: |
-          echo "🧹 Wiping temporary orchestration files and testing sets from workspace..."
-          rm -f llm_client.py evolve_loop.py
-          rm -rf aero_mesh_core/testbed/
+          echo "🧹 Wiping temporary orchestration scripts and test beds from local runner workspace..."
+          find . -name "llm_client.py" -delete
+          find . -name "evolve_loop.py" -delete
+          find . -type d -name "testbed" -exec rm -rf {} + || true
 
       - name: Deploy Optimized Static Bytecode to Production
         run: |
           git config --global user.name "Aero Evolution Engine"
           git config --global user.email "evolute@aero-auto-sdk.local"
           
-          # Stage the frozen distribution output targets
-          git add aero_mesh_core/dist/* || true
+          # Force track and stage any distribution folders discovered
+          find . -type d -name "dist" -exec git add {}/* \; || true
           
-          # Only commit and push if the loop successfully improved the bytecode
           if git diff-index --quiet HEAD; then
             echo "No optimization anomalies or performance improvements to freeze."
           else
