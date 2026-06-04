@@ -4,86 +4,86 @@ output = build_sandbox/recipes/aggregation_mesh.aeroc
 
 [task:consolidate]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495551 --"
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618704 --"
 
 [task:freeze]
 op = call
 fn = write_file
 args = "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt", "state complete"
-needs = manifest_signer_node_56
+needs = consolidate
 
 
 [task:manifest_signer_node_1]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495517 --"
-needs = consolidate
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618676 --"
+needs = index_mapper_node_28
 
 
 [task:manifest_signer_node_17]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495551 --"
-needs = index_mapper_node_33
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618707 --"
+needs = index_mapper_node_50
 
 
 [task:standalone_boxer_node_23]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495551 --"
-needs = manifest_signer_node_1
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618707 --"
+needs = manifest_signer_node_70
 
 
 [task:index_mapper_node_28]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/cluster_map_28.idx", "sync"
-needs = standalone_boxer_node_34
+needs = consolidate
 
 
 [task:index_mapper_node_33]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/cluster_map_33.idx", "sync"
-needs = index_mapper_node_2198
+needs = consolidate
 
 
 [task:standalone_boxer_node_34]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495517 --"
-needs = manifest_signer_node_1
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618707 --"
+needs = consolidate
 
 
 [task:standalone_boxer_node_45]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495517 --"
-needs = index_mapper_node_2198
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618707 --"
+needs = manifest_signer_node_56
 
 
 [task:index_mapper_node_50]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/cluster_map_50.idx", "sync"
-needs = index_mapper_node_2198
+needs = freeze
 
 
 [task:manifest_signer_node_56]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495513 --"
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618704 --"
 needs = manifest_signer_node_17
 
 
 [task:manifest_signer_node_70]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495551 --"
-needs = standalone_boxer_node_23
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618696 --"
+needs = freeze
 
 
 [task:standalone_boxer_node_1294]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #495494 --"
-needs = index_mapper_node_28
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #618707 --"
+needs = standalone_boxer_node_34
 
 
 [task:index_mapper_node_2198]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/cluster_map_2198.idx", "sync"
-needs = standalone_boxer_node_34
+needs = manifest_signer_node_56
