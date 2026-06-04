@@ -113,12 +113,31 @@ def main():
     rounds_in_interval = 0
     total_rounds = 0
     
-    # CONTROL TIMEOUT WINDOWS (In Seconds)
     LLM_COOLDOWN = 120        
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
     
-    recipe_path = "aero_mesh_seed.txt" if os.path.exists("aero_mesh_seed.txt") else "aero_mesh_core/aero_mesh_seed.txt"
+    # --- FIXED: BULLETPROOF RECIPE SEARCH LAYER ---
+    recipe_path = None
+    # Traverse downward from the repository root to hunt down the file layout dynamically
+    for root, _, files in os.walk(_ROOT):
+        if "aero_mesh_seed.txt" in files:
+            recipe_path = os.path.join(root, "aero_mesh_seed.txt")
+            break
+            
+    if not recipe_path:
+        # Local relative fallback sweep
+        for root, _, files in os.walk("."):
+            if "aero_mesh_seed.txt" in files:
+                recipe_path = os.path.join(root, "aero_mesh_seed.txt")
+                break
+
+    if not recipe_path:
+        print("❌ Critical Execution Error: aero_mesh_seed.txt blueprint could not be resolved on disk!", flush=True)
+        sys.exit(1)
+        
+    print(f"🎯 Configuration mapped. Target recipe verified at: {recipe_path}", flush=True)
+    # ----------------------------------------------
 
     while (time.time() - start_time) < args.duration:
         current_time = time.time()
@@ -144,7 +163,6 @@ def main():
                 print(f"⚠️ Trapped exception: {e}", flush=True)
 
         # --- NATIVE HIGH-SPEED PERFORMANCE EVALUATION ---
-        # EFFICIENCY FIX: Redirect system stdout during compilation rounds to suppress recipe task prints
         try:
             with open(os.devnull, 'w') as fnull:
                 with contextlib.redirect_stdout(fnull), contextlib.redirect_stderr(fnull):
