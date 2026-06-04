@@ -8,7 +8,7 @@ import random
 import contextlib
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_ROOT = os.path.dirname(_HERE)
+_ROOT = os.path.dirname(_HERE) # Strictly maps to the true root of your repository
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
@@ -16,10 +16,10 @@ from meta_compiler import compile_recipe
 
 def generate_heavy_workload(num_files=100):
     """Generates local dataset frames inside the ephemeral space to stress test tracking"""
-    base_dir = "testbed/scans"
+    base_dir = os.path.join(_ROOT, "testbed", "scans")
     os.makedirs(base_dir, exist_ok=True)
     for i in range(num_files):
-        with open(f"{base_dir}/heavy_node_{i}.txt", "w") as f:
+        with open(os.path.join(base_dir, f"heavy_node_{i}.txt"), "w") as f:
             f.write(f"// HIGH-DENSITY BALANCING MATRIX NODE {i}\n")
             for j in range(20):
                 f.write(f"let processing_weight_{i}_{j} = {j * i};\n")
@@ -136,22 +136,27 @@ def call_live_llm_cluster(current_recipe):
     return current_recipe
 
 def push_git_checkpoint(reason, total_rounds, elapsed):
-    """Executes background pushes tracking mutations, status variables, and metrics"""
+    """Executes root-anchored pushes and redirects verbose streams to the main shell console"""
     print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}", flush=True)
     
-    os.makedirs("aero_mesh_core/dist", exist_ok=True)
-    with open("aero_mesh_core/dist/live_status.txt", "w", encoding="utf-8") as sf:
+    dist_dir = os.path.join(_ROOT, "aero_mesh_core", "dist")
+    os.makedirs(dist_dir, exist_ok=True)
+    
+    with open(os.path.join(dist_dir, "live_status.txt"), "w", encoding="utf-8") as sf:
         sf.write(f"STATUS: Active Evolution Loop Running\n")
         sf.write(f"LAST_CHECKPOINT_REASON: {reason}\n")
         sf.write(f"TOTAL_VM_ROUNDS_SOLVED: {total_rounds}\n")
         sf.write(f"ELAPSED_TIME_SECONDS: {elapsed}\n")
         sf.write(f"HEARTBEAT_TIMESTAMP: {time.time()}\n")
 
-    os.system("git config --global user.name 'Aero Evolution Engine' > /dev/null 2>&1")
-    os.system("git config --global user.email 'evolute@aero-auto-sdk.local' > /dev/null 2>&1")
-    os.system("git add aero_mesh_core/aero_mesh_seed.txt aero_mesh_core/dist/* build_sandbox/recipes/* > /dev/null 2>&1 || true")
-    os.system("git commit -m 'chore: evolutionary checkpoint update [structural modifications]' > /dev/null 2>&1")
-    os.system("git push origin main > /dev/null 2>&1")
+    # FIX: Use git -C to force execution explicitly context-mapped to the true repo root
+    os.system(f'git -C "{_ROOT}" config user.name "Aero Evolution Engine" 2>&1')
+    os.system(f'git -C "{_ROOT}" config user.email "evolute@aero-auto-sdk.local" 2>&1')
+    
+    # Force add using repo-relative targeting specs and forward stderr directly to workflow console
+    os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_seed.txt aero_mesh_core/dist/* build_sandbox/recipes/* 2>&1')
+    os.system(f'git -C "{_ROOT}" commit -m "chore: evolutionary checkpoint update [metrics]" 2>&1')
+    os.system(f'git -C "{_ROOT}" push origin main 2>&1')
 
 def main():
     parser = argparse.ArgumentParser()
@@ -174,21 +179,9 @@ def main():
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
     
-    recipe_path = None
-    for root, _, files in os.walk(_ROOT):
-        if "aero_mesh_seed.txt" in files:
-            recipe_path = os.path.join(root, "aero_mesh_seed.txt")
-            break
-            
-    if not recipe_path:
-        for root, _, files in os.walk("."):
-            if "aero_mesh_seed.txt" in files:
-                recipe_path = os.path.join(root, "aero_mesh_seed.txt")
-                break
-
-    # SELF-HEALING INDEPENDENCE: If the file was cleaned or missing, restore it on the fly
-    if not recipe_path:
-        recipe_path = os.path.join("aero_mesh_core", "aero_mesh_seed.txt")
+    # Establish a reliable, deterministic recipe path location at the repository layer
+    recipe_path = os.path.join(_ROOT, "aero_mesh_core", "aero_mesh_seed.txt")
+    if not os.path.exists(recipe_path):
         generate_default_seed_recipe(recipe_path)
         
     print(f"🎯 Configuration mapped. Target recipe verified at: {recipe_path}", flush=True)
