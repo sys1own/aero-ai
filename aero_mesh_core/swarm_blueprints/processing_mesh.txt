@@ -22,4 +22,4 @@ needs = transform
 [task:swarm_node_inf_3]
 op = print
 text = "-- Evolved Swarm Pipeline Step ID 134056 --"
-needs = compute
+needs = transform

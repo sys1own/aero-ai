@@ -52,6 +52,21 @@
       "POP"
     ],
     [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
       "HALT"
     ]
   ],
@@ -61,6 +76,7 @@
     "print",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "write_file"
+    "write_file",
+    "\"-- Swarm Core Optimization Node 344051 Active --\""
   ]
 }

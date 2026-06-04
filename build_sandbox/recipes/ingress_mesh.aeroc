@@ -38,7 +38,7 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Evolved Swarm Pipeline Step ID 172716 --\"",
+    "\"-- Initializing Ingress Nodes --\"",
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file"
