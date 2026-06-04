@@ -54,11 +54,17 @@ fn    = validate_json_schema
 args  = "aero_mesh_core/dist/mesh_viz_data.json", "schemas/mesh_viz_schema.json"
 needs = generate_viz_data
 
+[task:generate_health_report]
+op    = call
+fn    = generate_report
+args  = "aero_mesh_core/dist/mesh_health_report.md", "aero_mesh_core/dist/mesh_viz_data.json", "aero_mesh_core/dist/links/linker_ab.txt", "aero_mesh_core/dist/links/linker_bg.txt"
+needs = validate_viz_schema
+
 [task:aggregate]
 op    = call
 fn    = write_file
-args  = "aero_mesh_core/dist/index_manifest.txt", "mesh index manifest map complete (schema validated)"
-needs = validate_viz_schema
+args  = "aero_mesh_core/dist/index_manifest.txt", "mesh index manifest map complete (schema validated, health report generated)"
+needs = validate_viz_schema, generate_health_report
 
 [task:finalize_mesh_package]
 op    = call
