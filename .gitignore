@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 *.pyo
+
+# Evolution-loop evaluation scratch (sandboxed candidate runs)
+build_sandbox/_runtime/
+config/vm_profile.json

@@ -2,8 +2,10 @@
 
 A parallel scan / link / aggregate topology built on top of the existing
 `aero_auto_sdk` toolchain (`meta_compiler.py` + the `aero_sdk` compiler/VM).
-This directory currently contains **only the local, code-side scaffolding** —
-no LLM integration, no optimization loop, no network access.
+It pairs the local, code-side scaffolding with a fully **local optimization
+loop** (`evolve_loop.py`) — **no LLM integration and no network access**. The
+loop drives evolution with a deterministic, rule-based Symbolic Topological
+Mutation Engine instead of any cloud API.
 
 ## Layout
 
@@ -45,6 +47,37 @@ The recipe and generator were verified against the actual SDK source:
   fresh `AeroVM`, so tasks share no in-memory variables. Every task here is
   self-contained and coordinates through files — so it behaves identically
   under `--run` and the parallel runner.
+
+## Evolution loop (local mutation engine)
+
+`evolve_loop.py` upgrades the meshes without any cloud LLM. It:
+
+1. **Ingests the swarm bytecode** — loads the four compiled `.aeroc` binaries
+   (ingress / processing / aggregation / seed), validates them, and runs the
+   runnable ones on the AeroVM as the operational foundation.
+2. **Mutates** each mesh blueprint with strict, deterministic heuristics —
+   *task splitting* (parallelize on a wall spike), *dependency flipping*
+   (rewire `needs` within safe data-dependency constraints), and *dead-code
+   pruning* (drop unconsumed value tasks). Every candidate must pass a
+   topological + data-dependency validity check.
+3. **Selects on fitness** — each candidate goes through the deterministic
+   `meta_compiler` gate; syntax faults are discarded instantly; survivors run
+   on the VM and are timed. A champion must beat both the all-time best and a
+   freshly re-measured baseline (noise-resistant), and is then written to disk
+   and recorded in `dist/swarm_metrics.json` / `dist/evolve_report.json`.
+
+```bash
+# Evolve locally for 60s (deterministic; nothing is pushed)
+python aero_mesh_core/evolve_loop.py --duration 60 --seed 1337
+
+# Same, but commit + push accepted champions to a dedicated branch
+python aero_mesh_core/evolve_loop.py --duration 60 --push --push-branch evolution/auto-champions
+```
+
+Pushing is **opt-in** (`--push`, off by default) and targets the current
+branch (or `--push-branch`) — never `main` implicitly. All candidate execution
+is sandboxed under `build_sandbox/_runtime/`, so evaluation never dirties
+tracked files.
 
 ## Scope & safety (Part 1)
 
