@@ -26,6 +26,25 @@
       3
     ],
     [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
       "CALL_DIRECT",
       1
     ],
@@ -34,68 +53,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
       5
     ],
     [
       "PUSH_STRING",
-      6
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      8
-    ],
-    [
-      "CALL",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      9
-    ],
-    [
-      "PUSH_STRING",
-      10
-    ],
-    [
-      "PUSH_STRING",
-      6
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      11
-    ],
-    [
-      "PUSH_STRING",
-      3
+      1
     ],
     [
       "CALL_DIRECT",
@@ -110,17 +72,11 @@
   ],
   "functions": [],
   "constants": [
-    "data_source/raw_mesh_input.json",
-    "read_file",
-    "\"-- Processing Parallel Computations --\"",
+    "\"-- Evolved Swarm Pipeline Step ID 10204 --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",
     "write_file",
-    "aero_mesh_core/aero_mesh_core/schemas/interim_data.json",
-    "validate_schema",
-    "build_sandbox/mesh_outputs/final_processed_data.aero",
-    "validated_processed",
-    "\"-- Mesh Processing Cycle Concluded. Results Stored. --\""
+    "\"-- Evolved Swarm Pipeline Step ID 134056 --\""
   ]
 }

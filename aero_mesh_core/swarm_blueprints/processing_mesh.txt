@@ -4,10 +4,22 @@ output = build_sandbox/recipes/processing_mesh.aeroc
 
 [task:compute]
 op = print
-text = "-- Processing Parallel Computations --"
+text = "-- Evolved Swarm Pipeline Step ID 10204 --"
 
 [task:transform]
 op = call
 fn = write_file
 args = "aero_mesh_core/aero_mesh_core/dist/interim.tmp", "processed"
+needs = compute
+
+
+[task:swarm_node_inf_1]
+op = print
+text = "-- Evolved Swarm Pipeline Step ID 134056 --"
+needs = transform
+
+
+[task:swarm_node_inf_3]
+op = print
+text = "-- Evolved Swarm Pipeline Step ID 134056 --"
 needs = compute
