@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Execute Optimization Loop (With Smart Time Parsing)
+      - name: Execute Optimization Loop (With Cycle Override)
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -35,7 +35,7 @@ jobs:
         run: |
           REPO_ROOT=$(pwd)
           
-          # Locating the evolution code block
+          # Locating the evolution code block dynamically
           EVOLVE_SCRIPT=$(find . -name "evolve_loop.py" -print -quit)
           if [ -z "$EVOLVE_SCRIPT" ]; then
             echo "❌ Error: evolve_loop.py could not be found anywhere!"
@@ -46,7 +46,7 @@ jobs:
           cd "$SCRIPT_DIR"
           export PYTHONPATH="$PYTHONPATH:$REPO_ROOT"
           
-          # --- SMART TIME PARSING LAYER ---
+          # Smart Time Parsing Layer
           RAW_INPUT="${{ github.event.inputs.duration }}"
           NUM=$(echo "$RAW_INPUT" | awk '{print $1}')
           UNIT=$(echo "$RAW_INPUT" | awk '{print $2}')
@@ -58,17 +58,16 @@ jobs:
           fi
           SECONDS=$((MINUTES * 60))
           
-          # Automatically detect if Claude expects minutes or raw seconds
           if grep -q "duration \* 60" evolve_loop.py || grep -q "duration\*60" evolve_loop.py; then
             FINAL_DURATION=$MINUTES
-            echo "⏱️ Engine handles conversion internally. Passing minutes: $FINAL_DURATION"
+            echo "⏱️ Passing minutes: $FINAL_DURATION"
           else
             FINAL_DURATION=$SECONDS
-            echo "⏱️ Engine reads direct seconds. Passing computed seconds: $FINAL_DURATION"
+            echo "⏱️ Passing seconds: $FINAL_DURATION"
           fi
-          # --------------------------------
           
-          python evolve_loop.py --duration "$FINAL_DURATION"
+          # CRITICAL FIX: Pass --max-cycles 99999 to force the engine to use the full timeline
+          python evolve_loop.py --duration "$FINAL_DURATION" --max-cycles 99999
 
       - name: Post-Build Workspace Sanitation (The Purge)
         run: |
