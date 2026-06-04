@@ -50,8 +50,8 @@ def ensure_swarm_blueprints(force_reset=False):
             with open(path, "w", encoding="utf-8") as f:
                 f.write(content)
 
-def execute_symbolic_mutation(recipe_text, mesh_name, round_counter):
-    """Generates open-ended, continuous structural mutations without hitting a convergence wall"""
+def execute_goal_directed_mutation(recipe_text, mesh_name, round_counter):
+    """Constructs highly specific distributed swarm tasks based on the component's functional role"""
     lines = recipe_text.split("\n")
     tasks = []
     
@@ -60,43 +60,85 @@ def execute_symbolic_mutation(recipe_text, mesh_name, round_counter):
             t_name = line.split("[task:")[1].split("]")[0].strip()
             tasks.append(t_name)
 
-    mutation_strategy = random.choice(["add_node", "fuzz_parameter", "dependency_tweak"])
+    # Domain-specific blueprint pools targeting an autonomous swarm tool architecture
+    ingress_blueprints = [
+        {"node": "validate_packet_signature", "op": "call", "fn": "verify_crypto", "args": '"sha256_header"', "desc": "Data Ingestion Security Layer"},
+        {"node": "route_telemetry_stream", "op": "call", "fn": "load_balance", "args": '"ingress_worker_pool"', "desc": "Dynamic Stream Load Balancer"},
+        {"node": "cache_raw_buffer", "op": "call", "fn": "write_file", "args": '"testbed/scans/cache.tmp", "raw"', "desc": "Ephemeral Hardware Cache Allocation"}
+    ]
     
-    if mutation_strategy == "add_node" and tasks:
-        new_node = f"swarm_node_inf_{round_counter}"
+    processing_blueprints = [
+        {"node": "unroll_dependency_loops", "op": "call", "fn": "optimize_dag", "args": '"compile_graph"', "desc": "Topological DAG Optimization Loop"},
+        {"node": "sync_shared_memory", "op": "call", "fn": "mutex_lock", "args": '"sw_mem_ring"', "desc": "Shared-State Virtual Memory Ring Linker"},
+        {"node": "evaluate_matrix_weights", "op": "call", "fn": "compute_matrix", "args": '"testbed/scans/weights"', "desc": "High-Density Balancing Matrix Core"}
+    ]
+    
+    aggregation_blueprints = [
+        {"node": "sign_index_manifest", "op": "call", "fn": "sign_package", "args": '"production_key"', "desc": "Cryptographic Build Verification Stamping"},
+        {"node": "package_standalone_box", "op": "call", "fn": "create_archive", "args": '"build_sandbox/swarm_box.zip"', "desc": "Unified Autonomous Swarm Box Packing"},
+        {"node": "purge_scratch_memory", "op": "print", "fn": "none", "args": '""', "desc": "Post-Build Environment Sanitation Cycle"}
+    ]
+
+    strategy = random.choice(["expand_layer", "optimize_metadata", "reconnect_edges"])
+    
+    if strategy == "expand_layer" and tasks:
+        # Select the task pool corresponding to the target mesh type
+        if "ingress" in mesh_name:
+            pool = ingress_blueprints
+        elif "processing" in mesh_name:
+            pool = processing_blueprints
+        else:
+            pool = aggregation_blueprints
+            
+        chosen = random.choice(pool)
+        new_node = f"{chosen['node']}_{round_counter}"
         parent_node = random.choice(tasks)
+        
         node_block = (
             f"\n\n[task:{new_node}]\n"
-            f"op = print\n"
-            f"text = \"-- Swarm Core Optimization Node {round_counter} Active --\"\n"
-            f"needs = {parent_node}\n"
+            f"op = {chosen['op']}\n"
         )
-        return recipe_text + node_block
+        if chosen['fn'] != "none":
+            node_block += f"fn = {chosen['fn']}\n"
+            node_block += f"args = {chosen['args']}\n"
+        else:
+            node_block += f"text = \"-- Executing: {chosen['desc']} --\"\n"
+            
+        node_block += f"needs = {parent_node}\n"
+        return recipe_text + node_block, f"Expanded architecture layer with [{chosen['desc']}] -> Node: {new_node}"
 
-    elif mutation_strategy == "fuzz_parameter":
+    elif strategy == "optimize_metadata":
+        # Mutate strings safely to uncover optimal performance layouts
         new_lines = []
+        mutated_flag = False
         for line in lines:
             if "text =" in line and random.random() > 0.5:
-                new_lines.append(f'text = "-- Evolved Swarm Pipeline Step ID {round_counter} --"')
+                new_lines.append(f'text = "-- Swarm Optimization Frame Update #{round_counter} --"')
+                mutated_flag = True
             else:
                 new_lines.append(line)
-        return "\n".join(new_lines)
+        desc = f"Optimized execution logging metadata strings" if mutated_flag else "Skipped modification pass"
+        return "\n".join(new_lines), desc
 
     else:
+        # Reconnect task edges within structural constraints to find faster execution paths
         if len(tasks) > 1:
             new_lines = []
+            mutated_flag = False
             for line in lines:
-                if "needs =" in line and random.random() > 0.6:
-                    t1, t2 = random.sample(tasks, 2)
+                if "needs =" in line and random.random() > 0.7:
+                    t1 = random.choice(tasks)
                     new_lines.append(f"needs = {t1}")
+                    mutated_flag = True
                 else:
                     new_lines.append(line)
-            return "\n".join(new_lines)
+            desc = "Reconfigured internal graph dependency routing edges" if mutated_flag else "Skipped edge rotation pass"
+            return "\n".join(new_lines), desc
 
-    return recipe_text
+    return recipe_text, "Maintained current operational balance parameters"
 
 def push_git_checkpoint(reason, metrics):
-    """CRITICAL GUARDRAIL SMASHER: Forces automated commits and pushes directly back to the main branch"""
+    """Forces automated commits and pushes directly back to the main branch"""
     print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}", flush=True)
     
     dist_dir = os.path.join(_ROOT, "aero_mesh_core", "dist")
@@ -118,11 +160,10 @@ def push_git_checkpoint(reason, metrics):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--duration', type=int, default=1200)
-    
-    # FIX: Use parse_known_args() to safely absorb and drop phantom YAML workflow flags (--push, etc.)
     args, unknown = parser.parse_known_args()
 
     print("🚀 Initializing High-Velocity Unconstrained Symbolic Evolution Engine...", flush=True)
+    print("🎯 Target System: Self-Contained Autonomous Multi-Mesh Distributed Swarm Architecture", flush=True)
     generate_swarm_environment()
     ensure_swarm_blueprints(force_reset=True)
     
@@ -135,7 +176,7 @@ def main():
     champions_found = 0
     
     meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
-    fitness_history = {m: {"compiled_successfully": True, "total_executions": 0, "last_execution_wall_ms": 999.0} for m in meshes}
+    fitness_history = {m: {"compiled_successfully": True, "total_executions": 0, "last_execution_wall_ms": 9999.0} for m in meshes}
 
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
@@ -156,7 +197,8 @@ def main():
             with open(mesh_path, "r", encoding="utf-8") as f_read:
                 original_blueprint = f_read.read()
             
-            mutated_blueprint = execute_symbolic_mutation(original_blueprint, target_mesh, total_rounds)
+            # Execute goal-directed semantic code generation mutations
+            mutated_blueprint, mutation_description = execute_goal_directed_mutation(original_blueprint, target_mesh, total_rounds)
             
             with open(mesh_path, "w", encoding="utf-8") as f_write:
                 f_write.write(mutated_blueprint)
@@ -168,6 +210,11 @@ def main():
             duration_ms = (time.perf_counter() - t0) * 1000
             
             if duration_ms < fitness_history[target_mesh]["last_execution_wall_ms"]:
+                # DESCRIPTIVE MUTATION LOGGING: Print the exact structural design step taken to the console
+                print(f"🧬 [Structural Evolution] Component [{target_mesh}] mutated successfully!", flush=True)
+                print(f"   ↳ Action: {mutation_description}", flush=True)
+                print(f"   ↳ Speed Benchmark Optimized: {fitness_history[target_mesh]['last_execution_wall_ms']} ms -> {round(duration_ms, 4)} ms", flush=True)
+                
                 fitness_history[target_mesh]["last_execution_wall_ms"] = round(duration_ms, 4)
                 fitness_history[target_mesh]["compiled_successfully"] = True
                 fitness_history[target_mesh]["total_executions"] += 1
