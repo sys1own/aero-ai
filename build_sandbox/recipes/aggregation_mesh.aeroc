@@ -57,12 +57,12 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Optimization Frame Update #10671 --\"",
+    "\"-- Swarm Optimization Frame Update #441513 --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
     "write_file",
-    "production_key",
-    "sign_package"
+    "build_sandbox/swarm_box.zip",
+    "create_archive"
   ]
 }

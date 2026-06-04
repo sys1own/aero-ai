@@ -37,32 +37,15 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
-    ],
-    [
-      "CALL",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Optimization Frame Update #37 --\"",
+    "\"-- Swarm Optimization Frame Update #591675 --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",
-    "write_file",
-    "sw_mem_ring",
-    "mutex_lock"
+    "write_file"
   ]
 }
