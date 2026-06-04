@@ -42,10 +42,10 @@
     ],
     [
       "PUSH_STRING",
-      6
+      1
     ],
     [
-      "CALL",
+      "CALL_DIRECT",
       1
     ],
     [
@@ -62,7 +62,6 @@
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
     "write_file",
-    "build_sandbox/swarm_box.zip",
-    "create_archive"
+    "\"-- Executing: Post-Build Environment Sanitation Cycle --\""
   ]
 }
