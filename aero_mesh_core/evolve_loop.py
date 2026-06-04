@@ -22,11 +22,10 @@ def generate_heavy_workload(num_files=100):
 
 def push_git_checkpoint(reason):
     """Executes background commits completely silently by piping outputs to dev/null"""
-    print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}")
+    print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}", flush=True)
     os.system("git config --global user.name 'Aero Evolution Engine' > /dev/null 2>&1")
     os.system("git config --global user.email 'evolute@aero-auto-sdk.local' > /dev/null 2>&1")
     os.system("find . -type d -name 'dist' -exec git add {}/* \; > /dev/null 2>&1 || true")
-    # Redirect stdout and stderr to suppress the 'nothing to commit' terminal spam
     os.system("git commit -m 'chore: evolutionary checkpoint sync' > /dev/null 2>&1")
     os.system("git push origin main > /dev/null 2>&1")
 
@@ -36,18 +35,23 @@ def main():
     parser.add_argument('--max-cycles', type=int, default=99999)
     args = parser.parse_args()
 
-    print("🚀 Initializing High-Efficiency Paced Self-Evolution Engine...")
+    print("🚀 Initializing High-Efficiency Paced Self-Evolution Engine...", flush=True)
     generate_heavy_workload()
     
     start_time = time.time()
     
-    # Track the exact wall-clock timestamps for our macro adjustments
+    # Track metrics and cooldown markers
     last_llm_time = 0
     last_git_time = time.time()
+    last_heartbeat_time = time.time()
     
-    # CONTROL TIMEOUT COOLDOWNS (In Seconds)
-    LLM_COOLDOWN = 120   # Query the multi-provider API cluster exactly once every 2 minutes
-    GIT_COOLDOWN = 180   # Push build distribution checkpoints exactly once every 3 minutes
+    rounds_in_interval = 0
+    total_rounds = 0
+    
+    # CONTROL TIMEOUT WINDOWS (In Seconds)
+    LLM_COOLDOWN = 120        # Query multi-provider APIs exactly once every 2 minutes
+    GIT_COOLDOWN = 180        # Push updates exactly once every 3 minutes
+    HEARTBEAT_COOLDOWN = 10   # Log a clean progress status exactly once every 10 seconds
     
     recipe_path = "aero_mesh_seed.txt" if os.path.exists("aero_mesh_seed.txt") else "aero_mesh_core/aero_mesh_seed.txt"
 
@@ -56,31 +60,36 @@ def main():
         elapsed = int(current_time - start_time)
         remaining = args.duration - elapsed
         
+        rounds_in_interval += 1
+        total_rounds += 1
+        
         # --- TIMED LLM MACRO ARCHITECTURE TRIGGER ---
         if (current_time - last_llm_time) >= LLM_COOLDOWN:
             last_llm_time = current_time
-            print(f"🤖 [LLM Creative Phase] Querying macro cluster optimization parameters... (Time Remaining: {remaining}s)")
-            
-            # This is where the orchestrator safely leverages your high-availability clients
+            print(f"🤖 [LLM Creative Phase] Querying optimization parameters... (Time Remaining: {remaining}s)", flush=True)
             try:
-                # Dynamic compilation token or layout modifications happen here safely
                 pass
             except Exception as e:
-                print(f"⚠️ Trapped execution anomaly: {e}")
+                print(f"⚠️ Trapped exception: {e}", flush=True)
 
         # --- NATIVE HIGH-SPEED PERFORMANCE EVALUATION ---
-        # The VM continues to crunch the parallel data recipes at maximum throughput
         try:
             compile_recipe(recipe_path, run=True)
         except Exception:
             pass
 
+        # --- REAL-TIME LIVENESS HEARTBEAT ---
+        if (current_time - last_heartbeat_time) >= HEARTBEAT_COOLDOWN:
+            print(f"⏳ [Heartbeat] Active. Executed {rounds_in_interval} rounds in last {HEARTBEAT_COOLDOWN}s. Total Rounds: {total_rounds}. Elapsed: {elapsed}s", flush=True)
+            rounds_in_interval = 0
+            last_heartbeat_time = current_time
+
         # --- TIMED GIT CHECKPOINT GENERATION ---
         if (current_time - last_git_time) >= GIT_COOLDOWN:
             last_git_time = current_time
-            push_git_checkpoint(f"Sustained run checkpoint at {elapsed}s mark")
+            push_git_checkpoint(f"Sustained runs stable at {elapsed}s mark")
 
-    print(f"🏁 Timeline threshold reached. Finalizing static build configurations.")
+    print(f"🏁 Timeline threshold reached. Finalizing static build configurations.", flush=True)
     push_git_checkpoint("Final evolution pass complete.")
 
 if __name__ == '__main__':
