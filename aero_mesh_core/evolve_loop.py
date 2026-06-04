@@ -51,7 +51,7 @@ def ensure_swarm_blueprints(force_reset=False):
                 f.write(content)
 
 def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
-    """Generates an infinite search space of uniquely tiered clusters preventing density saturation walls"""
+    """Generates continuous structural mutations enforcing family group density limits and structural caps"""
     lines = recipe_text.split("\n")
     tasks = []
     
@@ -61,31 +61,37 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
 
     strategy = random.choice(["expand_nodes", "relink_dependencies", "fuzz_logs"])
     
+    # CRITICAL RAILING 1: Hard File Saturation Cap. Max 15 nodes per mesh file.
+    # Forces the engine to spend its time twisting dependencies and refining rather than appending bloat lines.
+    if len(tasks) >= 15 and strategy == "expand_nodes":
+        strategy = "relink_dependencies"
+
     if strategy == "expand_nodes" and tasks:
-        # Algorithmic sharding windows to continuously rotate active category tokens
         cluster_tier = round_counter % 2000  
         
         if "ingress" in mesh_name:
-            chosen = random.choice([
-                {"prefix": f"sentinel_gate_tier_{cluster_tier}", "op": "call", "fn": "verify_crypto", "args": f'"sha256_handshake_{round_counter}"', "label": f"Security Tier {cluster_tier}"},
-                {"prefix": f"load_balancer_tier_{cluster_tier}", "op": "call", "fn": "distribute_load", "args": f'"worker_pool_{round_counter}"', "label": f"Load Balancer Tier {cluster_tier}"},
-                {"prefix": f"stream_buffer_tier_{cluster_tier}", "op": "call", "fn": "write_file", "args": f'"testbed/scans/stream_{round_counter}.io", "async"', "label": f"Stream Buffer Shard {cluster_tier}"}
-            ])
+            pool = [
+                {"family": "sentinel_gate", "prefix": f"sentinel_gate_tier_{cluster_tier}", "op": "call", "fn": "verify_crypto", "args": f'"sha256_handshake_{round_counter}"', "label": f"Security Tier {cluster_tier}"},
+                {"family": "load_balancer", "prefix": f"load_balancer_tier_{cluster_tier}", "op": "call", "fn": "distribute_load", "args": f'"worker_pool_{round_counter}"', "label": f"Traffic Director Tier {cluster_tier}"},
+                {"family": "stream_buffer", "prefix": f"stream_buffer_tier_{cluster_tier}", "op": "call", "fn": "write_file", "args": f'"testbed/scans/stream_{round_counter}.io", "async"', "label": f"I/O Buffer Shard {cluster_tier}"}
+            ]
         elif "processing" in mesh_name:
-            chosen = random.choice([
-                {"prefix": f"dag_optimizer_tier_{cluster_tier}", "op": "call", "fn": "unroll_loops", "args": f'"exec_graph_{round_counter}"', "label": f"DAG Instance Tier {cluster_tier}"},
-                {"prefix": f"shared_memory_tier_{cluster_tier}", "op": "call", "fn": "mutex_lock", "args": f'"aero_vmem_{round_counter}"', "label": f"Memory Lock Tier {cluster_tier}"},
-                {"prefix": f"matrix_solver_tier_{cluster_tier}", "op": "call", "fn": "compute_weights", "args": f'"testbed/scans/matrix_{round_counter}.dat"', "label": f"Matrix Segment Tier {cluster_tier}"}
-            ])
+            pool = [
+                {"family": "dag_optimizer", "prefix": f"dag_optimizer_tier_{cluster_tier}", "op": "call", "fn": "unroll_loops", "args": f'"exec_graph_{round_counter}"', "label": f"DAG Instance Tier {cluster_tier}"},
+                {"family": "shared_memory", "prefix": f"shared_memory_tier_{cluster_tier}", "op": "call", "fn": "mutex_lock", "args": f'"aero_vmem_{round_counter}"', "label": f"Memory Lock Tier {cluster_tier}"},
+                {"family": "matrix_solver", "prefix": f"matrix_solver_tier_{cluster_tier}", "op": "call", "fn": "compute_weights", "args": f'"testbed/scans/matrix_{round_counter}.dat"', "label": f"Matrix Segment Tier {cluster_tier}"}
+            ]
         else:
-            chosen = random.choice([
-                {"prefix": f"manifest_signer_tier_{cluster_tier}", "op": "call", "fn": "sign_package", "args": f'"rsa_private_{round_counter}"', "label": f"Integrity Shard Seal {cluster_tier}"},
-                {"prefix": f"standalone_boxer_tier_{cluster_tier}", "op": "call", "fn": "create_archive", "args": f'"build_sandbox/swarm_box_{round_counter}.zip"', "label": f"Bundle Archiver Tier {cluster_tier}"},
-                {"prefix": f"index_mapper_tier_{cluster_tier}", "op": "call", "fn": "write_file", "args": f'"aero_mesh_core/dist/map_{round_counter}.idx", "sync"', "label": f"Index Row Tier {cluster_tier}"}
-            ])
+            pool = [
+                {"family": "manifest_signer", "prefix": f"manifest_signer_tier_{cluster_tier}", "op": "call", "fn": "sign_package", "args": f'"rsa_private_{round_counter}"', "label": f"Integrity Shard Seal {cluster_tier}"},
+                {"family": "standalone_boxer", "prefix": f"standalone_boxer_tier_{cluster_tier}", "op": "call", "fn": "create_archive", "args": f'"build_sandbox/swarm_box_{round_counter}.zip"', "label": f"Bundle Archiver Tier {cluster_tier}"},
+                {"family": "index_mapper", "prefix": f"index_mapper_tier_{cluster_tier}", "op": "call", "fn": "write_file", "args": f'"aero_mesh_core/dist/map_{round_counter}.idx", "sync"', "label": f"Index Row Tier {cluster_tier}"}
+            ]
             
-        # Check density constraints against the localized tier token rather than the global operation family
-        if recipe_text.count(chosen['prefix']) >= 2:
+        chosen = random.choice(pool)
+        
+        # CRITICAL RAILING 2: Base Family Cap check completely closes the orthogonal naming exploit loop
+        if recipe_text.count(chosen['family']) >= 3:
             strategy = "relink_dependencies"
         else:
             new_node_id = f"{chosen['prefix']}_node_{round_counter}"
@@ -98,7 +104,7 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
                 f"args = {chosen['args']}\n"
                 f"needs = {parent_dependency}\n"
             )
-            return recipe_text + node_block, f"Instantiated Tiered {chosen['label']} -> ID: {new_node_id}"
+            return recipe_text + node_block, f"Provisioned Sharded {chosen['label']} Cluster Instance ({new_node_id})"
 
     if strategy == "relink_dependencies" and len(tasks) > 1:
         new_lines = []
@@ -110,7 +116,7 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
                 mutated = True
             else:
                 new_lines.append(line)
-        desc = "Reconfigured Dependency Routing Graph Pathing" if mutated else "Maintained Node Alignment Stability"
+        desc = "Reconfigured Parallel Routing Paths" if mutated else "Maintained Topology Edge Paths"
         return "\n".join(new_lines), desc
 
     new_lines = []
@@ -139,7 +145,7 @@ def push_git_checkpoint(reason, metrics):
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
-    os.system(f'git -C "{_ROOT}" commit -m "chore: enable unconstrained linear scale via tiered cluster sharding metrics" 2>&1')
+    os.system(f'git -C "{_ROOT}" commit -m "chore: enforce absolute structural density boundaries across macro cluster meshes" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main 2>&1')
 
 def main():
@@ -147,7 +153,7 @@ def main():
     parser.add_argument('--duration', type=int, default=1200)
     args, unknown = parser.parse_known_args()
 
-    print("🚀 Initializing Infinite Tiered Sharded Swarm Evolution Engine...", flush=True)
+    print("🚀 Initializing Density-Bounded Swarm Architecture Engine...", flush=True)
     print("🎯 Target System: Massive, High-Density Multi-Node Distributed Architecture", flush=True)
     generate_swarm_environment()
     ensure_swarm_blueprints(force_reset=True)
@@ -200,7 +206,7 @@ def main():
             
             if mutated_nodes > fitness_history[target_mesh]["node_count"]:
                 interval_stats["champions_crowned"].append(
-                    f"     • [{target_mesh}] Scaled footprint to {mutated_nodes} structured cluster nodes"
+                    f"     • [{target_mesh}] Balanced expansion to {mutated_nodes} structured nodes"
                 )
                 fitness_history[target_mesh]["node_count"] = mutated_nodes
                 fitness_history[target_mesh]["compiled_successfully"] = True
@@ -228,7 +234,7 @@ def main():
             
             if interval_stats["champions_crowned"]:
                 print("   📈 Structural Footprint Extensions Frozen in Last 10s:", flush=True)
-                for log_line in interval_stats["champions_crowned"]:
+                for log_line in interval_stats["chrowned_line" if "crowned" in interval_stats else "champions_crowned"]:
                     print(log_line, flush=True)
             print("==================================================================", flush=True)
             
