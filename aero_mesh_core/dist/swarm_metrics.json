@@ -1,17 +1,26 @@
 {
   "ingress_mesh.txt": {
-    "compiled_successfully": false,
-    "total_executions": 0,
-    "last_execution_wall_ms": 0
+    "compiled_successfully": true,
+    "total_executions": 2,
+    "last_execution_wall_ms": 0.5887,
+    "best_wall_ms": 0.6465,
+    "generation": 0,
+    "champion": "baseline"
   },
   "processing_mesh.txt": {
-    "compiled_successfully": false,
-    "total_executions": 56442,
-    "last_execution_wall_ms": 0.7353
+    "compiled_successfully": true,
+    "total_executions": 2,
+    "last_execution_wall_ms": 0.7182,
+    "best_wall_ms": 0.6782,
+    "generation": 0,
+    "champion": "baseline"
   },
   "aggregation_mesh.txt": {
     "compiled_successfully": true,
-    "total_executions": 152746,
-    "last_execution_wall_ms": 0.6706
+    "total_executions": 2,
+    "last_execution_wall_ms": 0.7199,
+    "best_wall_ms": 0.7376,
+    "generation": 0,
+    "champion": "baseline"
   }
 }

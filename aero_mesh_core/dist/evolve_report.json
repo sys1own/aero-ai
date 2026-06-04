@@ -1,59 +1,53 @@
 {
-  "recipe": "/home/runner/work/aero-ai/aero-ai/aero_mesh_core/recipes/seed_topology.txt",
-  "cycles": [
-    {
-      "cycle": 1,
-      "metrics": {
-        "wall_ms": 26,
-        "opcodes": {}
-      },
-      "proposal": null,
-      "validated": null,
-      "applied": false
+  "engine": "local-symbolic-topological-mutation",
+  "iterations": 4,
+  "champions_accepted": 0,
+  "foundation": {
+    "ingress_mesh.aeroc": {
+      "role": "pipeline execution",
+      "status": "executed",
+      "main_ops": 9
     },
-    {
-      "cycle": 2,
-      "metrics": {
-        "wall_ms": 6,
-        "opcodes": {}
-      },
-      "proposal": null,
-      "validated": null,
-      "applied": false
+    "processing_mesh.aeroc": {
+      "role": "data transform reading",
+      "status": "validated (not runnable: FileNotFoundError)",
+      "main_ops": 28
     },
-    {
-      "cycle": 3,
-      "metrics": {
-        "wall_ms": 7,
-        "opcodes": {}
-      },
-      "proposal": null,
-      "validated": null,
-      "applied": false
+    "aggregation_mesh.aeroc": {
+      "role": "archiving validation sweeps",
+      "status": "executed",
+      "main_ops": 10
     },
-    {
-      "cycle": 4,
-      "metrics": {
-        "wall_ms": 7,
-        "opcodes": {}
-      },
-      "proposal": null,
-      "validated": null,
-      "applied": false
-    },
-    {
-      "cycle": 5,
-      "metrics": {
-        "wall_ms": 4,
-        "opcodes": {}
-      },
-      "proposal": null,
-      "validated": null,
-      "applied": false
+    "aero_mesh_seed.aeroc": {
+      "role": "topology seed",
+      "status": "validated (not runnable: VMError)",
+      "main_ops": 62
     }
-  ],
-  "best": {
-    "cycle": 5,
-    "wall_ms": 4
+  },
+  "meshes": {
+    "ingress_mesh.txt": {
+      "compiled_successfully": true,
+      "total_executions": 2,
+      "last_execution_wall_ms": 0.5887,
+      "best_wall_ms": 0.6465,
+      "generation": 0,
+      "champion": "baseline"
+    },
+    "processing_mesh.txt": {
+      "compiled_successfully": true,
+      "total_executions": 2,
+      "last_execution_wall_ms": 0.7182,
+      "best_wall_ms": 0.6782,
+      "generation": 0,
+      "champion": "baseline"
+    },
+    "aggregation_mesh.txt": {
+      "compiled_successfully": true,
+      "total_executions": 2,
+      "last_execution_wall_ms": 0.7199,
+      "best_wall_ms": 0.7376,
+      "generation": 0,
+      "champion": "baseline"
+    }
   }
 }
