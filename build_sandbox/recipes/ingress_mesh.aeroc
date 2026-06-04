@@ -33,21 +33,6 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "CALL",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
@@ -56,8 +41,6 @@
     "\"-- Initializing Ingress Nodes --\"",
     "print",
     "testbed/scans/raw_telemetry_0",
-    "read_file",
-    "ingress_worker_pool",
-    "load_balance"
+    "read_file"
   ]
 }
