@@ -20,7 +20,6 @@ def generate_swarm_environment():
     os.makedirs(os.path.join(_ROOT, "build_sandbox", "recipes"), exist_ok=True)
     os.makedirs(os.path.join(_ROOT, "testbed", "scans"), exist_ok=True)
     
-    # Switch to clean extension-free target datasets to eliminate syntax interpretation hazards
     for i in range(5):
         with open(os.path.join(_ROOT, "testbed", "scans", f"raw_telemetry_{i}"), "w") as f:
             f.write(f"PACKET_ID={1000+i}\nPAYLOAD_HEX={hex(random.randint(100000,999999))}\nMETRIC=STABLE\n")
@@ -53,7 +52,7 @@ def ensure_swarm_blueprints(force_reset=False):
                 f.write(content)
 
 def clean_llm_response(text):
-    """Bulletproof parsing layer to extract raw INI configurations from conversational markdown responses"""
+    """Parsing layer to extract raw INI configurations from conversational markdown responses"""
     lines = text.split("\n")
     cleaned_lines = []
     inside_block = False
@@ -75,7 +74,7 @@ def clean_llm_response(text):
     return result if result else text.strip()
 
 def call_live_llm_cluster(mesh_name, current_recipe, fitness_report):
-    """Zero-dependency API coordinator that instructs the LLM to creatively evolve the swarm"""
+    """Zero-dependency API coordinator with explicit standard error printing for deep diagnostic tracking"""
     keys = {
         "openrouter": os.environ.get("OPENROUTER_API_KEY"),
         "groq": os.environ.get("GROQ_API_KEY"),
@@ -84,17 +83,19 @@ def call_live_llm_cluster(mesh_name, current_recipe, fitness_report):
     providers = [p for p, k in keys.items() if k]
     random.shuffle(providers)
     if not providers:
+        print("   ⚠️ Diagnostic Notice: No active API keys discovered in environment variables.", flush=True)
         return current_recipe
 
     prompt = f"""You are the Swarm System Architect. Your absolute objective is to expand and optimize a multi-mesh execution framework.
 You are currently tuning the component: [{mesh_name}].
 
 CRITICAL COMPILER RULES:
-1. Every task block must follow the format [task:name] with parameters like op, fn, args, or needs.
-2. Ensure proper dependency mapping (tasks listed in 'needs' must actually exist).
-3. NEVER write a literal period character (.) outside of an explicit double-quoted string. 
-4. All file paths, names, extensions, or text strings MUST be enclosed in explicit double quotes (e.g., args = "file_name" or text = "Initializing"). Unquoted symbols will cause a LexerError compilation crash.
-5. Output ONLY the raw, valid INI contents. Do not include markdown wraps, conversational descriptions, or block formatting.
+1. You must output the entire modified configuration file, including the [project] section header and all existing or newly added tasks.
+2. Every task block must follow the format [task:name] with parameters like op, fn, args, or needs.
+3. Ensure proper dependency mapping (tasks listed in 'needs' must actually exist).
+4. NEVER write a literal period character (.) outside of an explicit double-quoted string. 
+5. All file paths, names, extensions, or text strings MUST be enclosed in explicit double quotes (e.g., args = "file_name" or text = "Initializing"). Unquoted symbols will cause a LexerError compilation crash.
+6. Output ONLY the raw, valid INI contents. Do not include markdown wraps, conversational descriptions, or block formatting.
 
 CURRENT PERFORMANCE TRACKING STATISTICS:
 {json.dumps(fitness_report, indent=2)}
@@ -128,7 +129,9 @@ CURRENT BLUEPRINT DEFINITION:
                 res_data = json.loads(response.read().decode("utf-8"))
                 raw_output = res_data["choices"][0]["message"]["content"] if provider in ["openrouter", "groq"] else res_data["candidates"][0]["content"]["parts"][0]["text"]
                 return clean_llm_response(raw_output)
-        except Exception:
+        except Exception as api_err:
+            # EXPOSE API CLUSTER EXCEPTIONS: Print network anomalies directly to the live workflow console
+            print(f"   ❌ API Cluster Warning: Endpoint [{provider.upper()}] returned connection anomaly: {api_err}", flush=True)
             continue
     return current_recipe
 
@@ -199,14 +202,8 @@ def main():
                 fitness_history[mesh]["last_execution_wall_ms"] = round(duration_ms, 4)
                 fitness_history[mesh]["compiled_successfully"] = True
             except Exception as ce:
-                # DUMP AND TRACK WARNING DIAGNOSTICS: Expose the raw file contents causing the alert
                 if fitness_history[mesh]["compiled_successfully"]:
                     print(f"⚠️ [Compiler Alert] Component [{mesh}] failed compilation check: {ce}", flush=True)
-                    try:
-                        with open(mesh_path, "r", encoding="utf-8") as ferr:
-                            print(f"--- ACTIVE FILE RAW LAYER [{mesh}] ---\n{ferr.read()}\n--------------------------------------", flush=True)
-                    except Exception:
-                        pass
                 fitness_history[mesh]["compiled_successfully"] = False
 
         if (current_time - last_llm_time) >= LLM_COOLDOWN:
@@ -221,7 +218,13 @@ def main():
                 
                 new_recipe = call_live_llm_cluster(target_mesh, old_recipe, fitness_history[target_mesh])
                 
-                if new_recipe and new_recipe != old_recipe and "[project]" in new_recipe:
+                # DIAGNOSTIC GATING CHECKS: Expose the exact logic path triggering file rejection updates
+                if new_recipe == old_recipe:
+                    print("   ℹ️ Optimization Note: LLM returned an unchanged recipe payload. Skipping disk save operation.", flush=True)
+                elif "[project]" not in new_recipe:
+                    print("   ⚠️ Validation Alert: LLM omitted required global '[project]' metadata block. Dropping payload to protect architecture.", flush=True)
+                    print(f"   --- REJECTED PAYLOAD TEXT ---\n{new_recipe}\n-----------------------------", flush=True)
+                else:
                     with open(target_path, "w", encoding="utf-8") as wf:
                         wf.write(new_recipe)
                     print(f"⚡ Structural Adaptation Implemented: Refactored structural definitions inside {target_mesh}.", flush=True)
