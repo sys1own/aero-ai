@@ -14,88 +14,70 @@ if _ROOT not in sys.path:
 
 from meta_compiler import compile_recipe
 
-def generate_heavy_workload(num_files=100):
-    """Generates local dataset frames inside the ephemeral space to stress test tracking"""
-    base_dir = os.path.join(_ROOT, "testbed", "scans")
-    os.makedirs(base_dir, exist_ok=True)
-    for i in range(num_files):
-        with open(os.path.join(base_dir, f"heavy_node_{i}.txt"), "w") as f:
-            f.write(f"// HIGH-DENSITY BALANCING MATRIX NODE {i}\n")
-            for j in range(20):
-                f.write(f"let processing_weight_{i}_{j} = {j * i};\n")
+def generate_swarm_environment():
+    """Initializes the multi-tiered directory matrix required for independent swarm components"""
+    os.makedirs(os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints"), exist_ok=True)
+    os.makedirs(os.path.join(_ROOT, "build_sandbox", "swarm_box"), exist_ok=True)
+    os.makedirs(os.path.join(_ROOT, "testbed", "scans"), exist_ok=True)
+    
+    # Pre-populate some rich mock data packets for testing deep routing operations
+    for i in range(5):
+        with open(os.path.join(_ROOT, "testbed", "scans", f"raw_telemetry_{i}.dat"), "w") as f:
+            f.write(f"PACKET_ID={1000+i}\nPAYLOAD_HEX={hex(random.randint(100000,999999))}\nMETRIC=STABLE\n")
 
-def generate_default_seed_recipe(path):
-    """Programmatically restores the complete multi-threaded swarm topology map if missing"""
-    print(f"🛠️ Seed blueprint absent. Generating standalone swarm topology configuration at: {path}", flush=True)
-    parent = os.path.dirname(path)
-    if parent:
-        os.makedirs(parent, exist_ok=True)
-        
-    content = (
-        "[project]\n"
-        "name   = aero_mesh_seed\n"
-        "output = build_sandbox/recipes/aero_mesh_seed.aeroc\n\n"
-        "[task:banner]\n"
-        "op   = print\n"
-        "text = == Aero-Mesh topology: ${name} ==\n\n"
-        "[task:scaffold]\n"
-        "op    = call\n"
-        "fn    = create_dir\n"
-        "args  = \"aero_mesh_core/dist\"\n"
-        "needs = banner\n\n"
-        "[task:scout_alpha]\n"
-        "op    = call\n"
-        "fn    = read_file\n"
-        "args  = \"testbed/scans/heavy_node_0.txt\"\n"
-        "needs = scaffold\n\n"
-        "[task:scout_beta]\n"
-        "op    = call\n"
-        "fn    = read_file\n"
-        "args  = \"testbed/scans/heavy_node_1.txt\"\n"
-        "needs = scaffold\n\n"
-        "[task:scout_gamma]\n"
-        "op    = call\n"
-        "fn    = read_file\n"
-        "args  = \"testbed/scans/heavy_node_2.txt\"\n"
-        "needs = scaffold\n\n"
-        "[task:linker_ab]\n"
-        "op    = call\n"
-        "fn    = write_file\n"
-        "args  = \"aero_mesh_core/dist/links/linker_ab.txt\", \"link alpha-beta verified\"\n"
-        "needs = scout_alpha, scout_beta\n\n"
-        "[task:linker_bg]\n"
-        "op    = call\n"
-        "fn    = write_file\n"
-        "args  = \"aero_mesh_core/dist/links/linker_bg.txt\", \"link beta-gamma verified\"\n"
-        "needs = scout_beta, scout_gamma\n\n"
-        "[task:aggregate]\n"
-        "op    = call\n"
-        "fn    = write_file\n"
-        "args  = \"aero_mesh_core/dist/index_manifest.txt\", \"mesh index manifest map complete\"\n"
-        "needs = linker_ab, linker_bg\n\n"
-        "[task:done]\n"
-        "op    = print\n"
-        "text  = ${name} topology pass complete\n"
-        "needs = aggregate\n"
-    )
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(content)
+def ensure_swarm_blueprints():
+    """Guarantees that all three distinct architectural meshes are present on disk before running"""
+    blueprints = {
+        "ingress_mesh.txt": (
+            "[project]\nname = ingress_mesh\noutput = build_sandbox/swarm_box/ingress.aeroc\n\n"
+            "[task:init]\nop = print\ntext = -- Initializing Ingress Nodes --\n\n"
+            "[task:ingest]\nop = call\nfn = read_file\nargs = \"testbed/scans/raw_telemetry_0.dat\"\nneeds = init\n"
+        ),
+        "processing_mesh.txt": (
+            "[project]\nname = processing_mesh\noutput = build_sandbox/swarm_box/processing.aeroc\n\n"
+            "[task:compute]\nop = print\ntext = -- Processing Parallel Computations --\n\n"
+            "[task:transform]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/dist/interim.tmp\", \"processed\"\nneeds = compute\n"
+        ),
+        "aggregation_mesh.txt": (
+            "[project]\nname = aggregation_mesh\noutput = build_sandbox/swarm_box/aggregation.aeroc\n\n"
+            "[task:consolidate]\nop = print\ntext = -- Aggregating Distributed State --\n\n"
+            "[task:freeze]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/dist/index_manifest.txt\", \"state complete\"\nneeds = consolidate\n"
+        )
+    }
+    
+    bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
+    for name, content in blueprints.items():
+        path = os.path.join(bp_dir, name)
+        if not os.path.exists(path):
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(content)
 
-def call_live_llm_cluster(current_recipe):
-    """Zero-dependency high-availability API client with token shuffling and fallback mapping"""
+def call_live_llm_cluster(mesh_name, current_recipe, fitness_report):
+    """Zero-dependency API coordinator that instructs the LLM to creatively evolve the swarm"""
     keys = {
         "openrouter": os.environ.get("OPENROUTER_API_KEY"),
         "groq": os.environ.get("GROQ_API_KEY"),
         "gemini": os.environ.get("GEMINI_API_KEY")
     }
-    
     providers = [p for p, k in keys.items() if k]
     random.shuffle(providers)
-    
     if not providers:
         return current_recipe
 
-    prompt = f"You are the Aero Build Architect. Mutate this declarative INI build recipe to add a creative new task or optimize dependency loops. Keep the structure matching [project] and [task:name]. Output ONLY the raw valid INI content. Do not include markdown formatting or blocks.\n\nCURRENT RECIPE:\n{current_recipe}"
+    prompt = f"""You are the Swarm System Architect. Your absolute objective is to expand and optimize a multi-mesh execution framework.
+You are currently tuning the component: [{mesh_name}].
+
+CRITICAL RULES:
+1. Every task block must follow the format [task:name] with parameters like op, fn, args, or needs.
+2. Ensure proper dependency mapping (tasks listed in 'needs' must actually exist).
+3. Expand capabilities creatively: introduce data validation steps, schema constraints, processing pipelines, or logging rings.
+4. Output ONLY the raw, valid INI contents. Do not include markdown wraps or block formatting.
+
+CURRENT PERFORMANCE TRACKING STATISTICS:
+{json.dumps(fitness_report, indent=2)}
+
+CURRENT BLUEPRINT DEFINITION:
+{current_recipe}"""
 
     for provider in providers:
         try:
@@ -119,115 +101,119 @@ def call_live_llm_cluster(current_recipe):
                     data=json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode("utf-8")
                 )
             
-            with urllib.request.urlopen(req, timeout=15) as response:
+            with urllib.request.urlopen(req, timeout=12) as response:
                 res_data = json.loads(response.read().decode("utf-8"))
-                if provider in ["openrouter", "groq"]:
-                    output = res_data["choices"][0]["message"]["content"].strip()
-                else:
-                    output = res_data["candidates"][0]["content"]["parts"][0]["text"].strip()
-                
+                output = res_data["choices"][0]["message"]["content"].strip() if provider in ["openrouter", "groq"] else res_data["candidates"][0]["content"]["parts"][0]["text"].strip()
                 if output.startswith("```"):
                     output = "\n".join(output.split("\n")[1:-1])
                 return output
-                
         except Exception:
             continue
-            
     return current_recipe
 
-def push_git_checkpoint(reason, total_rounds, elapsed):
-    """Executes background pushes using explicit folder tracking without shell wildcards"""
-    print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}", flush=True)
+def push_git_checkpoint(reason, metrics):
+    """Commits and pushes the evolving multi-mesh code bases completely relative to the root folder"""
+    print(f"📦 [Checkpoint] Pushing Evolved Swarm State: {reason}", flush=True)
     
     dist_dir = os.path.join(_ROOT, "aero_mesh_core", "dist")
     os.makedirs(dist_dir, exist_ok=True)
-    
-    with open(os.path.join(dist_dir, "live_status.txt"), "w", encoding="utf-8") as sf:
-        sf.write(f"STATUS: Active Evolution Loop Running\n")
-        sf.write(f"LAST_CHECKPOINT_REASON: {reason}\n")
-        sf.write(f"TOTAL_VM_ROUNDS_SOLVED: {total_rounds}\n")
-        sf.write(f"ELAPSED_TIME_SECONDS: {elapsed}\n")
-        sf.write(f"HEARTBEAT_TIMESTAMP: {time.time()}\n")
+    with open(os.path.join(dist_dir, "swarm_metrics.json"), "w", encoding="utf-8") as f:
+        json.dump(metrics, f, indent=2)
 
     os.system(f'git -C "{_ROOT}" config user.name "Aero Evolution Engine" 2>&1')
     os.system(f'git -C "{_ROOT}" config user.email "evolute@aero-auto-sdk.local" 2>&1')
-    
-    # CRITICAL FIX: Pass explicit recursive directory paths instead of shell-expanded asterisks
-    os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_seed.txt aero_mesh_core/dist build_sandbox/recipes 2>&1')
-    os.system(f'git -C "{_ROOT}" commit -m "chore: evolutionary checkpoint update [metrics]" 2>&1')
+    os.system(f'git -C "{_ROOT}" add aero_mesh_core/swarm_blueprints/* build_sandbox/swarm_box/* aero_mesh_core/dist/* 2>&1')
+    os.system(f'git -C "{_ROOT}" commit -m "chore: optimize distributed swarm infrastructure assets [metrics updated]" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main 2>&1')
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--duration', type=int, default=1200)
-    parser.add_argument('--max-cycles', type=int, default=99999)
     args = parser.parse_args()
 
-    print("🚀 Initializing High-Efficiency Paced Self-Evolution Engine...", flush=True)
-    generate_heavy_workload()
+    print("🚀 Initializing Autonomous Distributed Swarm Architecture Engine...", flush=True)
+    generate_swarm_environment()
+    ensure_swarm_blueprints()
     
     start_time = time.time()
     last_llm_time = 0
     last_git_time = time.time()
     last_heartbeat_time = time.time()
     
-    rounds_in_interval = 0
     total_rounds = 0
+    rounds_in_interval = 0
     
+    # Swarm component manifests
+    meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
+    
+    # Store real performance metrics to pass back to the LLM optimizer
+    fitness_history = {m: {"compiled_successfully": True, "total_executions": 0, "last_execution_wall_ms": 0} for m in meshes}
+
     LLM_COOLDOWN = 120        
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
-    
-    recipe_path = os.path.join(_ROOT, "aero_mesh_core", "aero_mesh_seed.txt")
-    if not os.path.exists(recipe_path):
-        generate_default_seed_recipe(recipe_path)
-        
-    print(f"🎯 Configuration mapped. Target recipe verified at: {recipe_path}", flush=True)
+
+    bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
 
     while (time.time() - start_time) < args.duration:
         current_time = time.time()
         elapsed = int(current_time - start_time)
         remaining = args.duration - elapsed
         
-        rounds_in_interval += 1
         total_rounds += 1
+        rounds_in_interval += 1
         
-        # --- TIMED LLM MACRO ARCHITECTURE TRIGGER ---
+        # --- NATIVE HIGH-SPEED COMPILATION & EXECUTION RING ---
+        # The engine sweeps through all active components of the swarm at blistering speeds
+        for mesh in meshes:
+            mesh_path = os.path.join(bp_dir, mesh)
+            try:
+                t0 = time.perf_counter()
+                with open(os.devnull, 'w') as fnull:
+                    with contextlib.redirect_stdout(fnull), contextlib.redirect_stderr(fnull):
+                        compile_recipe(mesh_path, run=True)
+                duration_ms = (time.perf_counter() - t0) * 1000
+                
+                fitness_history[mesh]["total_executions"] += 1
+                fitness_history[mesh]["last_execution_wall_ms"] = round(duration_ms, 4)
+                fitness_history[mesh]["compiled_successfully"] = True
+            except Exception:
+                fitness_history[mesh]["compiled_successfully"] = False
+
+        # --- MULTI-MESH STRATEGIC LLM MUTATION CYCLE ---
         if (current_time - last_llm_time) >= LLM_COOLDOWN:
             last_llm_time = current_time
-            print(f"🤖 [LLM Creative Phase] Querying optimization cluster... (Time Remaining: {remaining}s)", flush=True)
+            # Pick a different mesh component to evolve each rotation interval
+            target_mesh = random.choice(meshes)
+            target_path = os.path.join(bp_dir, target_mesh)
+            
+            print(f"🤖 [LLM Cluster Mode] Expanding Swarm System Architecture Layer -> [{target_mesh}] (Time Remaining: {remaining}s)", flush=True)
             try:
-                with open(recipe_path, "r", encoding="utf-8") as rf:
+                with open(target_path, "r", encoding="utf-8") as rf:
                     old_recipe = rf.read()
-                new_recipe = call_live_llm_cluster(old_recipe)
+                
+                new_recipe = call_live_llm_cluster(target_mesh, old_recipe, fitness_history[target_mesh])
+                
                 if new_recipe and new_recipe != old_recipe and "[project]" in new_recipe:
-                    with open(recipe_path, "w", encoding="utf-8") as wf:
+                    with open(target_path, "w", encoding="utf-8") as wf:
                         wf.write(new_recipe)
-                    print("⚡ Structural Mutation Applied: Written updated layout definitions to configuration file.", flush=True)
+                    print(f"⚡ Structural Adaptation Implemented: Refactored structural definitions inside {target_mesh}.", flush=True)
             except Exception as e:
-                print(f"⚠️ Trapped exception: {e}", flush=True)
-
-        # --- NATIVE HIGH-SPEED PERFORMANCE EVALUATION ---
-        try:
-            with open(os.devnull, 'w') as fnull:
-                with contextlib.redirect_stdout(fnull), contextlib.redirect_stderr(fnull):
-                    compile_recipe(recipe_path, run=True)
-        except Exception:
-            pass
+                print(f"⚠️ Mutation hold: {e}", flush=True)
 
         # --- REAL-TIME LIVENESS HEARTBEAT ---
         if (current_time - last_heartbeat_time) >= HEARTBEAT_COOLDOWN:
-            print(f"⏳ [Heartbeat] Active. Executed {rounds_in_interval} rounds in last {HEARTBEAT_COOLDOWN}s. Total Rounds: {total_rounds}. Elapsed: {elapsed}s", flush=True)
+            print(f"⏳ [Heartbeat] Processing Swarm. Cycles in last 10s: {rounds_in_interval}. Cumulative Swarm Cycles: {total_rounds}. Runtime: {elapsed}s", flush=True)
             rounds_in_interval = 0
             last_heartbeat_time = current_time
 
-        # --- TIMED GIT CHECKPOINT GENERATION ---
+        # --- TIMED SYSTEM-WIDE GIT SAVER ---
         if (current_time - last_git_time) >= GIT_COOLDOWN:
             last_git_time = current_time
-            push_git_checkpoint(f"Sustained runs stable at {elapsed}s mark", total_rounds, elapsed)
+            push_git_checkpoint(f"Swarm network stable at {elapsed}s mark", fitness_history)
 
-    print(f"🏁 Timeline threshold reached. Finalizing static build configurations.", flush=True)
-    push_git_checkpoint("Final evolution pass complete.", total_rounds, int(time.time() - start_time))
+    print("🏁 Operational timeline achieved. Finalizing unified Swarm Box structures.", flush=True)
+    push_git_checkpoint("Evolution timeline run successfully completed.", fitness_history)
 
 if __name__ == '__main__':
     main()
