@@ -130,7 +130,8 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
                 mutated = True
             else:
                 new_lines.append(line)
-        desc = "Updated Console Log Frame Strings" if mutated = True else "No Change"
+        # FIX: Swapped out broken evaluation assignment token for a clean conditional boolean check
+        desc = "Updated Console Log Frame Strings" if mutated else "No Change"
         return "\n".join(new_lines), desc
 
 def push_git_checkpoint(reason, metrics):
@@ -171,7 +172,6 @@ def main():
     meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
     fitness_history = {m: {"node_count": 2, "compiled_successfully": True, "total_executions": 0} for m in meshes}
 
-    # Logging Accumulator Buffers to completely prevent stdout flooding
     interval_stats = {
         "cycles": 0,
         "compilation_faults": 0,
@@ -209,7 +209,6 @@ def main():
             mutated_nodes = mutated_blueprint.count("[task:")
             
             if mutated_nodes > fitness_history[target_mesh]["node_count"]:
-                # Buffer the structural champion milestone silently in memory instead of immediate printing
                 interval_stats["champions_crowned"].append(
                     f"     • [{target_mesh}] Scaled to {mutated_nodes} Nodes -> {mutation_description}"
                 )
@@ -231,7 +230,6 @@ def main():
             except Exception:
                 pass
 
-        # --- THE HEARTBEAT METRIC COMPRESSOR (Executes once every 10 seconds) ---
         if (current_time - last_heartbeat_time) >= HEARTBEAT_COOLDOWN:
             print("\n==================================================================", flush=True)
             print(f"⏳ [SWARM STATE HEARTBEAT] Time Elapsed: {elapsed}s / {args.duration}s", flush=True)
@@ -245,7 +243,6 @@ def main():
                     print(log_line, flush=True)
             print("==================================================================", flush=True)
             
-            # Flush interval buffers cleanly
             interval_stats = {"cycles": 0, "compilation_faults": 0, "champions_crowned": []}
             last_heartbeat_time = current_time
 
