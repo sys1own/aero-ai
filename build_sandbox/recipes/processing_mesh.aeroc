@@ -53,7 +53,7 @@
     ],
     [
       "PUSH_STRING",
-      2
+      0
     ],
     [
       "PUSH_STRING",
@@ -72,6 +72,40 @@
     ],
     [
       "PUSH_STRING",
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
       1
     ],
     [
@@ -87,15 +121,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -122,6 +152,55 @@
     [
       "PUSH_STRING",
       9
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      7
     ],
     [
       "PUSH_STRING",
@@ -154,101 +233,21 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      2
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      9
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      2
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      2
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      11
-    ],
-    [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6421009 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6545288 --\"",
     "print",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6421025 --\"",
-    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6545267 --\"",
+    "build_sandbox/mesh_outputs/matrix_38.tmp",
     "processed",
     "write_file",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6421023 --\"",
-    "build_sandbox/mesh_outputs/matrix_33.tmp",
-    "build_sandbox/mesh_outputs/matrix_38.tmp",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6421014 --\"",
+    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6545270 --\"",
     "build_sandbox/mesh_outputs/matrix_61.tmp",
+    "build_sandbox/mesh_outputs/matrix_33.tmp",
     "build_sandbox/mesh_outputs/matrix_1262.tmp"
   ]
 }
