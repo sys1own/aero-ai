@@ -60,29 +60,27 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
             t_name = line.split("[task:")[1].split("]")[0].strip()
             tasks.append(t_name)
 
-    # Infinite Architectural Primitives Factory Pools
     ingress_templates = [
         {"prefix": "sentinel_gate", "op": "call", "fn": "verify_crypto", "args": '"sha256_handshake"', "label": "Security Boundary"},
         {"prefix": "load_balancer", "op": "call", "fn": "distribute_load", "args": '"worker_mesh_pool"', "label": "Traffic Director"},
-        {"prefix": "stream_buffer", "op": "call", "fn": "write_file", "args": '"testbed/scans/stream.io", "async"', "label": "I/O Buffer Allocation"},
-        {"prefix": "telemetry_ping", "op": "print", "fn": "none", "args": '""', "label": "Pulse Heartbeat Link"}
+        {"prefix": "stream_buffer", "op": "call", "fn": "write_file", "args": '"testbed/scans/stream.io", "async"', "label": "I/O Buffer"},
+        {"prefix": "telemetry_ping", "op": "print", "fn": "none", "args": '""', "label": "Heartbeat Link"}
     ]
     
     processing_templates = [
         {"prefix": "dag_optimizer", "op": "call", "fn": "unroll_loops", "args": '"execution_graph"', "label": "DAG Compilation Optimizer"},
-        {"prefix": "shared_memory_ring", "op": "call", "fn": "mutex_lock", "args": '"aero_shared_vmem"', "label": "Shared Ring Memory Interlock"},
-        {"prefix": "matrix_solver", "op": "call", "fn": "compute_weights", "args": '"testbed/scans/weights.dat"', "label": "Parallel Matrix Math Cluster"},
+        {"prefix": "shared_memory_ring", "op": "call", "fn": "mutex_lock", "args": '"aero_shared_vmem"', "label": "Memory Interlock"},
+        {"prefix": "matrix_solver", "op": "call", "fn": "compute_weights", "args": '"testbed/scans/weights.dat"', "label": "Matrix Math Cluster"},
         {"prefix": "interim_checkpoint", "op": "call", "fn": "write_file", "args": '"aero_mesh_core/dist/state.bak", "snap"', "label": "State Recovery Snap"}
     ]
     
     aggregation_templates = [
-        {"prefix": "manifest_signer", "op": "call", "fn": "sign_package", "args": '"rsa_secure_private"', "label": "Cryptographic Integrity Stamp"},
-        {"prefix": "standalone_boxer", "op": "call", "fn": "create_archive", "args": '"build_sandbox/swarm_box.zip"', "label": "Unified Box Distribution Packer"},
-        {"prefix": "garbage_collector", "op": "print", "fn": "none", "args": '""', "label": "Memory Sandbox Scrub"},
-        {"prefix": "index_mapper", "op": "call", "fn": "write_file", "args": '"aero_mesh_core/dist/map.idx", "sync"', "label": "Topology Index Map Consolidation"}
+        {"prefix": "manifest_signer", "op": "call", "fn": "sign_package", "args": '"rsa_secure_private"', "label": "Integrity Stamp"},
+        {"prefix": "standalone_boxer", "op": "call", "fn": "create_archive", "args": '"build_sandbox/swarm_box.zip"', "label": "Box Packer"},
+        {"prefix": "garbage_collector", "op": "print", "fn": "none", "args": '""', "label": "Sandbox Scrub"},
+        {"prefix": "index_mapper", "op": "call", "fn": "write_file", "args": '"aero_mesh_core/dist/map.idx", "sync"', "label": "Index Consolidation"}
     ]
 
-    # Bias heavily toward functional node additions (75% probability) to ensure continuous scale growth
     strategy = random.choices(["expand_nodes", "relink_dependencies", "fuzz_logs"], weights=[75, 15, 10], k=1)[0]
     
     if strategy == "expand_nodes" and tasks:
@@ -108,10 +106,9 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
             node_block += f"text = \"-- Cluster Operation Status: Executing {chosen['label']} --\"\n"
             
         node_block += f"needs = {parent_dependency}\n"
-        return recipe_text + node_block, f"Instantiated brand new [{chosen['label']}] node -> ID: {new_node_id}"
+        return recipe_text + node_block, f"Added {chosen['label']} Node ({new_node_id})"
 
     elif strategy == "relink_dependencies" and len(tasks) > 1:
-        # Re-route task graph edges to grow deeper parallel chains
         new_lines = []
         mutated = False
         for line in lines:
@@ -121,7 +118,7 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
                 mutated = True
             else:
                 new_lines.append(line)
-        desc = "Reconfigured topological graph routing paths" if mutated else "Skipped layer adjustment"
+        desc = "Reconfigured Dependency Routing Edges" if mutated else "No Change"
         return "\n".join(new_lines), desc
 
     else:
@@ -133,12 +130,12 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
                 mutated = True
             else:
                 new_lines.append(line)
-        desc = "Updated distributed console logging frames" if mutated else "Skipped structural touch"
+        desc = "Updated Console Log Frame Strings" if mutated = True else "No Change"
         return "\n".join(new_lines), desc
 
 def push_git_checkpoint(reason, metrics):
-    """Commits and pushes the structural multi-mesh assets straight to your production repository"""
-    print(f"📦 [Checkpoint] Pushing Evolved Swarm Core to GitHub: {reason}", flush=True)
+    """Commits and pushes structural multi-mesh components straight to production"""
+    print(f"\n📦 [Checkpoint] Syncing states to GitHub Remote... Reason: {reason}", flush=True)
     
     dist_dir = os.path.join(_ROOT, "aero_mesh_core", "dist")
     os.makedirs(dist_dir, exist_ok=True)
@@ -147,12 +144,10 @@ def push_git_checkpoint(reason, metrics):
 
     os.system(f'git -C "{_ROOT}" config user.name "Aero Evolution Engine" 2>&1')
     os.system(f'git -C "{_ROOT}" config user.email "evolute@aero-auto-sdk.local" 2>&1')
-    
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/swarm_blueprints 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
-    
     os.system(f'git -C "{_ROOT}" commit -m "chore: expand multi-node architecture footprint [autonomous growth]" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main 2>&1')
 
@@ -171,11 +166,17 @@ def main():
     last_heartbeat_time = time.time()
     
     total_rounds = 0
-    rounds_in_interval = 0
     champions_frozen = 0
     
     meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
     fitness_history = {m: {"node_count": 2, "compiled_successfully": True, "total_executions": 0} for m in meshes}
+
+    # Logging Accumulator Buffers to completely prevent stdout flooding
+    interval_stats = {
+        "cycles": 0,
+        "compilation_faults": 0,
+        "champions_crowned": []
+    }
 
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
@@ -187,7 +188,7 @@ def main():
         elapsed = int(current_time - start_time)
         
         total_rounds += 1
-        rounds_in_interval += 1
+        interval_stats["cycles"] += 1
         
         target_mesh = random.choice(meshes)
         mesh_path = os.path.join(bp_dir, target_mesh)
@@ -196,55 +197,61 @@ def main():
             with open(mesh_path, "r", encoding="utf-8") as f_read:
                 original_blueprint = f_read.read()
             
-            # Execute complexity-focused macro-mesh architecture mutation passes
             mutated_blueprint, mutation_description = execute_complexity_mutation(original_blueprint, target_mesh, total_rounds)
             
             with open(mesh_path, "w", encoding="utf-8") as f_write:
                 f_write.write(mutated_blueprint)
                 
-            # Perform clean compilation validation check inside our deterministic static SDK compiler
             with open(os.devnull, 'w') as fnull:
                 with contextlib.redirect_stdout(fnull), contextlib.redirect_stderr(fnull):
                     compile_recipe(mesh_path, run=True)
             
-            # Extract structural complexity markers (Total structural task node count allocation)
             mutated_nodes = mutated_blueprint.count("[task:")
             
-            # CRITICAL 6-HOUR CONTINUOUS SELECTION SEED FILTER: Reward network architecture scaling!
-            # If the change compiles with zero errors and increases total structural node depth, lock it in permanently!
             if mutated_nodes > fitness_history[target_mesh]["node_count"]:
-                print(f"📈 [Swarm Expansion Champion] Component [{target_mesh}] scaled out cleanly!", flush=True)
-                print(f"   ↳ Action: {mutation_description}", flush=True)
-                print(f"   ↳ Topology Node Depth Increased: {fitness_history[target_mesh]['node_count']} nodes -> {mutated_nodes} nodes", flush=True)
-                
+                # Buffer the structural champion milestone silently in memory instead of immediate printing
+                interval_stats["champions_crowned"].append(
+                    f"     • [{target_mesh}] Scaled to {mutated_nodes} Nodes -> {mutation_description}"
+                )
                 fitness_history[target_mesh]["node_count"] = mutated_nodes
                 fitness_history[target_mesh]["compiled_successfully"] = True
                 fitness_history[target_mesh]["total_executions"] += 1
                 champions_frozen += 1
             elif mutated_blueprint != original_blueprint and mutated_nodes == fitness_history[target_mesh]["node_count"]:
-                # Accept non-destructive logging updates and valid graph link edge tweaks to maintain variety
                 fitness_history[target_mesh]["compiled_successfully"] = True
             else:
-                # Instantly discard any structural changes that degrade node scale or count parameters
                 with open(mesh_path, "w", encoding="utf-8") as f_revert:
                     f_revert.write(original_blueprint)
                     
         except Exception:
-            # Revert instantly if a structural edge routing mutation breaks the compiler parser rules
+            interval_stats["compilation_faults"] += 1
             try:
                 with open(mesh_path, "w", encoding="utf-8") as f_revert:
                     f_revert.write(original_blueprint)
             except Exception:
                 pass
 
+        # --- THE HEARTBEAT METRIC COMPRESSOR (Executes once every 10 seconds) ---
         if (current_time - last_heartbeat_time) >= HEARTBEAT_COOLDOWN:
-            print(f"⏳ [Heartbeat] Processing. Instantiations in last 10s: {rounds_in_interval}. Global Passes: {total_rounds}. Swarm Scale Champions: {champions_frozen}. Elapsed: {elapsed}s", flush=True)
-            rounds_in_interval = 0
+            print("\n==================================================================", flush=True)
+            print(f"⏳ [SWARM STATE HEARTBEAT] Time Elapsed: {elapsed}s / {args.duration}s", flush=True)
+            print(f"   📊 Interval Velocity : {interval_stats['cycles']} compilation rounds processed", flush=True)
+            print(f"   🛡️ Integrity Gate    : {interval_stats['compilation_faults']} structural mutations blocked by compiler", flush=True)
+            print(f"   🏆 Total Scale Champs: {champions_frozen} topology adaptations frozen since boot", flush=True)
+            
+            if interval_stats["champions_crowned"]:
+                print("   📈 Structural Footprint Extensions Frozen in Last 10s:", flush=True)
+                for log_line in interval_stats["champions_crowned"]:
+                    print(log_line, flush=True)
+            print("==================================================================", flush=True)
+            
+            # Flush interval buffers cleanly
+            interval_stats = {"cycles": 0, "compilation_faults": 0, "champions_crowned": []}
             last_heartbeat_time = current_time
 
         if (current_time - last_git_time) >= GIT_COOLDOWN:
             last_git_time = current_time
-            push_git_checkpoint(f"Swarm network thriving and scaling at {elapsed}s mark. Structural nodes verified.", fitness_history)
+            push_git_checkpoint(f"Runtime: {elapsed}s, Footprint Scale: {champions_frozen} Nodes", fitness_history)
 
     print("🏁 Operational timeline achieved. Finalizing unified Swarm Box structures.", flush=True)
     push_git_checkpoint(f"Evolution timeline run complete. Total Scaled Architecture Champions: {champions_frozen}", fitness_history)
