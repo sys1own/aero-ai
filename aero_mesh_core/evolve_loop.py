@@ -25,7 +25,8 @@ def push_git_checkpoint(reason):
     print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}", flush=True)
     os.system("git config --global user.name 'Aero Evolution Engine' > /dev/null 2>&1")
     os.system("git config --global user.email 'evolute@aero-auto-sdk.local' > /dev/null 2>&1")
-    os.system("find . -type d -name 'dist' -exec git add {}/* \; > /dev/null 2>&1 || true")
+    # FIX: Double backslash protects the python string escape parsing phase
+    os.system("find . -type d -name 'dist' -exec git add {}/* \\; > /dev/null 2>&1 || true")
     os.system("git commit -m 'chore: evolutionary checkpoint sync' > /dev/null 2>&1")
     os.system("git push origin main > /dev/null 2>&1")
 
