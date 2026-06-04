@@ -4,7 +4,7 @@ output = build_sandbox/recipes/ingress_mesh.aeroc
 
 [task:init]
 op = print
-text = "-- Initializing Ingress Nodes --"
+text = -- Initializing Ingress Nodes --
 
 [task:ingest]
 op = call
