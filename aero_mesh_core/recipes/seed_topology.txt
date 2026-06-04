@@ -1,0 +1,82 @@
+# ===========================================================================
+# Aero-Mesh — seed parallel topology recipe (declarative; no Aero by hand).
+#
+# Mirrors the structure of ../sample_recipe.txt and lowers via the real SDK:
+#     python meta_compiler.py aero_mesh_core/recipes/seed_topology.txt --show
+#
+# Topology (fan-out -> fan-in):
+#
+#     banner -> scaffold ->  scout_alpha  \
+#                            scout_beta    >-> linker_ab  \
+#                            scout_gamma  /                >-> aggregate -> done
+#                                          \-> linker_bg  /
+#
+# Design note: every task is SELF-CONTAINED (only `call`/`print`). The parallel
+# scheduler (execute_recipe_parallel) compiles and runs each task on a separate
+# fresh AeroVM, so `set`/`compute` variables do NOT cross task boundaries —
+# tasks coordinate through files (write_file / read_file) instead. This recipe
+# therefore runs identically under sequential `--run` and the parallel runner.
+# ===========================================================================
+
+[project]
+name   = aero_mesh_seed
+output = aero_mesh_core/dist/seed_topology.aeroc
+
+[task:banner]
+op   = print
+text = == Aero-Mesh topology: ${name} ==
+
+# Root output dir. (write_file also auto-creates parents, but make the
+# scan tier explicit so the scouts share a clear, ordered prerequisite.)
+[task:scaffold]
+op    = call
+fn    = create_dir
+args  = "aero_mesh_core/dist/scans"
+needs = banner
+
+# ── Tier 1: independent scouts (fan out — run concurrently) ────────────────
+
+[task:scout_alpha]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/scans/scout_alpha.txt", "scout_alpha: shard scan complete"
+needs = scaffold
+
+[task:scout_beta]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/scans/scout_beta.txt", "scout_beta: shard scan complete"
+needs = scaffold
+
+[task:scout_gamma]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/scans/scout_gamma.txt", "scout_gamma: shard scan complete"
+needs = scaffold
+
+# ── Tier 2: linkers (fan in — each depends on a pair of scouts) ────────────
+
+[task:linker_ab]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/links/linker_ab.txt", "linker_ab: cross-refs alpha+beta resolved"
+needs = scout_alpha, scout_beta
+
+[task:linker_bg]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/links/linker_bg.txt", "linker_bg: cross-refs beta+gamma resolved"
+needs = scout_beta, scout_gamma
+
+# ── Tier 3: aggregation (single join point over all linkers) ───────────────
+
+[task:aggregate]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/index_manifest.txt", "aggregate: semantic index manifest written"
+needs = linker_ab, linker_bg
+
+[task:done]
+op   = print
+text = ${name} topology pass complete
+needs = aggregate

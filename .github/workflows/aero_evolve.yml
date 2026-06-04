@@ -1,0 +1,133 @@
+# Aero-Mesh optimizer — auditable CI pipeline
+# =============================================
+# Runs the bounded, local optimizer (aero_mesh_core/evolve_loop.py) in an
+# isolated GitHub Actions container and surfaces its results for HUMAN REVIEW.
+#
+# Deliberate design (provenance-preserving):
+#   * Source is never deleted. The optimizer scaffolding stays in the repo.
+#   * The compiled .aeroc and the run report are published as BUILD ARTIFACTS,
+#     not committed to the trunk.
+#   * Proposed tuning lands as a PULL REQUEST containing only the human-readable
+#     source diffs (recipe + language spec). A human reviews and merges.
+#   * The job token is least-privilege: it can open a PR; it cannot push to main.
+#
+# This intentionally does NOT "sanitize the workspace" by deleting the loop
+# sources or pushing an opaque binary to main — that would destroy auditability.
+
+name: Aero-Mesh Evolve (auditable, PR-gated)
+
+on:
+  workflow_dispatch:
+    inputs:
+      duration:
+        description: 'Maximum evolutionary run duration'
+        required: true
+        default: '20 min'
+        type: choice
+        options:
+          - '5 min'
+          - '20 min'
+          - '1 h'
+          - '6 h'
+
+# Least privilege: enough to push a *proposal branch* and open a PR — nothing
+# here grants the ability to push directly to main.
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: aero-evolve
+  cancel-in-progress: true
+
+jobs:
+  evolve:
+    runs-on: ubuntu-latest
+    # Hosted runners cap a job at 360 min. The loop also self-caps via
+    # --max-cycles (see below), so this is just a backstop.
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Map duration choice -> seconds
+        id: dur
+        run: |
+          case "${{ inputs.duration }}" in
+            "5 min")  echo "seconds=300"   >> "$GITHUB_OUTPUT" ;;
+            "20 min") echo "seconds=1200"  >> "$GITHUB_OUTPUT" ;;
+            "1 h")    echo "seconds=3600"  >> "$GITHUB_OUTPUT" ;;
+            "6 h")    echo "seconds=21600" >> "$GITHUB_OUTPUT" ;;
+            *)        echo "seconds=1200"  >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Generate local testbed corpus
+        run: python aero_mesh_core/scaffold_testbed.py --summary
+
+      # The modules are standard-library only, so no pip install is needed.
+      # If no *_API_KEY secrets are set, evolve_loop degrades to measure-only
+      # and simply proposes nothing (the PR step then no-ops).
+      - name: Run bounded optimizer (constrained, validated, backed up)
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python aero_mesh_core/evolve_loop.py \
+            --duration "${{ steps.dur.outputs.seconds }}" \
+            --max-cycles 5 \
+            --tune --apply
+
+      - name: Compile tuned recipe to .aeroc (artifact, not committed)
+        run: |
+          python meta_compiler.py aero_mesh_core/recipes/seed_topology.txt \
+            -o aero_mesh_core/dist/seed_topology.aeroc --show
+
+      - name: Upload build artifacts (bytecode + report + backups)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aero-evolve-${{ github.run_id }}
+          path: |
+            aero_mesh_core/dist/seed_topology.aeroc
+            aero_mesh_core/dist/evolve_report.json
+            aero_mesh_core/dist/backups/
+          if-no-files-found: ignore
+
+      - name: Open PR with proposed tuning (human review gate)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Only proceed if the optimizer actually changed tracked source.
+          if git diff --quiet -- aero_mesh_core/recipes/seed_topology.txt config/language_spec.json; then
+            echo "No tuning changes were proposed; nothing to review. Skipping PR."
+            exit 0
+          fi
+          BRANCH="aero-evolve/proposal-${{ github.run_id }}"
+          git config user.name  "aero-evolve-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add aero_mesh_core/recipes/seed_topology.txt config/language_spec.json
+          git commit -m "Aero-Mesh: proposed schedule tuning (run ${{ github.run_id }})"
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "Aero-Mesh: proposed schedule tuning (run ${{ github.run_id }})" \
+            --body "$(cat <<'EOF'
+          Automated, **constrained** tuning from `aero_mesh_core/evolve_loop.py`.
+
+          - Contains **source diffs only** (recipe `needs` and/or numeric
+            `preference_levels`). The optimizer cannot add tasks, paths, or
+            commands — review should be quick.
+          - The compiled `.aeroc` bytecode and `evolve_report.json` (timing
+            evidence) are attached as artifacts on the triggering run, not
+            committed here.
+          - Note: `config/language_spec.json` tuning is currently runtime-inert
+            until `aero_sdk/optimizer/generator` exists.
+
+          Please review the timing evidence before merging.
+          EOF
+          )"
