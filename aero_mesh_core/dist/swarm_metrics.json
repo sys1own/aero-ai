@@ -1,17 +1,14 @@
 {
   "ingress_mesh.txt": {
-    "compiled_successfully": true,
-    "total_executions": 0,
-    "last_execution_wall_ms": 9999.0
+    "node_count": 2,
+    "compiled_successfully": true
   },
   "processing_mesh.txt": {
-    "compiled_successfully": true,
-    "total_executions": 13,
-    "last_execution_wall_ms": 0.6104
+    "node_count": 14,
+    "compiled_successfully": true
   },
   "aggregation_mesh.txt": {
-    "compiled_successfully": true,
-    "total_executions": 17,
-    "last_execution_wall_ms": 0.6076
+    "node_count": 14,
+    "compiled_successfully": true
   }
 }
