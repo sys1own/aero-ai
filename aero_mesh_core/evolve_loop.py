@@ -5,6 +5,7 @@ import argparse
 import json
 import urllib.request
 import random
+import contextlib
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
@@ -13,41 +14,15 @@ if _ROOT not in sys.path:
 
 from meta_compiler import compile_recipe
 
-def generate_heavy_workload(num_files=50):
+def generate_heavy_workload(num_files=100):
     """Generates local dataset frames inside the ephemeral space to stress test tracking"""
     base_dir = "testbed/scans"
     os.makedirs(base_dir, exist_ok=True)
     for i in range(num_files):
         with open(f"{base_dir}/heavy_node_{i}.txt", "w") as f:
             f.write(f"// HIGH-DENSITY BALANCING MATRIX NODE {i}\n")
-            for j in range(10):
+            for j in range(20):
                 f.write(f"let processing_weight_{i}_{j} = {j * i};\n")
-
-def ensure_seed_recipe(recipe_path):
-    """Guarantees a clean, valid declarative Aero recipe exists at the execution path"""
-    if not os.path.exists(recipe_path):
-        print(f"🌱 Recipe target missing. Auto-generating fresh baseline: {recipe_path}", flush=True)
-        default_seed = """[project]
-name   = aero_mesh_pipeline
-output = dist/aero_mesh_pipeline.aeroc
-
-[task:banner]
-op   = print
-text = == Running Automated Aero-Mesh Parallel Engine ==
-
-[task:scaffold]
-op    = call
-fn    = create_dir
-args  = "dist"
-needs = banner
-
-[task:done]
-op    = print
-text  = Swarm optimization cycle clear.
-needs = scaffold
-"""
-        with open(recipe_path, "w", encoding="utf-8") as f:
-            f.write(default_seed)
 
 def call_live_llm_cluster(current_recipe):
     """Zero-dependency high-availability API client with token shuffling and fallback mapping"""
@@ -97,17 +72,18 @@ def call_live_llm_cluster(current_recipe):
                 if output.startswith("```"):
                     output = "\n".join(output.split("\n")[1:-1])
                 return output
+                
         except Exception:
             continue
             
     return current_recipe
 
-def push_git_checkpoint(reason, total_rounds, elapsed, recipe_path):
-    """Executes background pushes tracking mutations, status variables, and metrics using local targets"""
+def push_git_checkpoint(reason, total_rounds, elapsed):
+    """Executes background pushes tracking mutations, status variables, and metrics"""
     print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}", flush=True)
     
-    os.makedirs("dist", exist_ok=True)
-    with open("dist/live_status.txt", "w", encoding="utf-8") as sf:
+    os.makedirs("aero_mesh_core/dist", exist_ok=True)
+    with open("aero_mesh_core/dist/live_status.txt", "w", encoding="utf-8") as sf:
         sf.write(f"STATUS: Active Evolution Loop Running\n")
         sf.write(f"LAST_CHECKPOINT_REASON: {reason}\n")
         sf.write(f"TOTAL_VM_ROUNDS_SOLVED: {total_rounds}\n")
@@ -116,11 +92,9 @@ def push_git_checkpoint(reason, total_rounds, elapsed, recipe_path):
 
     os.system("git config --global user.name 'Aero Evolution Engine' > /dev/null 2>&1")
     os.system("git config --global user.email 'evolute@aero-auto-sdk.local' > /dev/null 2>&1")
-    
-    # Fix: Use local-space paths since we are already inside the script folder execution frame
-    os.system(f"git add {recipe_path} dist/* > /dev/null 2>&1 || true")
-    os.system("git commit -m 'chore: evolutionary checkpoint update [live execution tracks]' > /dev/null 2>&1")
-    os.system("git push origin main")
+    os.system("git add aero_mesh_core/aero_mesh_seed.txt aero_mesh_core/dist/* build_sandbox/recipes/* > /dev/null 2>&1 || true")
+    os.system("git commit -m 'chore: evolutionary checkpoint update [structural modifications]' > /dev/null 2>&1")
+    os.system("git push origin main > /dev/null 2>&1")
 
 def main():
     parser = argparse.ArgumentParser()
@@ -128,12 +102,8 @@ def main():
     parser.add_argument('--max-cycles', type=int, default=99999)
     args = parser.parse_args()
 
-    # Establish localized target paths
-    recipe_path = "aero_mesh_seed.txt"
-    
     print("🚀 Initializing High-Efficiency Paced Self-Evolution Engine...", flush=True)
     generate_heavy_workload()
-    ensure_seed_recipe(recipe_path)
     
     start_time = time.time()
     last_llm_time = 0
@@ -143,9 +113,12 @@ def main():
     rounds_in_interval = 0
     total_rounds = 0
     
+    # CONTROL TIMEOUT WINDOWS (In Seconds)
     LLM_COOLDOWN = 120        
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
+    
+    recipe_path = "aero_mesh_seed.txt" if os.path.exists("aero_mesh_seed.txt") else "aero_mesh_core/aero_mesh_seed.txt"
 
     while (time.time() - start_time) < args.duration:
         current_time = time.time()
@@ -159,23 +132,23 @@ def main():
         if (current_time - last_llm_time) >= LLM_COOLDOWN:
             last_llm_time = current_time
             print(f"🤖 [LLM Creative Phase] Querying optimization cluster... (Time Remaining: {remaining}s)", flush=True)
-            
             try:
                 with open(recipe_path, "r", encoding="utf-8") as rf:
                     old_recipe = rf.read()
-                
                 new_recipe = call_live_llm_cluster(old_recipe)
-                
                 if new_recipe and new_recipe != old_recipe and "[project]" in new_recipe:
                     with open(recipe_path, "w", encoding="utf-8") as wf:
                         wf.write(new_recipe)
                     print("⚡ Structural Mutation Applied: Written updated layout definitions to configuration file.", flush=True)
             except Exception as e:
-                print(f"⚠️ Trapped exception during creative routing pass: {e}", flush=True)
+                print(f"⚠️ Trapped exception: {e}", flush=True)
 
         # --- NATIVE HIGH-SPEED PERFORMANCE EVALUATION ---
+        # EFFICIENCY FIX: Redirect system stdout during compilation rounds to suppress recipe task prints
         try:
-            compile_recipe(recipe_path, run=True)
+            with open(os.devnull, 'w') as fnull:
+                with contextlib.redirect_stdout(fnull), contextlib.redirect_stderr(fnull):
+                    compile_recipe(recipe_path, run=True)
         except Exception:
             pass
 
@@ -188,10 +161,10 @@ def main():
         # --- TIMED GIT CHECKPOINT GENERATION ---
         if (current_time - last_git_time) >= GIT_COOLDOWN:
             last_git_time = current_time
-            push_git_checkpoint(f"Sustained runs stable at {elapsed}s mark", total_rounds, elapsed, recipe_path)
+            push_git_checkpoint(f"Sustained runs stable at {elapsed}s mark", total_rounds, elapsed)
 
     print(f"🏁 Timeline threshold reached. Finalizing static build configurations.", flush=True)
-    push_git_checkpoint("Final evolution pass complete.", total_rounds, int(time.time() - start_time), recipe_path)
+    push_git_checkpoint("Final evolution pass complete.", total_rounds, int(time.time() - start_time))
 
 if __name__ == '__main__':
     main()
