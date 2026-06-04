@@ -4,10 +4,10 @@ output = build_sandbox/recipes/ingress_mesh.aeroc
 
 [task:init]
 op = print
-text = -- Initializing Ingress Nodes --
+text = "-- Initializing Ingress Nodes --"
 
 [task:ingest]
 op = call
 fn = read_file
-args = "testbed/scans/raw_telemetry_0.dat"
+args = "testbed/scans/raw_telemetry_0"
 needs = init

@@ -20,8 +20,9 @@ def generate_swarm_environment():
     os.makedirs(os.path.join(_ROOT, "build_sandbox", "recipes"), exist_ok=True)
     os.makedirs(os.path.join(_ROOT, "testbed", "scans"), exist_ok=True)
     
+    # Switch to clean extension-free target datasets to eliminate syntax interpretation hazards
     for i in range(5):
-        with open(os.path.join(_ROOT, "testbed", "scans", f"raw_telemetry_{i}.dat"), "w") as f:
+        with open(os.path.join(_ROOT, "testbed", "scans", f"raw_telemetry_{i}"), "w") as f:
             f.write(f"PACKET_ID={1000+i}\nPAYLOAD_HEX={hex(random.randint(100000,999999))}\nMETRIC=STABLE\n")
 
 def ensure_swarm_blueprints(force_reset=False):
@@ -29,17 +30,17 @@ def ensure_swarm_blueprints(force_reset=False):
     blueprints = {
         "ingress_mesh.txt": (
             "[project]\nname = ingress_mesh\noutput = build_sandbox/recipes/ingress_mesh.aeroc\n\n"
-            "[task:init]\nop = print\ntext = -- Initializing Ingress Nodes --\n\n"
-            "[task:ingest]\nop = call\nfn = read_file\nargs = \"testbed/scans/raw_telemetry_0.dat\"\nneeds = init\n"
+            "[task:init]\nop = print\ntext = \"-- Initializing Ingress Nodes --\"\n\n"
+            "[task:ingest]\nop = call\nfn = read_file\nargs = \"testbed/scans/raw_telemetry_0\"\nneeds = init\n"
         ),
         "processing_mesh.txt": (
             "[project]\nname = processing_mesh\noutput = build_sandbox/recipes/processing_mesh.aeroc\n\n"
-            "[task:compute]\nop = print\ntext = -- Processing Parallel Computations --\n\n"
+            "[task:compute]\nop = print\ntext = \"-- Processing Parallel Computations --\"\n\n"
             "[task:transform]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/aero_mesh_core/dist/interim.tmp\", \"processed\"\nneeds = compute\n"
         ),
         "aggregation_mesh.txt": (
             "[project]\nname = aggregation_mesh\noutput = build_sandbox/recipes/aggregation_mesh.aeroc\n\n"
-            "[task:consolidate]\nop = print\ntext = -- Aggregating Distributed State --\n\n"
+            "[task:consolidate]\nop = print\ntext = \"-- Aggregating Distributed State --\"\n\n"
             "[task:freeze]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/aero_mesh_core/dist/index_manifest.txt\", \"state complete\"\nneeds = consolidate\n"
         )
     }
@@ -91,8 +92,8 @@ You are currently tuning the component: [{mesh_name}].
 CRITICAL COMPILER RULES:
 1. Every task block must follow the format [task:name] with parameters like op, fn, args, or needs.
 2. Ensure proper dependency mapping (tasks listed in 'needs' must actually exist).
-3. NEVER write a literal period character (.) outside of a quoted string. 
-4. All file paths, names, extensions, or text strings MUST be enclosed in explicit double quotes (e.g., args = "file.txt" or text = "Initializing..."). Unquoted text fields will cause a LexerError compilation crash.
+3. NEVER write a literal period character (.) outside of an explicit double-quoted string. 
+4. All file paths, names, extensions, or text strings MUST be enclosed in explicit double quotes (e.g., args = "file_name" or text = "Initializing"). Unquoted symbols will cause a LexerError compilation crash.
 5. Output ONLY the raw, valid INI contents. Do not include markdown wraps, conversational descriptions, or block formatting.
 
 CURRENT PERFORMANCE TRACKING STATISTICS:
@@ -158,8 +159,6 @@ def main():
 
     print("🚀 Initializing Autonomous Distributed Swarm Architecture Engine...", flush=True)
     generate_swarm_environment()
-    
-    # Force a local script blueprint clean overwrite to clear out any previously committed corrupt text structures
     ensure_swarm_blueprints(force_reset=True)
     
     start_time = time.time()
@@ -200,8 +199,14 @@ def main():
                 fitness_history[mesh]["last_execution_wall_ms"] = round(duration_ms, 4)
                 fitness_history[mesh]["compiled_successfully"] = True
             except Exception as ce:
+                # DUMP AND TRACK WARNING DIAGNOSTICS: Expose the raw file contents causing the alert
                 if fitness_history[mesh]["compiled_successfully"]:
                     print(f"⚠️ [Compiler Alert] Component [{mesh}] failed compilation check: {ce}", flush=True)
+                    try:
+                        with open(mesh_path, "r", encoding="utf-8") as ferr:
+                            print(f"--- ACTIVE FILE RAW LAYER [{mesh}] ---\n{ferr.read()}\n--------------------------------------", flush=True)
+                    except Exception:
+                        pass
                 fitness_history[mesh]["compiled_successfully"] = False
 
         if (current_time - last_llm_time) >= LLM_COOLDOWN:
