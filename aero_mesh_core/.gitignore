@@ -1,0 +1,4 @@
+# Reproducible artifacts — regenerate with scaffold_testbed.py / meta_compiler.py.
+# Track the generator and recipe, not their output.
+testbed/
+dist/*.aeroc
