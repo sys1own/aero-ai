@@ -62,7 +62,7 @@
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",
     "write_file",
-    "testbed/scans/weights",
-    "compute_matrix"
+    "sw_mem_ring",
+    "mutex_lock"
   ]
 }

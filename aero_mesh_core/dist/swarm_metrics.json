@@ -11,7 +11,7 @@
   },
   "aggregation_mesh.txt": {
     "compiled_successfully": true,
-    "total_executions": 15,
-    "last_execution_wall_ms": 0.6142
+    "total_executions": 17,
+    "last_execution_wall_ms": 0.6076
   }
 }
