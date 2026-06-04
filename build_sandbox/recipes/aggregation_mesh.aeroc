@@ -37,46 +37,15 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Evolved Swarm Pipeline Step ID 80347 --\"",
+    "\"-- Swarm Optimization Frame Update #198086 --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "write_file",
-    "\"-- Swarm Core Optimization Node 344051 Active --\""
+    "write_file"
   ]
 }

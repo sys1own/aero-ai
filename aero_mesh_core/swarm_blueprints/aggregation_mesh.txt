@@ -4,16 +4,10 @@ output = build_sandbox/recipes/aggregation_mesh.aeroc
 
 [task:consolidate]
 op = print
-text = "-- Evolved Swarm Pipeline Step ID 80347 --"
+text = "-- Swarm Optimization Frame Update #10671 --"
 
 [task:freeze]
 op = call
 fn = write_file
 args = "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt", "state complete"
 needs = consolidate
-
-
-[task:swarm_node_inf_2]
-op = print
-text = "-- Evolved Swarm Pipeline Step ID 80347 --"
-needs = freeze
