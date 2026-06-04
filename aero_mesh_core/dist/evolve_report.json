@@ -1,0 +1,59 @@
+{
+  "recipe": "/home/runner/work/aero-ai/aero-ai/aero_mesh_core/recipes/seed_topology.txt",
+  "cycles": [
+    {
+      "cycle": 1,
+      "metrics": {
+        "wall_ms": 26,
+        "opcodes": {}
+      },
+      "proposal": null,
+      "validated": null,
+      "applied": false
+    },
+    {
+      "cycle": 2,
+      "metrics": {
+        "wall_ms": 6,
+        "opcodes": {}
+      },
+      "proposal": null,
+      "validated": null,
+      "applied": false
+    },
+    {
+      "cycle": 3,
+      "metrics": {
+        "wall_ms": 7,
+        "opcodes": {}
+      },
+      "proposal": null,
+      "validated": null,
+      "applied": false
+    },
+    {
+      "cycle": 4,
+      "metrics": {
+        "wall_ms": 7,
+        "opcodes": {}
+      },
+      "proposal": null,
+      "validated": null,
+      "applied": false
+    },
+    {
+      "cycle": 5,
+      "metrics": {
+        "wall_ms": 4,
+        "opcodes": {}
+      },
+      "proposal": null,
+      "validated": null,
+      "applied": false
+    }
+  ],
+  "best": {
+    "cycle": 5,
+    "wall_ms": 4
+  }
+}
