@@ -20,15 +20,27 @@ def generate_heavy_workload(num_files=100):
             for j in range(20):
                 f.write(f"let processing_weight_{i}_{j} = {j * i};\n")
 
-def push_git_checkpoint(reason):
-    """Executes background commits completely silently by piping outputs to dev/null"""
+def push_git_checkpoint(reason, total_rounds, elapsed):
+    """Generates a unique status file modification to guarantee a successful Git push"""
     print(f"📦 [Checkpoint] Syncing states to GitHub Remote: {reason}", flush=True)
+    
+    # Create the output directory if missing and write dynamic runtime stats
+    os.makedirs("aero_mesh_core/dist", exist_ok=True)
+    with open("aero_mesh_core/dist/live_status.txt", "w", encoding="utf-8") as sf:
+        sf.write(f"STATUS: Active Evolution Loop Running\n")
+        sf.write(f"LAST_CHECKPOINT_REASON: {reason}\n")
+        sf.write(f"TOTAL_VM_ROUNDS_SOLVED: {total_rounds}\n")
+        sf.write(f"ELAPSED_TIME_SECONDS: {elapsed}\n")
+        sf.write(f"HEARTBEAT_TIMESTAMP: {time.time()}\n")
+
+    # Execute git commands cleanly
     os.system("git config --global user.name 'Aero Evolution Engine' > /dev/null 2>&1")
     os.system("git config --global user.email 'evolute@aero-auto-sdk.local' > /dev/null 2>&1")
-    # FIX: Double backslash protects the python string escape parsing phase
-    os.system("find . -type d -name 'dist' -exec git add {}/* \\; > /dev/null 2>&1 || true")
-    os.system("git commit -m 'chore: evolutionary checkpoint sync' > /dev/null 2>&1")
-    os.system("git push origin main > /dev/null 2>&1")
+    os.system("git add aero_mesh_core/dist/live_status.txt > /dev/null 2>&1")
+    os.system("git commit -m 'chore: evolutionary checkpoint update [live metrics]' > /dev/null 2>&1")
+    
+    # Leave push unredirected so any network/token anomalies print directly to the workflow logs
+    os.system("git push origin main")
 
 def main():
     parser = argparse.ArgumentParser()
@@ -88,10 +100,10 @@ def main():
         # --- TIMED GIT CHECKPOINT GENERATION ---
         if (current_time - last_git_time) >= GIT_COOLDOWN:
             last_git_time = current_time
-            push_git_checkpoint(f"Sustained runs stable at {elapsed}s mark")
+            push_git_checkpoint(f"Sustained runs stable at {elapsed}s mark", total_rounds, elapsed)
 
     print(f"🏁 Timeline threshold reached. Finalizing static build configurations.", flush=True)
-    push_git_checkpoint("Final evolution pass complete.")
+    push_git_checkpoint("Final evolution pass complete.", total_rounds, int(time.time() - start_time))
 
 if __name__ == '__main__':
     main()
