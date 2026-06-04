@@ -1,0 +1,66 @@
+[project]
+name   = aero_mesh_seed
+output = build_sandbox/recipes/aero_mesh_seed.aeroc
+
+[task:banner]
+op   = print
+text = == Aero-Mesh topology: ${name} ==
+
+[task:scaffold]
+op    = call
+fn    = create_dir
+args  = "aero_mesh_core/dist"
+needs = banner
+
+[task:scout_alpha]
+op    = call
+fn    = read_file
+args  = "testbed/scans/heavy_node_0.txt"
+needs = scaffold
+
+[task:scout_beta]
+op    = call
+fn    = read_file
+args  = "testbed/scans/heavy_node_1.txt"
+needs = scaffold
+
+[task:scout_gamma]
+op    = call
+fn    = read_file
+args  = "testbed/scans/heavy_node_2.txt"
+needs = scaffold
+
+[task:linker_ab]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/links/linker_ab.txt", "link alpha-beta verified"
+needs = scout_alpha, scout_beta
+
+[task:linker_bg]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/links/linker_bg.txt", "link beta-gamma verified"
+needs = scout_beta, scout_gamma
+
+[task:generate_viz_data]
+op    = call
+fn    = generate_json_viz_data
+args  = "aero_mesh_core/dist/mesh_viz_data.json", "{\"nodes\": [\"alpha\", \"beta\", \"gamma\"], \"links\": [{\"source\": \"alpha\", \"target\": \"beta\"}, {\"source\": \"beta\", \"target\": \"gamma\"}]}"
+needs = linker_ab, linker_bg
+
+[task:aggregate]
+op    = call
+fn    = write_file
+args  = "aero_mesh_core/dist/index_manifest.txt", "mesh index manifest map complete"
+needs = linker_ab, linker_bg, generate_viz_data
+
+[task:finalize_mesh_package]
+op    = call
+fn    = create_archive
+args  = "build_sandbox/${name}_topology.zip", "aero_mesh_core/dist"
+needs = aggregate
+
+[task:done]
+op    = print
+text  = ${name} topology pass complete. Output package: build_sandbox/${name}_topology.zip
+needs = finalize_mesh_package
