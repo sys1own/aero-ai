@@ -5,6 +5,7 @@ import argparse
 import json
 import random
 import contextlib
+import re
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
@@ -51,7 +52,7 @@ def ensure_swarm_blueprints(force_reset=False):
                 f.write(content)
 
 def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
-    """Generates deeply nested, highly advanced multi-node task frameworks for industrial architectures"""
+    """Generates unique node components preventing sequential template copy-paste exploits"""
     lines = recipe_text.split("\n")
     tasks = []
     
@@ -81,7 +82,7 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
         {"prefix": "index_mapper", "op": "call", "fn": "write_file", "args": '"aero_mesh_core/dist/map.idx", "sync"', "label": "Index Consolidation"}
     ]
 
-    strategy = random.choices(["expand_nodes", "relink_dependencies", "fuzz_logs"], weights=[75, 15, 10], k=1)[0]
+    strategy = random.choices(["expand_nodes", "relink_dependencies", "fuzz_logs"], weights=[70, 20, 10], k=1)[0]
     
     if strategy == "expand_nodes" and tasks:
         if "ingress" in mesh_name:
@@ -92,23 +93,29 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
             pool = aggregation_templates
             
         chosen = random.choice(pool)
-        new_node_id = f"{chosen['prefix']}_node_{round_counter}"
-        parent_dependency = random.choice(tasks)
         
-        node_block = (
-            f"\n\n[task:{new_node_id}]\n"
-            f"op = {chosen['op']}\n"
-        )
-        if chosen['fn'] != "none":
-            node_block += f"fn = {chosen['fn']}\n"
-            node_block += f"args = {chosen['args']}\n"
+        # FIX: Deduplication Check — Ensure the exact prefix configuration doesn't already exist to kill macro duplication loops
+        if f"prefix_match_{chosen['prefix']}" in recipe_text or chosen['prefix'] in recipe_text:
+            # Re-route strategy smoothly to structural graph relinking if it hits an operational duplicate roadblock
+            strategy = "relink_dependencies"
         else:
-            node_block += f"text = \"-- Cluster Operation Status: Executing {chosen['label']} --\"\n"
+            new_node_id = f"{chosen['prefix']}_node_{round_counter}"
+            parent_dependency = random.choice(tasks)
             
-        node_block += f"needs = {parent_dependency}\n"
-        return recipe_text + node_block, f"Added {chosen['label']} Node ({new_node_id})"
+            node_block = (
+                f"\n\n[task:{new_node_id}]\n"
+                f"op = {chosen['op']}\n"
+            )
+            if chosen['fn'] != "none":
+                node_block += f"fn = {chosen['fn']}\n"
+                node_block += f"args = {chosen['args']}\n"
+            else:
+                node_block += f"text = \"-- Cluster Operation Status: Executing {chosen['label']} --\"\n"
+                
+            node_block += f"needs = {parent_dependency}\n"
+            return recipe_text + node_block, f"Added Unique {chosen['label']} Node ({new_node_id})"
 
-    elif strategy == "relink_dependencies" and len(tasks) > 1:
+    if strategy == "relink_dependencies" and len(tasks) > 1:
         new_lines = []
         mutated = False
         for line in lines:
@@ -130,7 +137,6 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
                 mutated = True
             else:
                 new_lines.append(line)
-        # FIX: Swapped out broken evaluation assignment token for a clean conditional boolean check
         desc = "Updated Console Log Frame Strings" if mutated else "No Change"
         return "\n".join(new_lines), desc
 
@@ -149,7 +155,7 @@ def push_git_checkpoint(reason, metrics):
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
-    os.system(f'git -C "{_ROOT}" commit -m "chore: expand multi-node architecture footprint [autonomous growth]" 2>&1')
+    os.system(f'git -C "{_ROOT}" commit -m "fix: enforce architectural diversity and suppress duplicate structural bloat tokens" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main 2>&1')
 
 def main():
@@ -157,7 +163,7 @@ def main():
     parser.add_argument('--duration', type=int, default=1200)
     args, unknown = parser.parse_known_args()
 
-    print("🚀 Initializing High-Velocity Complexity-Scaling Swarm Architecture Engine...", flush=True)
+    print("🚀 Initializing Anti-Bloat Diversity-Scaling Swarm Evolution Engine...", flush=True)
     print("🎯 Target System: Massive, High-Density Multi-Node Distributed Architecture", flush=True)
     generate_swarm_environment()
     ensure_swarm_blueprints(force_reset=True)
@@ -170,7 +176,7 @@ def main():
     champions_frozen = 0
     
     meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
-    fitness_history = {m: {"node_count": 2, "compiled_successfully": True, "total_executions": 0} for m in meshes}
+    fitness_history = {m: {"node_count": 2, "unique_fns": 1, "compiled_successfully": True} for m in meshes}
 
     interval_stats = {
         "cycles": 0,
@@ -208,15 +214,22 @@ def main():
             
             mutated_nodes = mutated_blueprint.count("[task:")
             
-            if mutated_nodes > fitness_history[target_mesh]["node_count"]:
+            # Extract internal structural diversity metric (number of unique 'fn =' assignments mapped)
+            found_fns = set(re.findall(r"fn\s*=\s*(.*)", mutated_blueprint))
+            unique_fn_count = len(found_fns) if found_fns else 1
+            
+            # FIX: TWO-TIER SELECTION PRESSURE MATRIX
+            # Crown champion ONLY if it successfully expands raw node volume AND introduces a brand new structural capability type
+            if mutated_nodes > fitness_history[target_mesh]["node_count"] and unique_fn_count > fitness_history[target_mesh]["unique_fns"]:
                 interval_stats["champions_crowned"].append(
-                    f"     • [{target_mesh}] Scaled to {mutated_nodes} Nodes -> {mutation_description}"
+                    f"     • [{target_mesh}] Scaled to {mutated_nodes} Nodes (Unique Primitives: {unique_fn_count}) -> {mutation_description}"
                 )
                 fitness_history[target_mesh]["node_count"] = mutated_nodes
+                fitness_history[target_mesh]["unique_fns"] = unique_fn_count
                 fitness_history[target_mesh]["compiled_successfully"] = True
-                fitness_history[target_mesh]["total_executions"] += 1
                 champions_frozen += 1
             elif mutated_blueprint != original_blueprint and mutated_nodes == fitness_history[target_mesh]["node_count"]:
+                # Keep safe non-destructive edge rotations and logging frame adjustments active to enable graph diversity
                 fitness_history[target_mesh]["compiled_successfully"] = True
             else:
                 with open(mesh_path, "w", encoding="utf-8") as f_revert:
