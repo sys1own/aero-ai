@@ -37,31 +37,15 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Optimization Frame Update #441513 --\"",
+    "\"-- Swarm Optimization Frame Update #986848 --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "write_file",
-    "\"-- Executing: Post-Build Environment Sanitation Cycle --\""
+    "write_file"
   ]
 }

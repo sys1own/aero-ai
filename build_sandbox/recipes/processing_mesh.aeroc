@@ -37,6 +37,21 @@
       "POP"
     ],
     [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      6
+    ],
+    [
+      "CALL",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
       "HALT"
     ]
   ],
@@ -46,6 +61,8 @@
     "print",
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",
-    "write_file"
+    "write_file",
+    "sw_mem_ring",
+    "mutex_lock"
   ]
 }
