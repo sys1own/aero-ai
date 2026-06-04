@@ -54,9 +54,7 @@ def execute_symbolic_mutation(recipe_text, mesh_name, round_counter):
     """Generates open-ended, continuous structural mutations without hitting a convergence wall"""
     lines = recipe_text.split("\n")
     tasks = []
-    current_task = None
     
-    # Analyze existing topology structure
     for line in lines:
         if line.strip().startswith("[task:"):
             t_name = line.split("[task:")[1].split("]")[0].strip()
@@ -65,7 +63,6 @@ def execute_symbolic_mutation(recipe_text, mesh_name, round_counter):
     mutation_strategy = random.choice(["add_node", "fuzz_parameter", "dependency_tweak"])
     
     if mutation_strategy == "add_node" and tasks:
-        # Inject an entirely new parallel execution operation tier
         new_node = f"swarm_node_inf_{round_counter}"
         parent_node = random.choice(tasks)
         node_block = (
@@ -77,7 +74,6 @@ def execute_symbolic_mutation(recipe_text, mesh_name, round_counter):
         return recipe_text + node_block
 
     elif mutation_strategy == "fuzz_parameter":
-        # Modify static metadata fields to find ultra-lean structural options
         new_lines = []
         for line in lines:
             if "text =" in line and random.random() > 0.5:
@@ -87,7 +83,6 @@ def execute_symbolic_mutation(recipe_text, mesh_name, round_counter):
         return "\n".join(new_lines)
 
     else:
-        # Shift dependency edges safely without breaking the global execution layout
         if len(tasks) > 1:
             new_lines = []
             for line in lines:
@@ -118,13 +113,14 @@ def push_git_checkpoint(reason, metrics):
     os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
     
     os.system(f'git -C "{_ROOT}" commit -m "chore: optimize distributed swarm infrastructure assets [autonomous champions]" 2>&1')
-    # Force push target back to main branch instead of hidden sub-branches
     os.system(f'git -C "{_ROOT}" push origin main 2>&1')
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--duration', type=int, default=1200)
-    args = parser.parse_args()
+    
+    # FIX: Use parse_known_args() to safely absorb and drop phantom YAML workflow flags (--push, etc.)
+    args, unknown = parser.parse_known_args()
 
     print("🚀 Initializing High-Velocity Unconstrained Symbolic Evolution Engine...", flush=True)
     generate_swarm_environment()
@@ -146,7 +142,6 @@ def main():
 
     bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
 
-    # UNCONSTRAINED EVOLUTION HOOK: Runs continuously for the complete duration limit
     while (time.time() - start_time) < args.duration:
         current_time = time.time()
         elapsed = int(current_time - start_time)
@@ -154,7 +149,6 @@ def main():
         total_rounds += 1
         rounds_in_interval += 1
         
-        # Select a target component and load current blueprint layout configuration
         target_mesh = random.choice(meshes)
         mesh_path = os.path.join(bp_dir, target_mesh)
         
@@ -162,46 +156,38 @@ def main():
             with open(mesh_path, "r", encoding="utf-8") as f_read:
                 original_blueprint = f_read.read()
             
-            # Formulate a creative, high-speed mutation layout swap
             mutated_blueprint = execute_symbolic_mutation(original_blueprint, target_mesh, total_rounds)
             
-            # Temporarily write mutation configuration payload to disk for testing gate validations
             with open(mesh_path, "w", encoding="utf-8") as f_write:
                 f_write.write(mutated_blueprint)
                 
-            # Benchmark compile execution pass speeds inside the deterministic Aero VM
             t0 = time.perf_counter()
             with open(os.devnull, 'w') as fnull:
                 with contextlib.redirect_stdout(fnull), contextlib.redirect_stderr(fnull):
                     compile_recipe(mesh_path, run=True)
             duration_ms = (time.perf_counter() - t0) * 1000
             
-            # UNCONSTRAINED SELECTION GATE: If mutation runs faster or expands cleanly, lock it down as the champion
             if duration_ms < fitness_history[target_mesh]["last_execution_wall_ms"]:
                 fitness_history[target_mesh]["last_execution_wall_ms"] = round(duration_ms, 4)
                 fitness_history[target_mesh]["compiled_successfully"] = True
                 fitness_history[target_mesh]["total_executions"] += 1
                 champions_found += 1
             else:
-                # If mutation degraded performance, instantly revert file frame to secure optimal state
                 with open(mesh_path, "w", encoding="utf-8") as f_revert:
                     f_revert.write(original_blueprint)
                     
         except Exception:
-            # Bypasses any bad mutations automatically by rolling back file components
             try:
                 with open(mesh_path, "w", encoding="utf-8") as f_revert:
                     f_revert.write(original_blueprint)
             except Exception:
                 pass
 
-        # --- REAL-TIME LIVENESS HEARTBEAT ---
         if (current_time - last_heartbeat_time) >= HEARTBEAT_COOLDOWN:
             print(f"⏳ [Heartbeat] Active. Cycles in last 10s: {rounds_in_interval}. Total Rounds: {total_rounds}. Champions Frozen: {champions_found}. Elapsed: {elapsed}s", flush=True)
             rounds_in_interval = 0
             last_heartbeat_time = current_time
 
-        # --- TIMED SYSTEM-WIDE GIT SAVER ---
         if (current_time - last_git_time) >= GIT_COOLDOWN:
             last_git_time = current_time
             push_git_checkpoint(f"Swarm evolution thriving at {elapsed}s mark. Champions: {champions_found}", fitness_history)
