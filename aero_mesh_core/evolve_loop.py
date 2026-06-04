@@ -51,6 +51,29 @@ def ensure_swarm_blueprints():
             with open(path, "w", encoding="utf-8") as f:
                 f.write(content)
 
+def clean_llm_response(text):
+    """Bulletproof parsing layer to extract raw INI configurations from conversational markdown responses"""
+    lines = text.split("\n")
+    cleaned_lines = []
+    inside_block = False
+    has_code_fence = any(line.strip().startswith("```") for line in lines)
+    
+    for line in lines:
+        cleaned_line = line.strip()
+        if cleaned_line.startswith("```"):
+            inside_block = not inside_block
+            continue
+        if has_code_fence:
+            if inside_block:
+                cleaned_lines.append(line)
+        else:
+            # If no markdown fences are used, capture lines that belong to INI blocks
+            if cleaned_line.startswith("[") or "=" in cleaned_line or cleaned_line == "":
+                cleaned_lines.append(line)
+                
+    result = "\n".join(cleaned_lines).strip()
+    return result if result else text.strip()
+
 def call_live_llm_cluster(mesh_name, current_recipe, fitness_report):
     """Zero-dependency API coordinator that instructs the LLM to creatively evolve the swarm"""
     keys = {
@@ -102,10 +125,8 @@ CURRENT BLUEPRINT DEFINITION:
             
             with urllib.request.urlopen(req, timeout=12) as response:
                 res_data = json.loads(response.read().decode("utf-8"))
-                output = res_data["choices"][0]["message"]["content"].strip() if provider in ["openrouter", "groq"] else res_data["candidates"][0]["content"]["parts"][0]["text"].strip()
-                if output.startswith("```"):
-                    output = "\n".join(output.split("\n")[1:-1])
-                return output
+                raw_output = res_data["choices"][0]["message"]["content"] if provider in ["openrouter", "groq"] else res_data["candidates"][0]["content"]["parts"][0]["text"]
+                return clean_llm_response(raw_output)
         except Exception:
             continue
     return current_recipe
@@ -122,7 +143,6 @@ def push_git_checkpoint(reason, metrics):
     os.system(f'git -C "{_ROOT}" config user.name "Aero Evolution Engine" 2>&1')
     os.system(f'git -C "{_ROOT}" config user.email "evolute@aero-auto-sdk.local" 2>&1')
     
-    # FIX: Add the exact folders from the untracked log manifest without using wildcard expansions
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/swarm_blueprints 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
@@ -177,7 +197,10 @@ def main():
                 fitness_history[mesh]["total_executions"] += 1
                 fitness_history[mesh]["last_execution_wall_ms"] = round(duration_ms, 4)
                 fitness_history[mesh]["compiled_successfully"] = True
-            except Exception:
+            except Exception as ce:
+                # COMPILER ERROR VISIBILITY: Expose compile issues immediately following a mutation
+                if fitness_history[mesh]["compiled_successfully"]:
+                    print(f"⚠️ [Compiler Alert] Component [{mesh}] failed compilation check: {ce}", flush=True)
                 fitness_history[mesh]["compiled_successfully"] = False
 
         if (current_time - last_llm_time) >= LLM_COOLDOWN:
