@@ -4,7 +4,7 @@ output = build_sandbox/recipes/aggregation_mesh.aeroc
 
 [task:consolidate]
 op = print
-text = -- Aggregating Distributed State --
+text = "-- Aggregating Distributed State --"
 
 [task:freeze]
 op = call

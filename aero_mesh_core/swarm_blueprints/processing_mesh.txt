@@ -4,7 +4,7 @@ output = build_sandbox/recipes/processing_mesh.aeroc
 
 [task:compute]
 op = print
-text = -- Processing Parallel Computations --
+text = "-- Processing Parallel Computations --"
 
 [task:transform]
 op = call

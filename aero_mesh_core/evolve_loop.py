@@ -24,8 +24,8 @@ def generate_swarm_environment():
         with open(os.path.join(_ROOT, "testbed", "scans", f"raw_telemetry_{i}.dat"), "w") as f:
             f.write(f"PACKET_ID={1000+i}\nPAYLOAD_HEX={hex(random.randint(100000,999999))}\nMETRIC=STABLE\n")
 
-def ensure_swarm_blueprints():
-    """Guarantees that all three distinct architectural meshes are present on disk before running"""
+def ensure_swarm_blueprints(force_reset=False):
+    """Guarantees that all three distinct architectural meshes are present on disk and structurally pristine"""
     blueprints = {
         "ingress_mesh.txt": (
             "[project]\nname = ingress_mesh\noutput = build_sandbox/recipes/ingress_mesh.aeroc\n\n"
@@ -47,7 +47,7 @@ def ensure_swarm_blueprints():
     bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
     for name, content in blueprints.items():
         path = os.path.join(bp_dir, name)
-        if not os.path.exists(path):
+        if force_reset or not os.path.exists(path):
             with open(path, "w", encoding="utf-8") as f:
                 f.write(content)
 
@@ -67,7 +67,6 @@ def clean_llm_response(text):
             if inside_block:
                 cleaned_lines.append(line)
         else:
-            # If no markdown fences are used, capture lines that belong to INI blocks
             if cleaned_line.startswith("[") or "=" in cleaned_line or cleaned_line == "":
                 cleaned_lines.append(line)
                 
@@ -89,11 +88,12 @@ def call_live_llm_cluster(mesh_name, current_recipe, fitness_report):
     prompt = f"""You are the Swarm System Architect. Your absolute objective is to expand and optimize a multi-mesh execution framework.
 You are currently tuning the component: [{mesh_name}].
 
-CRITICAL RULES:
+CRITICAL COMPILER RULES:
 1. Every task block must follow the format [task:name] with parameters like op, fn, args, or needs.
 2. Ensure proper dependency mapping (tasks listed in 'needs' must actually exist).
-3. Expand capabilities creatively: introduce data validation steps, schema constraints, processing pipelines, or logging rings.
-4. Output ONLY the raw, valid INI contents. Do not include markdown wraps or block formatting.
+3. NEVER write a literal period character (.) outside of a quoted string. 
+4. All file paths, names, extensions, or text strings MUST be enclosed in explicit double quotes (e.g., args = "file.txt" or text = "Initializing..."). Unquoted text fields will cause a LexerError compilation crash.
+5. Output ONLY the raw, valid INI contents. Do not include markdown wraps, conversational descriptions, or block formatting.
 
 CURRENT PERFORMANCE TRACKING STATISTICS:
 {json.dumps(fitness_report, indent=2)}
@@ -158,7 +158,9 @@ def main():
 
     print("🚀 Initializing Autonomous Distributed Swarm Architecture Engine...", flush=True)
     generate_swarm_environment()
-    ensure_swarm_blueprints()
+    
+    # Force a local script blueprint clean overwrite to clear out any previously committed corrupt text structures
+    ensure_swarm_blueprints(force_reset=True)
     
     start_time = time.time()
     last_llm_time = 0
@@ -198,7 +200,6 @@ def main():
                 fitness_history[mesh]["last_execution_wall_ms"] = round(duration_ms, 4)
                 fitness_history[mesh]["compiled_successfully"] = True
             except Exception as ce:
-                # COMPILER ERROR VISIBILITY: Expose compile issues immediately following a mutation
                 if fitness_history[mesh]["compiled_successfully"]:
                     print(f"⚠️ [Compiler Alert] Component [{mesh}] failed compilation check: {ce}", flush=True)
                 fitness_history[mesh]["compiled_successfully"] = False
