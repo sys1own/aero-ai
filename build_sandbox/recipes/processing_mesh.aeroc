@@ -38,45 +38,19 @@
     ],
     [
       "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       5
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
+      3
     ],
     [
       "PUSH_STRING",
-      6
-    ],
-    [
-      "PUSH_STRING",
-      1
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -102,15 +76,11 @@
     ],
     [
       "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -136,7 +106,22 @@
     ],
     [
       "PUSH_STRING",
-      0
+      9
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      6
     ],
     [
       "PUSH_STRING",
@@ -152,25 +137,6 @@
     [
       "PUSH_STRING",
       9
-    ],
-    [
-      "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
     ],
     [
       "PUSH_STRING",
@@ -204,6 +170,21 @@
     ],
     [
       "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       0
     ],
     [
@@ -219,7 +200,7 @@
     ],
     [
       "PUSH_STRING",
-      6
+      7
     ],
     [
       "PUSH_STRING",
@@ -233,21 +214,41 @@
       "POP"
     ],
     [
+      "PUSH_STRING",
+      11
+    ],
+    [
+      "PUSH_STRING",
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11842022 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11962670 --\"",
     "print",
-    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
+    "build_sandbox/mesh_outputs/matrix_34.tmp",
     "processed",
     "write_file",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11842009 --\"",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11842026 --\"",
-    "build_sandbox/mesh_outputs/matrix_1682.tmp",
+    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11962666 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11962702 --\"",
     "build_sandbox/mesh_outputs/matrix_19.tmp",
-    "build_sandbox/mesh_outputs/matrix_34.tmp",
-    "build_sandbox/mesh_outputs/matrix_27.tmp"
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11962617 --\"",
+    "build_sandbox/mesh_outputs/matrix_27.tmp",
+    "build_sandbox/mesh_outputs/matrix_1682.tmp"
   ]
 }
