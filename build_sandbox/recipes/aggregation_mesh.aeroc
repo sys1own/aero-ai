@@ -19,7 +19,7 @@
     ],
     [
       "PUSH_STRING",
-      2
+      0
     ],
     [
       "PUSH_STRING",
@@ -31,6 +31,25 @@
     ],
     [
       "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      2
     ],
     [
       "PUSH_STRING",
@@ -41,8 +60,38 @@
       4
     ],
     [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
       "PUSH_STRING",
       5
+    ],
+    [
+      "PUSH_STRING",
+      6
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
@@ -53,7 +102,7 @@
     ],
     [
       "PUSH_STRING",
-      6
+      0
     ],
     [
       "PUSH_STRING",
@@ -72,15 +121,60 @@
     ],
     [
       "PUSH_STRING",
-      8
+      3
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "CALL_DIRECT",
       2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      8
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      8
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -91,11 +185,11 @@
     ],
     [
       "PUSH_STRING",
-      8
+      3
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "CALL_DIRECT",
@@ -106,22 +200,7 @@
     ],
     [
       "PUSH_STRING",
-      2
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      2
+      0
     ],
     [
       "PUSH_STRING",
@@ -140,94 +219,15 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
+      3
     ],
     [
       "PUSH_STRING",
-      11
-    ],
-    [
-      "PUSH_STRING",
-      8
-    ],
-    [
-      "PUSH_STRING",
-      5
+      4
     ],
     [
       "CALL_DIRECT",
       2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      2
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      2
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      12
-    ],
-    [
-      "PUSH_STRING",
-      8
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      6
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
     ],
     [
       "POP"
@@ -238,18 +238,16 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #4758882 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #4884706 --\"",
     "print",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #4758887 --\"",
+    "aero_mesh_core/dist/cluster_map_2268.idx",
+    "sync",
+    "write_file",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "write_file",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #4758885 --\"",
     "aero_mesh_core/dist/cluster_map_4.idx",
-    "sync",
-    "aero_mesh_core/dist/cluster_map_177.idx",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #4758883 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #4884698 --\"",
     "aero_mesh_core/dist/cluster_map_46.idx",
-    "aero_mesh_core/dist/cluster_map_2268.idx"
+    "aero_mesh_core/dist/cluster_map_177.idx"
   ]
 }
