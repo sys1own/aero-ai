@@ -19,48 +19,7 @@
     ],
     [
       "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       2
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
     ],
     [
       "PUSH_STRING",
@@ -71,10 +30,6 @@
       4
     ],
     [
-      "PUSH_STRING",
-      5
-    ],
-    [
       "CALL_DIRECT",
       2
     ],
@@ -83,15 +38,19 @@
     ],
     [
       "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
       6
     ],
     [
       "PUSH_STRING",
-      1
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -102,18 +61,18 @@
     ],
     [
       "PUSH_STRING",
-      8
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
+    ],
+    [
+      "PUSH_STRING",
+      8
     ],
     [
       "PUSH_STRING",
@@ -121,11 +80,11 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -136,15 +95,26 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -152,25 +122,6 @@
     [
       "PUSH_STRING",
       10
-    ],
-    [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      6
     ],
     [
       "PUSH_STRING",
@@ -204,11 +155,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      6
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -219,15 +174,60 @@
     ],
     [
       "PUSH_STRING",
-      4
+      6
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "CALL_DIRECT",
       2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      13
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      14
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -238,18 +238,20 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11359219 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11481743 --\"",
     "print",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11359215 --\"",
-    "aero_mesh_core/dist/cluster_map_88.idx",
-    "sync",
-    "write_file",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11359228 --\"",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "aero_mesh_core/dist/cluster_map_43.idx",
+    "write_file",
+    "aero_mesh_core/dist/cluster_map_1258.idx",
+    "sync",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11481639 --\"",
     "aero_mesh_core/dist/cluster_map_48.idx",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11359193 --\"",
-    "aero_mesh_core/dist/cluster_map_1258.idx"
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11481742 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11481686 --\"",
+    "aero_mesh_core/dist/cluster_map_43.idx",
+    "aero_mesh_core/dist/cluster_map_88.idx",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11481666 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #11481702 --\""
   ]
 }
