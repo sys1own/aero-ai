@@ -33,14 +33,30 @@
       "POP"
     ],
     [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #12922046 --\"",
+    "\"-- Initializing Ingress Nodes --\"",
     "print",
     "testbed/scans/raw_telemetry_0",
-    "read_file"
+    "read_file",
+    "\"-- Gateway Security Auth Check: Active Shard #13040862 --\""
   ]
 }
