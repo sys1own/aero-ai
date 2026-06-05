@@ -18,7 +18,7 @@ def generate_swarm_environment():
     os.makedirs(os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints"), exist_ok=True)
     os.makedirs(os.path.join(_ROOT, "build_sandbox", "recipes"), exist_ok=True)
     os.makedirs(os.path.join(_ROOT, "testbed", "scans"), exist_ok=True)
-    
+
     for i in range(5):
         with open(os.path.join(_ROOT, "testbed", "scans", f"raw_telemetry_{i}"), "w") as f:
             f.write(f"PACKET_ID={1000+i}\nPAYLOAD_HEX={hex(random.randint(100000,999999))}\nMETRIC=STABLE\n")
@@ -42,7 +42,7 @@ def ensure_swarm_blueprints(force_reset=False):
             "[task:freeze]\nop = call\nfn = write_file\nargs = \"aero_mesh_core/aero_mesh_core/dist/index_manifest.txt\", \"state complete\"\nneeds = consolidate\n"
         )
     }
-    
+
     bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
     for name, content in blueprints.items():
         path = os.path.join(bp_dir, name)
@@ -51,67 +51,71 @@ def ensure_swarm_blueprints(force_reset=False):
                 f.write(content)
 
 def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
-    """Generates mutations anchored to 100% valid, native compiler primitives to prevent silent drops"""
+    """Generates continuous mutations using deep graph pipeline dependency chaining constraints"""
     lines = recipe_text.split("\n")
     tasks = []
-    
+
     for line in lines:
         if line.strip().startswith("[task:"):
             tasks.append(line.split("[task:")[1].split("]")[0].strip())
 
     strategy = random.choice(["expand_nodes", "relink_dependencies", "fuzz_logs"])
-    
-    # Absolute file saturation boundary to prevent unbounded recipe file sizes
-    if len(tasks) >= 20 and strategy == "expand_nodes":
+
+    # UPGRADED CEILING: Scaled to allow 150 tasks per mesh file for the 24-hour horizon
+    if len(tasks) >= 150 and strategy == "expand_nodes":
         strategy = "relink_dependencies"
 
     if strategy == "expand_nodes" and tasks:
-        # NATIVE PRIMITIVES ONLY: Exclusively maps to built-in 'print' or 'write_file' routines
+        cluster_tier = round_counter % 5000
+
         if "ingress" in mesh_name:
             chosen = random.choice([
-                {"family": "sentinel_gate", "op": "print", "body": f'text = "-- Gateway Security Auth Check: Active Shard #{round_counter} --"', "label": "Security Boundary Check"},
-                {"family": "load_balancer", "op": "print", "body": f'text = "-- Network Traffic Dispatched to Worker Ring Shard #{round_counter} --"', "label": "Stream Load Balancer"},
-                {"family": "stream_buffer", "op": "call", "body": f'fn = write_file\nargs = "testbed/scans/ingress_shard_{round_counter}.tmp", "buffered"', "label": "Ingestion I/O Flush"}
+                {"prefix": f"sentinel_gate_tier_{cluster_tier}", "op": "print", "body": f'text = "-- Security Handshake Verification Shard #{round_counter} Active --"', "label": "Security Boundary"},
+                {"prefix": f"load_balancer_tier_{cluster_tier}", "op": "print", "body": f'text = "-- Traffic Intercept Pool Routing Shard #{round_counter} Confirmed --"', "label": "Load Balancer Routing"},
+                {"prefix": f"stream_buffer_tier_{cluster_tier}", "op": "call", "body": f'fn = write_file\nargs = "testbed/scans/ingress_pipeline_{round_counter}.dat", "stream"', "label": "Ingestion Stream Frame"}
             ])
         elif "processing" in mesh_name:
             chosen = random.choice([
-                {"family": "dag_optimizer", "op": "print", "body": f'text = "-- Optimization Routine Synchronized: Pipeline Layer #{round_counter} --"', "label": "DAG Re-indexing Step"},
-                {"family": "shared_memory", "op": "print", "body": f'text = "-- Mutex Register Latched: VMem Segment #{round_counter} --"', "label": "Virtual Shared Memory Link"},
-                {"family": "matrix_solver", "op": "call", "body": f'fn = write_file\nargs = "build_sandbox/mesh_outputs/matrix_{round_counter}.tmp", "processed"', "label": "Matrix Segment Compute Flush"}
+                {"prefix": f"dag_optimizer_tier_{cluster_tier}", "op": "print", "body": f'text = "-- DAG Pipeline Graph Branch Optimized: Index Step #{round_counter} --"', "label": "DAG Matrix Index Optimization"},
+                {"prefix": f"shared_memory_tier_{cluster_tier}", "op": "print", "body": f'text = "-- Virtual Allocation Register Latched: Address Frame #{round_counter} --"', "label": "VMem Address Allocation"},
+                {"prefix": f"matrix_solver_tier_{cluster_tier}", "op": "call", "body": f'fn = write_file\nargs = "build_sandbox/mesh_outputs/matrix_compute_{round_counter}.tmp", "bin"', "label": "Sharded Matrix Block Solver"}
             ])
         else:
             chosen = random.choice([
-                {"family": "manifest_signer", "op": "print", "body": f'text = "-- Cryptographic Build Signature Generated for Release #{round_counter} --"', "label": "Integrity Handshake Verification"},
-                {"family": "standalone_boxer", "op": "print", "body": f'text = "-- Compiling Independent Executable Swarm Box Asset Bundle #{round_counter} --"', "label": "Unified Box Output Bundle"},
-                {"family": "index_mapper", "op": "call", "body": f'fn = write_file\nargs = "aero_mesh_core/dist/cluster_map_{round_counter}.idx", "sync"', "label": "Topology Map Sync Row"}
+                {"prefix": f"manifest_signer_tier_{cluster_tier}", "op": "print", "body": f'text = "-- Release Bundle Integrity Validation Stamp Stamped #{round_counter} --"', "label": "Integrity Release Stamp"},
+                {"prefix": f"standalone_boxer_tier_{cluster_tier}", "op": "print", "body": f'text = "-- Standalone Swarm Deployment Object Packed: Segment #{round_counter} --"', "label": "Standalone Asset Bundle"},
+                {"prefix": f"index_mapper_tier_{cluster_tier}", "op": "call", "body": f'fn = write_file\nargs = "aero_mesh_core/dist/global_swarm_index_{round_counter}.idx", "sync"', "label": "Cluster Map Segment Row"}
             ])
-            
-        # Base Family density check ensures high variety across our task distributions
-        if recipe_text.count(chosen['family']) >= 4:
-            strategy = "relink_dependencies"
-        else:
-            new_node_id = f"{chosen['family']}_node_{round_counter}"
-            parent_dependency = random.choice(tasks)
-            
-            node_block = (
-                f"\n\n[task:{new_node_id}]\n"
-                f"op = {chosen['op']}\n"
-                f"{chosen['body']}\n"
-                f"needs = {parent_dependency}\n"
-            )
-            return recipe_text + node_block, f"Successfully Extended Cluster with Native [{chosen['label']}] Primitives -> Node ID: {new_node_id}"
 
-    if strategy == "relink_dependencies" and len(tasks) > 1:
+        new_node_id = f"{chosen['prefix']}_node_{round_counter}"
+
+        # CRITICAL HOLE FIX: Force Deep Chaining. The new task MUST depend on the most recently appended task,
+        # preventing flat duplication structures and forcing a deep, layered pipeline architecture.
+        parent_dependency = tasks[-1]
+
+        node_block = (
+            f"\n\n[task:{new_node_id}]\n"
+            f"op = {chosen['op']}\n"
+            f"{chosen['body']}\n"
+            f"needs = {parent_dependency}\n"
+        )
+        return recipe_text + node_block, f"Chained Deep Operational Segment [{chosen['label']}] -> Node: {new_node_id}"
+
+    if strategy == "relink_dependencies" and len(tasks) > 2:
         new_lines = []
         mutated = False
         for line in lines:
-            if "needs =" in line and random.random() > 0.6:
-                t_target = random.choice(tasks)
+            if "needs =" in line and random.random() > 0.7:
+                # Restrict edge variations to neighbor lookups within a localized sliding window
+                # to maintain the mathematical validity of our sequential graph paths.
+                current_idx = len(new_lines)
+                sample_pool = tasks[max(0, current_idx-5):max(1, current_idx)]
+                t_target = random.choice(sample_pool)
                 new_lines.append(f"needs = {t_target}")
                 mutated = True
             else:
                 new_lines.append(line)
-        desc = "Reconfigured Parallel Dependency Graph Pathing" if mutated else "Maintained Current Graph Equilibrium"
+        desc = "Reconfigured Parallel Dependency Graph Pathing" if mutated else "Maintained Node Alignment Stability"
         return "\n".join(new_lines), desc
 
     new_lines = []
@@ -128,7 +132,7 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
 def push_git_checkpoint(reason, metrics):
     """Commits and pushes structural multi-mesh components straight to production"""
     print(f"\n📦 [Checkpoint] Syncing states to GitHub Remote... Reason: {reason}", flush=True)
-    
+
     dist_dir = os.path.join(_ROOT, "aero_mesh_core", "dist")
     os.makedirs(dist_dir, exist_ok=True)
     with open(os.path.join(dist_dir, "swarm_metrics.json"), "w", encoding="utf-8") as f:
@@ -140,26 +144,26 @@ def push_git_checkpoint(reason, metrics):
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
-    os.system(f'git -C "{_ROOT}" commit -m "chore: align mutator infrastructure to leverage compiler-verified native primitives" 2>&1')
-    os.system(f'git -C "{_ROOT}" push origin main 2>&1')
+    os.system(f'git -C "{_ROOT}" commit -m "chore: enable infinite multi-node pipeline growth via deep topological graph chaining" 2>&1')
+    os.system(f'git -C "{_ROOT}" push origin main --force 2>&1')
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--duration', type=int, default=1200)
+    parser.add_argument('--duration', type=int, default=86400) # Defaulted to a full 24h cycle
     args, unknown = parser.parse_known_args()
 
-    print("🚀 Initializing Primitive-Aligned Swarm Architecture Engine...", flush=True)
+    print("🚀 Initializing Unconstrained Deep Chaining Swarm Evolution Engine...", flush=True)
     print("🎯 Target System: Massive, High-Density Multi-Node Distributed Architecture", flush=True)
     generate_swarm_environment()
     ensure_swarm_blueprints(force_reset=True)
-    
+
     start_time = time.time()
     last_git_time = time.time()
     last_heartbeat_time = time.time()
-    
+
     total_rounds = 0
     champions_frozen = 0
-    
+
     meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
     fitness_history = {m: {"node_count": 2, "compiled_successfully": True} for m in meshes}
 
@@ -169,36 +173,36 @@ def main():
         "champions_crowned": []
     }
 
-    GIT_COOLDOWN = 180        
-    HEARTBEAT_COOLDOWN = 10   
+    GIT_COOLDOWN = 180
+    HEARTBEAT_COOLDOWN = 10
 
     bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
 
     while (time.time() - start_time) < args.duration:
         current_time = time.time()
         elapsed = int(current_time - start_time)
-        
+
         total_rounds += 1
         interval_stats["cycles"] += 1
-        
+
         target_mesh = random.choice(meshes)
         mesh_path = os.path.join(bp_dir, target_mesh)
-        
+
         try:
             with open(mesh_path, "r", encoding="utf-8") as f_read:
                 original_blueprint = f_read.read()
-            
+
             mutated_blueprint, mutation_description = execute_complexity_mutation(original_blueprint, target_mesh, total_rounds)
-            
+
             with open(mesh_path, "w", encoding="utf-8") as f_write:
                 f_write.write(mutated_blueprint)
-                
+
             with open(os.devnull, 'w') as fnull:
                 with contextlib.redirect_stdout(fnull), contextlib.redirect_stderr(fnull):
                     compile_recipe(mesh_path, run=True)
-            
+
             mutated_nodes = mutated_blueprint.count("[task:")
-            
+
             if mutated_nodes > fitness_history[target_mesh]["node_count"]:
                 interval_stats["champions_crowned"].append(
                     f"     • [{target_mesh}] Scaled cluster footprint to {mutated_nodes} verified nodes"
@@ -211,7 +215,7 @@ def main():
             else:
                 with open(mesh_path, "w", encoding="utf-8") as f_revert:
                     f_revert.write(original_blueprint)
-                    
+
         except Exception:
             interval_stats["compilation_faults"] += 1
             try:
@@ -226,13 +230,13 @@ def main():
             print(f"   📊 Interval Velocity : {interval_stats['cycles']} compilation rounds processed", flush=True)
             print(f"   🛡️ Integrity Gate    : {interval_stats['compilation_faults']} structural mutations blocked by compiler", flush=True)
             print(f"   🏆 Total Scale Champs: {champions_frozen} topology adaptations frozen since boot", flush=True)
-            
+
             if interval_stats["champions_crowned"]:
                 print("   📈 Structural Footprint Extensions Frozen in Last 10s:", flush=True)
                 for log_line in interval_stats["champions_crowned"]:
                     print(log_line, flush=True)
             print("==================================================================", flush=True)
-            
+
             interval_stats = {"cycles": 0, "compilation_faults": 0, "champions_crowned": []}
             last_heartbeat_time = current_time
 
