@@ -61,7 +61,7 @@
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file",
-    "testbed/scans/ingress_shard_5454047.tmp",
+    "testbed/scans/ingress_shard_5571373.tmp",
     "buffered",
     "write_file"
   ]
