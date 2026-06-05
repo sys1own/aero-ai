@@ -61,7 +61,7 @@
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file",
-    "testbed/scans/ingress_pipeline_214424.dat",
+    "testbed/scans/ingress_pipeline_250142.dat",
     "stream",
     "write_file"
   ]
