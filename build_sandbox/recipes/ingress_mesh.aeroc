@@ -33,36 +33,14 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Initializing Ingress Nodes --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #5216990 --\"",
     "print",
     "testbed/scans/raw_telemetry_0",
-    "read_file",
-    "testbed/scans/ingress_shard_5097003.tmp",
-    "buffered",
-    "write_file"
+    "read_file"
   ]
 }
