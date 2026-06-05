@@ -33,30 +33,14 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Initializing Ingress Nodes --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3634412 --\"",
     "print",
     "testbed/scans/raw_telemetry_0",
-    "read_file",
-    "\"-- Network Traffic Dispatched to Worker Ring Shard #3512849 --\""
+    "read_file"
   ]
 }
