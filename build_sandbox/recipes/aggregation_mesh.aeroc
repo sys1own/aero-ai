@@ -68,6 +68,21 @@
     ],
     [
       "PUSH_STRING",
+      2
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       0
     ],
     [
@@ -121,7 +136,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      8
     ],
     [
       "PUSH_STRING",
@@ -130,21 +145,6 @@
     [
       "CALL_DIRECT",
       2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      2
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
     ],
     [
       "POP"
@@ -155,7 +155,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      8
     ],
     [
       "PUSH_STRING",
@@ -164,21 +164,6 @@
     [
       "CALL_DIRECT",
       2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
     ],
     [
       "POP"
@@ -189,7 +174,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      8
     ],
     [
       "PUSH_STRING",
@@ -204,7 +189,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      3
     ],
     [
       "PUSH_STRING",
@@ -219,7 +204,22 @@
     ],
     [
       "PUSH_STRING",
-      0
+      2
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      2
     ],
     [
       "PUSH_STRING",
@@ -238,17 +238,17 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #366055 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #486955 --\"",
     "print",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #366048 --\"",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #366045 --\"",
-    "aero_mesh_core/dist/cluster_map_1258.idx",
-    "sync",
-    "write_file",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #486952 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #486938 --\"",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "aero_mesh_core/dist/cluster_map_48.idx",
+    "write_file",
+    "aero_mesh_core/dist/cluster_map_1258.idx",
+    "sync",
+    "aero_mesh_core/dist/cluster_map_88.idx",
     "aero_mesh_core/dist/cluster_map_43.idx",
-    "aero_mesh_core/dist/cluster_map_88.idx"
+    "aero_mesh_core/dist/cluster_map_48.idx"
   ]
 }
