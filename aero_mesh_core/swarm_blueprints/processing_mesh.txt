@@ -4,70 +4,70 @@ output = build_sandbox/recipes/processing_mesh.aeroc
 
 [task:compute]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138785 --"
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256786 --"
 
 [task:transform]
 op = call
 fn = write_file
 args = "aero_mesh_core/aero_mesh_core/dist/interim.tmp", "processed"
-needs = matrix_solver_node_62
+needs = shared_memory_node_58
 
 
 [task:dag_optimizer_node_13]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138795 --"
-needs = compute
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256786 --"
+needs = matrix_solver_node_140
 
 
 [task:dag_optimizer_node_42]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138788 --"
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256787 --"
 needs = dag_optimizer_node_998
 
 
 [task:dag_optimizer_node_46]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138795 --"
-needs = compute
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256783 --"
+needs = matrix_solver_node_142
 
 
 [task:shared_memory_node_54]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138788 --"
-needs = transform
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256787 --"
+needs = matrix_solver_node_62
 
 
 [task:shared_memory_node_58]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138788 --"
-needs = compute
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256787 --"
+needs = matrix_solver_node_142
 
 
 [task:matrix_solver_node_62]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_62.tmp", "processed"
-needs = compute
+needs = shared_memory_node_97
 
 
 [task:shared_memory_node_97]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138795 --"
-needs = matrix_solver_node_140
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256787 --"
+needs = compute
 
 
 [task:matrix_solver_node_140]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_140.tmp", "processed"
-needs = matrix_solver_node_142
+needs = shared_memory_node_97
 
 
 [task:matrix_solver_node_142]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_142.tmp", "processed"
-needs = transform
+needs = matrix_solver_node_62
 
 
 [task:matrix_solver_node_259]
@@ -79,11 +79,11 @@ needs = dag_optimizer_node_46
 
 [task:shared_memory_node_340]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138788 --"
-needs = dag_optimizer_node_998
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256787 --"
+needs = shared_memory_node_97
 
 
 [task:dag_optimizer_node_998]
 op = print
-text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11138779 --"
+text = "-- Swarm Matrix Execution Cluster Pulse Sequence #11256787 --"
 needs = dag_optimizer_node_46
