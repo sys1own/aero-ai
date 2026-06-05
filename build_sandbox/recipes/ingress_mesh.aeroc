@@ -38,11 +38,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      5
+    ],
+    [
+      "PUSH_STRING",
+      6
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -57,6 +61,8 @@
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file",
-    "\"-- Network Traffic Dispatched to Worker Ring Shard #3079067 --\""
+    "testbed/scans/ingress_shard_3198003.tmp",
+    "buffered",
+    "write_file"
   ]
 }
