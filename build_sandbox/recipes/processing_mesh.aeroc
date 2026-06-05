@@ -72,7 +72,7 @@
     ],
     [
       "PUSH_STRING",
-      6
+      0
     ],
     [
       "PUSH_STRING",
@@ -96,6 +96,25 @@
     [
       "CALL_DIRECT",
       1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      6
+    ],
+    [
+      "PUSH_STRING",
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
     ],
     [
       "POP"
@@ -121,41 +140,22 @@
     ],
     [
       "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       8
     ],
     [
       "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
     ],
     [
       "PUSH_STRING",
-      6
+      0
     ],
     [
       "PUSH_STRING",
@@ -204,7 +204,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      10
     ],
     [
       "PUSH_STRING",
@@ -219,7 +219,7 @@
     ],
     [
       "PUSH_STRING",
-      10
+      0
     ],
     [
       "PUSH_STRING",
@@ -238,16 +238,16 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #1939336 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #2059923 --\"",
     "print",
-    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
+    "build_sandbox/mesh_outputs/matrix_34.tmp",
     "processed",
     "write_file",
-    "build_sandbox/mesh_outputs/matrix_27.tmp",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #1939334 --\"",
+    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "build_sandbox/mesh_outputs/matrix_19.tmp",
     "build_sandbox/mesh_outputs/matrix_1682.tmp",
-    "build_sandbox/mesh_outputs/matrix_34.tmp",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #1939282 --\""
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #2059911 --\"",
+    "build_sandbox/mesh_outputs/matrix_27.tmp",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #2059920 --\""
   ]
 }
