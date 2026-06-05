@@ -42,37 +42,7 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      6
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      8
+      3
     ],
     [
       "PUSH_STRING",
@@ -87,7 +57,26 @@
     ],
     [
       "PUSH_STRING",
-      9
+      6
+    ],
+    [
+      "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      8
     ],
     [
       "PUSH_STRING",
@@ -102,7 +91,41 @@
     ],
     [
       "PUSH_STRING",
+      9
+    ],
+    [
+      "PUSH_STRING",
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      8
     ],
     [
       "PUSH_STRING",
@@ -151,15 +174,11 @@
     ],
     [
       "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -185,26 +204,7 @@
     ],
     [
       "PUSH_STRING",
-      13
-    ],
-    [
-      "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      6
+      10
     ],
     [
       "PUSH_STRING",
@@ -219,7 +219,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      8
     ],
     [
       "PUSH_STRING",
@@ -238,19 +238,18 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6289807 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6408068 --\"",
     "print",
-    "aero_mesh_core/dist/cluster_map_43.idx",
+    "aero_mesh_core/dist/cluster_map_88.idx",
     "sync",
     "write_file",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6289793 --\"",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6289786 --\"",
+    "aero_mesh_core/dist/cluster_map_1258.idx",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6289785 --\"",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6289823 --\"",
-    "aero_mesh_core/dist/cluster_map_1258.idx",
-    "aero_mesh_core/dist/cluster_map_48.idx",
-    "aero_mesh_core/dist/cluster_map_88.idx"
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6408090 --\"",
+    "aero_mesh_core/dist/cluster_map_43.idx",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6408071 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #6408060 --\"",
+    "aero_mesh_core/dist/cluster_map_48.idx"
   ]
 }
