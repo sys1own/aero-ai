@@ -57,6 +57,6 @@
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file",
-    "\"-- Network Traffic Dispatched to Worker Ring Shard #9031495 --\""
+    "\"-- Gateway Security Auth Check: Active Shard #9155539 --\""
   ]
 }
