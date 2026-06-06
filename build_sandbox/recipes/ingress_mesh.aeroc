@@ -38,7 +38,7 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #2905978 --\"",
+    "\"-- Initializing Ingress Nodes --\"",
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file"
