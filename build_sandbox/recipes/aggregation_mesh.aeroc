@@ -106,7 +106,37 @@
     ],
     [
       "PUSH_STRING",
-      0
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "PUSH_STRING",
@@ -125,36 +155,6 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      10
-    ],
-    [
-      "PUSH_STRING",
       7
     ],
     [
@@ -170,7 +170,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      10
     ],
     [
       "PUSH_STRING",
@@ -185,7 +185,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      5
     ],
     [
       "PUSH_STRING",
@@ -272,7 +272,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      5
     ],
     [
       "PUSH_STRING",
@@ -306,7 +306,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      0
     ],
     [
       "PUSH_STRING",
@@ -340,51 +340,6 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      9
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       16
     ],
     [
@@ -400,7 +355,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      0
     ],
     [
       "PUSH_STRING",
@@ -419,22 +374,33 @@
     ],
     [
       "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
     ],
     [
       "PUSH_STRING",
-      0
+      10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "PUSH_STRING",
@@ -502,6 +468,21 @@
     ],
     [
       "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       20
     ],
     [
@@ -515,51 +496,6 @@
     [
       "CALL_DIRECT",
       2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      16
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
     ],
     [
       "POP"
@@ -585,7 +521,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      22
     ],
     [
       "PUSH_STRING",
@@ -600,19 +536,30 @@
     ],
     [
       "PUSH_STRING",
-      22
+      5
     ],
     [
       "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -638,6 +585,21 @@
     ],
     [
       "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       24
     ],
     [
@@ -651,51 +613,6 @@
     [
       "CALL_DIRECT",
       2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      16
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
     ],
     [
       "POP"
@@ -721,21 +638,6 @@
     ],
     [
       "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       26
     ],
     [
@@ -755,7 +657,37 @@
     ],
     [
       "PUSH_STRING",
-      0
+      22
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "PUSH_STRING",
@@ -789,7 +721,7 @@
     ],
     [
       "PUSH_STRING",
-      16
+      5
     ],
     [
       "PUSH_STRING",
@@ -823,37 +755,7 @@
     ],
     [
       "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
+      22
     ],
     [
       "PUSH_STRING",
@@ -902,21 +804,6 @@
     ],
     [
       "PUSH_STRING",
-      16
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       30
     ],
     [
@@ -951,7 +838,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      10
     ],
     [
       "PUSH_STRING",
@@ -967,21 +854,6 @@
     [
       "PUSH_STRING",
       5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
     ],
     [
       "PUSH_STRING",
@@ -1015,6 +887,21 @@
     ],
     [
       "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       5
     ],
     [
@@ -1034,6 +921,25 @@
     ],
     [
       "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
       1
     ],
     [
@@ -1045,7 +951,7 @@
     ],
     [
       "PUSH_STRING",
-      16
+      10
     ],
     [
       "PUSH_STRING",
@@ -1075,6 +981,21 @@
     ],
     [
       "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       33
     ],
     [
@@ -1088,6 +1009,36 @@
     [
       "CALL_DIRECT",
       2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -1137,6 +1088,36 @@
     [
       "CALL_DIRECT",
       2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -1200,81 +1181,6 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       38
     ],
     [
@@ -1294,6 +1200,36 @@
     ],
     [
       "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       5
     ],
     [
@@ -1309,7 +1245,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      10
     ],
     [
       "PUSH_STRING",
@@ -1358,7 +1294,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      22
     ],
     [
       "PUSH_STRING",
@@ -1373,7 +1309,7 @@
     ],
     [
       "PUSH_STRING",
-      16
+      10
     ],
     [
       "PUSH_STRING",
@@ -1388,7 +1324,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      10
     ],
     [
       "PUSH_STRING",
@@ -1403,7 +1339,71 @@
     ],
     [
       "PUSH_STRING",
-      0
+      40
+    ],
+    [
+      "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
     ],
     [
       "PUSH_STRING",
@@ -1448,7 +1448,7 @@
     ],
     [
       "PUSH_STRING",
-      16
+      5
     ],
     [
       "PUSH_STRING",
@@ -1463,7 +1463,7 @@
     ],
     [
       "PUSH_STRING",
-      40
+      16
     ],
     [
       "PUSH_STRING",
@@ -1550,7 +1550,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      10
     ],
     [
       "PUSH_STRING",
@@ -1565,7 +1565,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      5
     ],
     [
       "PUSH_STRING",
@@ -1656,7 +1656,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      10
     ],
     [
       "PUSH_STRING",
@@ -1671,7 +1671,7 @@
     ],
     [
       "PUSH_STRING",
-      16
+      5
     ],
     [
       "PUSH_STRING",
@@ -1705,7 +1705,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      5
     ],
     [
       "PUSH_STRING",
@@ -1754,21 +1754,6 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       0
     ],
     [
@@ -1784,7 +1769,22 @@
     ],
     [
       "PUSH_STRING",
-      5
+      22
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
     ],
     [
       "PUSH_STRING",
@@ -1818,7 +1818,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      10
     ],
     [
       "PUSH_STRING",
@@ -1852,7 +1852,7 @@
     ],
     [
       "PUSH_STRING",
-      32
+      5
     ],
     [
       "PUSH_STRING",
@@ -1901,7 +1901,7 @@
     ],
     [
       "PUSH_STRING",
-      16
+      0
     ],
     [
       "PUSH_STRING",
@@ -1935,7 +1935,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      22
     ],
     [
       "PUSH_STRING",
@@ -1965,7 +1965,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      22
     ],
     [
       "PUSH_STRING",
@@ -1995,7 +1995,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      22
     ],
     [
       "PUSH_STRING",
@@ -2010,7 +2010,7 @@
     ],
     [
       "PUSH_STRING",
-      16
+      0
     ],
     [
       "PUSH_STRING",
@@ -2082,7 +2082,7 @@
     ],
     [
       "PUSH_STRING",
-      32
+      0
     ],
     [
       "PUSH_STRING",
@@ -2113,21 +2113,6 @@
     [
       "PUSH_STRING",
       5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      16
     ],
     [
       "PUSH_STRING",
@@ -2143,190 +2128,6 @@
     [
       "PUSH_STRING",
       57
-    ],
-    [
-      "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      16
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      32
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      32
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      16
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      0
     ],
     [
       "PUSH_STRING",
@@ -2360,19 +2161,15 @@
     ],
     [
       "PUSH_STRING",
-      59
+      5
     ],
     [
       "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -2380,6 +2177,156 @@
     [
       "PUSH_STRING",
       5
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      17
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      59
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      0
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      10
     ],
     [
       "PUSH_STRING",
@@ -2413,7 +2360,60 @@
     ],
     [
       "PUSH_STRING",
-      0
+      61
+    ],
+    [
+      "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      57
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      62
+    ],
+    [
+      "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "PUSH_STRING",
@@ -2443,7 +2443,7 @@
     ],
     [
       "PUSH_STRING",
-      0
+      10
     ],
     [
       "PUSH_STRING",
@@ -2462,27 +2462,29 @@
   ],
   "functions": [],
   "constants": [
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3157566 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3193249 --\"",
     "print",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
     "write_file",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3157565 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3193251 --\"",
     "aero_mesh_core/dist/global_swarm_index_10.idx",
     "sync",
     "aero_mesh_core/dist/global_swarm_index_16.idx",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3157488 --\"",
     "aero_mesh_core/dist/global_swarm_index_65.idx",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3193219 --\"",
     "aero_mesh_core/dist/global_swarm_index_93.idx",
     "aero_mesh_core/dist/global_swarm_index_105.idx",
     "aero_mesh_core/dist/global_swarm_index_109.idx",
     "aero_mesh_core/dist/global_swarm_index_118.idx",
     "aero_mesh_core/dist/global_swarm_index_140.idx",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3157542 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3193177 --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3193171 --\"",
     "aero_mesh_core/dist/global_swarm_index_193.idx",
     "aero_mesh_core/dist/global_swarm_index_198.idx",
     "aero_mesh_core/dist/global_swarm_index_205.idx",
     "aero_mesh_core/dist/global_swarm_index_213.idx",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3193192 --\"",
     "aero_mesh_core/dist/global_swarm_index_258.idx",
     "aero_mesh_core/dist/global_swarm_index_261.idx",
     "aero_mesh_core/dist/global_swarm_index_267.idx",
@@ -2494,7 +2496,6 @@
     "aero_mesh_core/dist/global_swarm_index_474.idx",
     "aero_mesh_core/dist/global_swarm_index_483.idx",
     "aero_mesh_core/dist/global_swarm_index_511.idx",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3157541 --\"",
     "aero_mesh_core/dist/global_swarm_index_556.idx",
     "aero_mesh_core/dist/global_swarm_index_562.idx",
     "aero_mesh_core/dist/global_swarm_index_563.idx",
@@ -2502,7 +2503,6 @@
     "aero_mesh_core/dist/global_swarm_index_602.idx",
     "aero_mesh_core/dist/global_swarm_index_657.idx",
     "aero_mesh_core/dist/global_swarm_index_691.idx",
-    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3157522 --\"",
     "aero_mesh_core/dist/global_swarm_index_820.idx",
     "aero_mesh_core/dist/global_swarm_index_821.idx",
     "aero_mesh_core/dist/global_swarm_index_824.idx",
@@ -2519,7 +2519,9 @@
     "aero_mesh_core/dist/global_swarm_index_1126.idx",
     "aero_mesh_core/dist/global_swarm_index_1129.idx",
     "aero_mesh_core/dist/global_swarm_index_1141.idx",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3193184 --\"",
     "aero_mesh_core/dist/global_swarm_index_1164.idx",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #3193135 --\"",
     "aero_mesh_core/dist/global_swarm_index_1298.idx",
     "aero_mesh_core/dist/global_swarm_index_1306.idx",
     "aero_mesh_core/dist/global_swarm_index_1313.idx"
