@@ -38,14 +38,22 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
+    ],
+    [
+      "PUSH_STRING",
+      6
     ],
     [
       "PUSH_STRING",
@@ -54,10 +62,6 @@
     [
       "PUSH_STRING",
       5
-    ],
-    [
-      "PUSH_STRING",
-      6
     ],
     [
       "CALL_DIRECT",
@@ -72,30 +76,15 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       8
     ],
     [
       "PUSH_STRING",
-      1
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -106,15 +95,11 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -125,11 +110,11 @@
     ],
     [
       "PUSH_STRING",
-      11
+      4
     ],
     [
       "PUSH_STRING",
-      6
+      5
     ],
     [
       "CALL_DIRECT",
@@ -140,7 +125,7 @@
     ],
     [
       "PUSH_STRING",
-      12
+      11
     ],
     [
       "PUSH_STRING",
@@ -149,6 +134,25 @@
     [
       "CALL_DIRECT",
       1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      12
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "CALL_DIRECT",
+      2
     ],
     [
       "POP"
@@ -174,15 +178,11 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -193,11 +193,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -208,11 +212,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -223,15 +231,11 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -272,15 +276,11 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -291,11 +291,11 @@
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "PUSH_STRING",
-      6
+      5
     ],
     [
       "CALL_DIRECT",
@@ -310,11 +310,11 @@
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "PUSH_STRING",
-      6
+      5
     ],
     [
       "CALL_DIRECT",
@@ -329,11 +329,11 @@
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "PUSH_STRING",
-      6
+      5
     ],
     [
       "CALL_DIRECT",
@@ -348,11 +348,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -363,11 +367,11 @@
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "PUSH_STRING",
-      6
+      5
     ],
     [
       "CALL_DIRECT",
@@ -382,15 +386,11 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -401,11 +401,11 @@
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "PUSH_STRING",
-      6
+      5
     ],
     [
       "CALL_DIRECT",
@@ -420,11 +420,11 @@
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "PUSH_STRING",
-      6
+      5
     ],
     [
       "CALL_DIRECT",
@@ -441,32 +441,32 @@
   "constants": [
     "\"-- Aggregating Distributed State --\"",
     "print",
-    "\"-- signer | Release Package Cryptographic Seal Generated: Block 16 ID 16 --\"",
-    "\"-- signer | Release Package Cryptographic Seal Generated: Block 188 ID 188 --\"",
-    "aero_mesh_core/dist/global_swarm_index_245.idx",
+    "\"-- boxer | Standalone Swarm Package Bundled: Node 89 Archive 89 --\"",
+    "aero_mesh_core/dist/global_swarm_index_341.idx",
     "sync",
     "write_file",
-    "aero_mesh_core/dist/global_swarm_index_438.idx",
-    "\"-- boxer | Standalone Swarm Package Bundled: Node 35 Archive 35 --\"",
-    "aero_mesh_core/dist/global_swarm_index_481.idx",
+    "aero_mesh_core/dist/global_swarm_index_118.idx",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "\"-- signer | Release Package Cryptographic Seal Generated: Block 4 ID 4 --\"",
     "\"-- boxer | Standalone Swarm Package Bundled: Node 133 Archive 133 --\"",
-    "aero_mesh_core/dist/global_swarm_index_20.idx",
-    "\"-- boxer | Standalone Swarm Package Bundled: Node 62 Archive 62 --\"",
-    "\"-- boxer | Standalone Swarm Package Bundled: Node 89 Archive 89 --\"",
-    "aero_mesh_core/dist/global_swarm_index_514.idx",
-    "\"-- signer | Release Package Cryptographic Seal Generated: Block 27 ID 27 --\"",
-    "\"-- boxer | Standalone Swarm Package Bundled: Node 52 Archive 52 --\"",
     "aero_mesh_core/dist/global_swarm_index_94.idx",
+    "\"-- boxer | Standalone Swarm Package Bundled: Node 62 Archive 62 --\"",
+    "aero_mesh_core/dist/global_swarm_index_514.idx",
+    "\"-- signer | Release Package Cryptographic Seal Generated: Block 4 ID 4 --\"",
+    "\"-- signer | Release Package Cryptographic Seal Generated: Block 16 ID 16 --\"",
+    "aero_mesh_core/dist/global_swarm_index_20.idx",
+    "aero_mesh_core/dist/global_swarm_index_481.idx",
+    "\"-- signer | Release Package Cryptographic Seal Generated: Block 27 ID 27 --\"",
+    "\"-- boxer | Standalone Swarm Package Bundled: Node 35 Archive 35 --\"",
+    "\"-- signer | Release Package Cryptographic Seal Generated: Block 188 ID 188 --\"",
+    "\"-- boxer | Standalone Swarm Package Bundled: Node 52 Archive 52 --\"",
+    "aero_mesh_core/dist/global_swarm_index_245.idx",
     "aero_mesh_core/dist/global_swarm_index_103.idx",
-    "aero_mesh_core/dist/global_swarm_index_118.idx",
     "aero_mesh_core/dist/global_swarm_index_137.idx",
-    "\"-- signer | Release Package Cryptographic Seal Generated: Block 151 ID 151 --\"",
-    "aero_mesh_core/dist/global_swarm_index_341.idx",
-    "aero_mesh_core/dist/global_swarm_index_349.idx",
+    "aero_mesh_core/dist/global_swarm_index_438.idx",
     "aero_mesh_core/dist/global_swarm_index_429.idx",
+    "\"-- signer | Release Package Cryptographic Seal Generated: Block 151 ID 151 --\"",
+    "aero_mesh_core/dist/global_swarm_index_349.idx",
     "aero_mesh_core/dist/global_swarm_index_530.idx"
   ]
 }
