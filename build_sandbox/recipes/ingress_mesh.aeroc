@@ -33,30 +33,14 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
   "functions": [],
   "constants": [
-    "\"-- Initializing Ingress Nodes --\"",
+    "\"-- Swarm Matrix Execution Cluster Pulse Sequence #2259873 --\"",
     "print",
     "testbed/scans/raw_telemetry_0",
-    "read_file",
-    "\"-- Security Handshake Verification Shard #2223720 Active --\""
+    "read_file"
   ]
 }
