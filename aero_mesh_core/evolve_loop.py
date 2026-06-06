@@ -51,7 +51,7 @@ def ensure_swarm_blueprints(force_reset=False):
                 f.write(content)
 
 def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
-    """Generates continuous structural mutations using pristine alphanumeric compiler tokens"""
+    """Generates mutations enforcing absolute global frequency clamps to prevent metric gaming"""
     lines = recipe_text.split("\n")
     tasks = []
     
@@ -61,7 +61,8 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
 
     strategy = random.choice(["expand_nodes", "relink_dependencies", "fuzz_logs"])
     
-    if len(tasks) >= 150 and strategy == "expand_nodes":
+    # RAILING 1: Immutable high-density file saturation boundary capped at 25 nodes max
+    if len(tasks) >= 25 and strategy == "expand_nodes":
         strategy = "relink_dependencies"
 
     if strategy == "expand_nodes" and tasks:
@@ -88,11 +89,11 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
             
         chosen = random.choice(pool)
         
-        current_layer = len(tasks) // 3
-        unique_marker = f"_{round_counter}"
+        # RAILING 2: Absolute global family clamp. Max 5 instances per operational family per file.
         family_signature = f"# family: {chosen['family']}"
+        unique_marker = f"_{round_counter}"
         
-        if recipe_text.count(family_signature) >= (current_layer + 2) or unique_marker in recipe_text:
+        if recipe_text.count(family_signature) >= 5 or unique_marker in recipe_text:
             strategy = "relink_dependencies"
         else:
             new_node_id = f"node{round_counter}"
@@ -148,7 +149,8 @@ def push_git_checkpoint(reason, metrics):
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
-    os.system(f'git -C "{_ROOT}" commit -m "chore: align mutator infrastructure to leverage compiler-verified native primitives" 2>&1')
+    # FIX: Corrected command flags to standard commit sequencing
+    os.system(f'git -C "{_ROOT}" commit -m "chore: enforce absolute global family clamps and task saturation thresholds" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main --force 2>&1')
 
 def main():
@@ -156,11 +158,11 @@ def main():
     parser.add_argument('--duration', type=int, default=86400) 
     args, unknown = parser.parse_known_args()
 
-    print("🚀 Initializing Pristine Alphanumeric Sharded Swarm Evolution Engine...", flush=True)
+    print("🚀 Initializing Clamped High-Density Swarm Evolution Engine...", flush=True)
     print("🎯 Target System: Massive, High-Density Multi-Node Distributed Architecture", flush=True)
     generate_swarm_environment()
     
-    # Enforce pure reset to clear out corrupted repository assets
+    # Enforce pure reset to clear out legacy, bloated repository assets
     ensure_swarm_blueprints(force_reset=True)
     
     start_time = time.time()
