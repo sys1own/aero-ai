@@ -9,27 +9,27 @@ text = "-- Initializing Ingress Nodes --"
 [task:ingest]
 op = print
 text = "-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --"
-needs = node91
+needs = node37
 
 
 [task:node9]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 9 Key 9 --"
-needs = node37
+needs = node16
 
 
 [task:node16]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_16.dat", "stream"
-needs = node97
+needs = init
 
 
 [task:node32]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_32.dat", "stream"
-needs = node52
+needs = node78
 
 
 [task:node33]
@@ -42,38 +42,38 @@ needs = node75
 [task:node37]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 37 Frame 37 --"
-needs = node75
+needs = node91
 
 
 [task:node45]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 45 Key 45 --"
-needs = node71
+needs = node9
 
 
 [task:node48]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 48 Key 48 --"
-needs = ingest
+needs = node32
 
 
 [task:node52]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 52 Frame 52 --"
-needs = init
+needs = node16
 
 
 [task:node71]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_71.dat", "stream"
-needs = node33
+needs = node78
 
 
 [task:node75]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 75 Key 75 --"
-needs = node32
+needs = node97
 
 
 [task:node78]
@@ -85,17 +85,17 @@ needs = node33
 [task:node91]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 91 Frame 91 --"
-needs = node71
+needs = node52
 
 
 [task:node97]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_97.dat", "stream"
-needs = node71
+needs = node37
 
 
 [task:node141]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 141 Frame 141 --"
-needs = node37
+needs = node33
