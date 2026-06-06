@@ -13,111 +13,152 @@ args = "aero_mesh_core/aero_mesh_core/dist/interim.tmp", "processed"
 needs = compute
 
 
-[task:node4]
+[task:node1]
+op = print
+text = "-- memory | Interlock Memory Latch Set: Range 1 Frame 1 --"
+needs = transform
+
+
+[task:node6]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_4.tmp", "bin"
-needs = transform
-# family: solver
+args = "build_sandbox/mesh_outputs/matrix_block_6.tmp", "bin"
+needs = node1
 
 
-[task:node14]
+[task:node9]
 op = print
-text = "-- Interlock Memory Latch Set: Range 14 Frame 14 --"
-needs = node4
-# family: memory
+text = "-- optimizer | Optimization Engine State Synchronized: Segment 9 Step 9 --"
+needs = node6
 
 
-[task:node18]
+[task:node49]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 18 Step 18 --"
-needs = node14
-# family: optimizer
+text = "-- memory | Interlock Memory Latch Set: Range 49 Frame 49 --"
+needs = node9
 
 
-[task:node44]
+[task:node54]
 op = print
-text = "-- Interlock Memory Latch Set: Range 44 Frame 44 --"
-needs = node18
-# family: memory
+text = "-- memory | Interlock Memory Latch Set: Range 54 Frame 54 --"
+needs = node49
 
 
 [task:node62]
-op = print
-text = "-- Interlock Memory Latch Set: Range 62 Frame 62 --"
-needs = node44
-# family: memory
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_62.tmp", "bin"
+needs = node54
 
 
-[task:node68]
-op = print
-text = "-- Interlock Memory Latch Set: Range 68 Frame 68 --"
+[task:node65]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_65.tmp", "bin"
 needs = node62
-# family: memory
 
 
-[task:node74]
+[task:node83]
 op = print
-text = "-- Interlock Memory Latch Set: Range 74 Frame 74 --"
-needs = node68
-# family: memory
+text = "-- memory | Interlock Memory Latch Set: Range 83 Frame 83 --"
+needs = node65
 
 
 [task:node87]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_87.tmp", "bin"
-needs = node74
-# family: solver
-
-
-[task:node90]
-op = call
-fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_90.tmp", "bin"
-needs = node87
-# family: solver
+needs = node83
 
 
 [task:node111]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 111 Step 111 --"
-needs = node90
-# family: optimizer
+text = "-- memory | Interlock Memory Latch Set: Range 111 Frame 111 --"
+needs = node87
 
 
-[task:node115]
+[task:node152]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_115.tmp", "bin"
+args = "build_sandbox/mesh_outputs/matrix_block_152.tmp", "bin"
 needs = node111
-# family: solver
 
 
-[task:node124]
+[task:node178]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_124.tmp", "bin"
-needs = node115
-# family: solver
+args = "build_sandbox/mesh_outputs/matrix_block_178.tmp", "bin"
+needs = node152
 
 
-[task:node155]
+[task:node188]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 155 Step 155 --"
-needs = node124
-# family: optimizer
+text = "-- optimizer | Optimization Engine State Synchronized: Segment 188 Step 188 --"
+needs = node178
+
+
+[task:node191]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_191.tmp", "bin"
+needs = node188
 
 
 [task:node192]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 192 Step 192 --"
-needs = node155
-# family: optimizer
+text = "-- optimizer | Optimization Engine State Synchronized: Segment 192 Step 192 --"
+needs = node191
 
 
-[task:node232]
+[task:node206]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 232 Step 232 --"
+text = "-- optimizer | Optimization Engine State Synchronized: Segment 206 Step 206 --"
 needs = node192
-# family: optimizer
+
+
+[task:node212]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_212.tmp", "bin"
+needs = node206
+
+
+[task:node215]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_215.tmp", "bin"
+needs = node212
+
+
+[task:node216]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_216.tmp", "bin"
+needs = node215
+
+
+[task:node225]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_225.tmp", "bin"
+needs = node216
+
+
+[task:node227]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_227.tmp", "bin"
+needs = node225
+
+
+[task:node230]
+op = print
+text = "-- optimizer | Optimization Engine State Synchronized: Segment 230 Step 230 --"
+needs = node227
+
+
+[task:node380]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_380.tmp", "bin"
+needs = node230
