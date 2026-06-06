@@ -57,22 +57,7 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       7
-    ],
-    [
-      "PUSH_STRING",
-      8
     ],
     [
       "PUSH_STRING",
@@ -81,6 +66,21 @@
     [
       "CALL_DIRECT",
       2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      8
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -106,15 +106,11 @@
     ],
     [
       "PUSH_STRING",
-      8
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -125,7 +121,22 @@
     ],
     [
       "PUSH_STRING",
-      8
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      12
+    ],
+    [
+      "PUSH_STRING",
+      7
     ],
     [
       "PUSH_STRING",
@@ -140,30 +151,19 @@
     ],
     [
       "PUSH_STRING",
-      12
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       13
     ],
     [
       "PUSH_STRING",
-      1
+      7
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -179,14 +179,14 @@
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",
     "write_file",
-    "\"-- Optimization Engine State Synchronized: Segment 27 Step 27 --\"",
-    "\"-- Optimization Engine State Synchronized: Segment 38 Step 38 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_48.tmp",
+    "\"-- Optimization Engine State Synchronized: Segment 1 Step 1 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_5.tmp",
     "bin",
-    "\"-- Interlock Memory Latch Set: Range 52 Frame 52 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_73.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_108.tmp",
-    "\"-- Interlock Memory Latch Set: Range 141 Frame 141 --\"",
-    "\"-- Interlock Memory Latch Set: Range 204 Frame 204 --\""
+    "\"-- Interlock Memory Latch Set: Range 6 Frame 6 --\"",
+    "\"-- Optimization Engine State Synchronized: Segment 8 Step 8 --\"",
+    "\"-- Optimization Engine State Synchronized: Segment 11 Step 11 --\"",
+    "\"-- Interlock Memory Latch Set: Range 12 Frame 12 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_20.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_50.tmp"
   ]
 }

@@ -42,22 +42,7 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       6
-    ],
-    [
-      "PUSH_STRING",
-      7
     ],
     [
       "PUSH_STRING",
@@ -72,7 +57,7 @@
     ],
     [
       "PUSH_STRING",
-      8
+      7
     ],
     [
       "PUSH_STRING",
@@ -81,6 +66,25 @@
     [
       "CALL_DIRECT",
       1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      8
+    ],
+    [
+      "PUSH_STRING",
+      6
+    ],
+    [
+      "PUSH_STRING",
+      4
+    ],
+    [
+      "CALL_DIRECT",
+      2
     ],
     [
       "POP"
@@ -136,34 +140,11 @@
     ],
     [
       "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      13
-    ],
-    [
-      "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -179,14 +160,13 @@
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
     "write_file",
-    "\"-- Release Package Cryptographic Seal Generated: Block 14 ID 14 --\"",
-    "aero_mesh_core/dist/global_swarm_index_16.idx",
+    "aero_mesh_core/dist/global_swarm_index_14.idx",
     "sync",
-    "\"-- Standalone Swarm Package Bundled: Node 30 Archive 30 --\"",
-    "\"-- Standalone Swarm Package Bundled: Node 65 Archive 65 --\"",
-    "\"-- Release Package Cryptographic Seal Generated: Block 78 ID 78 --\"",
-    "\"-- Release Package Cryptographic Seal Generated: Block 82 ID 82 --\"",
-    "aero_mesh_core/dist/global_swarm_index_87.idx",
-    "aero_mesh_core/dist/global_swarm_index_99.idx"
+    "\"-- Standalone Swarm Package Bundled: Node 17 Archive 17 --\"",
+    "aero_mesh_core/dist/global_swarm_index_26.idx",
+    "\"-- Standalone Swarm Package Bundled: Node 29 Archive 29 --\"",
+    "\"-- Release Package Cryptographic Seal Generated: Block 33 ID 33 --\"",
+    "\"-- Release Package Cryptographic Seal Generated: Block 68 ID 68 --\"",
+    "\"-- Release Package Cryptographic Seal Generated: Block 105 ID 105 --\""
   ]
 }

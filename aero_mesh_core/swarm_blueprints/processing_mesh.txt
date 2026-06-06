@@ -13,52 +13,52 @@ args = "aero_mesh_core/aero_mesh_core/dist/interim.tmp", "processed"
 needs = compute
 
 
-[task:dag_optimizer_node_27]
+[task:dag_optimizer_node_1]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 27 Step 27 --"
+text = "-- Optimization Engine State Synchronized: Segment 1 Step 1 --"
 needs = transform
 
 
-[task:dag_optimizer_node_38]
-op = print
-text = "-- Optimization Engine State Synchronized: Segment 38 Step 38 --"
-needs = dag_optimizer_node_27
-
-
-[task:matrix_solver_node_48]
+[task:matrix_solver_node_5]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_48.tmp", "bin"
-needs = dag_optimizer_node_38
+args = "build_sandbox/mesh_outputs/matrix_block_5.tmp", "bin"
+needs = dag_optimizer_node_1
 
 
-[task:shared_memory_node_52]
+[task:shared_memory_node_6]
 op = print
-text = "-- Interlock Memory Latch Set: Range 52 Frame 52 --"
-needs = matrix_solver_node_48
+text = "-- Interlock Memory Latch Set: Range 6 Frame 6 --"
+needs = matrix_solver_node_5
 
 
-[task:matrix_solver_node_73]
+[task:dag_optimizer_node_8]
+op = print
+text = "-- Optimization Engine State Synchronized: Segment 8 Step 8 --"
+needs = shared_memory_node_6
+
+
+[task:dag_optimizer_node_11]
+op = print
+text = "-- Optimization Engine State Synchronized: Segment 11 Step 11 --"
+needs = dag_optimizer_node_8
+
+
+[task:shared_memory_node_12]
+op = print
+text = "-- Interlock Memory Latch Set: Range 12 Frame 12 --"
+needs = dag_optimizer_node_11
+
+
+[task:matrix_solver_node_20]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_73.tmp", "bin"
-needs = shared_memory_node_52
+args = "build_sandbox/mesh_outputs/matrix_block_20.tmp", "bin"
+needs = shared_memory_node_12
 
 
-[task:matrix_solver_node_108]
+[task:matrix_solver_node_50]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_108.tmp", "bin"
-needs = matrix_solver_node_73
-
-
-[task:shared_memory_node_141]
-op = print
-text = "-- Interlock Memory Latch Set: Range 141 Frame 141 --"
-needs = matrix_solver_node_108
-
-
-[task:shared_memory_node_204]
-op = print
-text = "-- Interlock Memory Latch Set: Range 204 Frame 204 --"
-needs = shared_memory_node_141
+args = "build_sandbox/mesh_outputs/matrix_block_50.tmp", "bin"
+needs = matrix_solver_node_20

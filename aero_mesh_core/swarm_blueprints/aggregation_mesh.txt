@@ -13,52 +13,45 @@ args = "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt", "state complete"
 needs = consolidate
 
 
-[task:manifest_signer_node_14]
-op = print
-text = "-- Release Package Cryptographic Seal Generated: Block 14 ID 14 --"
+[task:index_mapper_node_14]
+op = call
+fn = write_file
+args = "aero_mesh_core/dist/global_swarm_index_14.idx", "sync"
 needs = freeze
 
 
-[task:index_mapper_node_16]
+[task:standalone_boxer_node_17]
+op = print
+text = "-- Standalone Swarm Package Bundled: Node 17 Archive 17 --"
+needs = index_mapper_node_14
+
+
+[task:index_mapper_node_26]
 op = call
 fn = write_file
-args = "aero_mesh_core/dist/global_swarm_index_16.idx", "sync"
-needs = manifest_signer_node_14
+args = "aero_mesh_core/dist/global_swarm_index_26.idx", "sync"
+needs = standalone_boxer_node_17
 
 
-[task:standalone_boxer_node_30]
+[task:standalone_boxer_node_29]
 op = print
-text = "-- Standalone Swarm Package Bundled: Node 30 Archive 30 --"
-needs = index_mapper_node_16
+text = "-- Standalone Swarm Package Bundled: Node 29 Archive 29 --"
+needs = index_mapper_node_26
 
 
-[task:standalone_boxer_node_65]
+[task:manifest_signer_node_33]
 op = print
-text = "-- Standalone Swarm Package Bundled: Node 65 Archive 65 --"
-needs = standalone_boxer_node_30
+text = "-- Release Package Cryptographic Seal Generated: Block 33 ID 33 --"
+needs = standalone_boxer_node_29
 
 
-[task:manifest_signer_node_78]
+[task:manifest_signer_node_68]
 op = print
-text = "-- Release Package Cryptographic Seal Generated: Block 78 ID 78 --"
-needs = standalone_boxer_node_65
+text = "-- Release Package Cryptographic Seal Generated: Block 68 ID 68 --"
+needs = manifest_signer_node_33
 
 
-[task:manifest_signer_node_82]
+[task:manifest_signer_node_105]
 op = print
-text = "-- Release Package Cryptographic Seal Generated: Block 82 ID 82 --"
-needs = manifest_signer_node_78
-
-
-[task:index_mapper_node_87]
-op = call
-fn = write_file
-args = "aero_mesh_core/dist/global_swarm_index_87.idx", "sync"
-needs = manifest_signer_node_82
-
-
-[task:index_mapper_node_99]
-op = call
-fn = write_file
-args = "aero_mesh_core/dist/global_swarm_index_99.idx", "sync"
-needs = index_mapper_node_87
+text = "-- Release Package Cryptographic Seal Generated: Block 105 ID 105 --"
+needs = manifest_signer_node_68
