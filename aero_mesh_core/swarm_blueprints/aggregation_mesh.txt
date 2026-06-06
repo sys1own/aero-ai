@@ -10,38 +10,38 @@ text = "-- Aggregating Distributed State --"
 op = call
 fn = write_file
 args = "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt", "state complete"
-needs = node429
+needs = node481
 
 
 [task:node4]
 op = print
 text = "-- signer | Release Package Cryptographic Seal Generated: Block 4 ID 4 --"
-needs = node20
+needs = node481
 
 
 [task:node16]
 op = print
 text = "-- signer | Release Package Cryptographic Seal Generated: Block 16 ID 16 --"
-needs = node94
+needs = consolidate
 
 
 [task:node20]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_20.idx", "sync"
-needs = node89
+needs = node133
 
 
 [task:node27]
 op = print
 text = "-- signer | Release Package Cryptographic Seal Generated: Block 27 ID 27 --"
-needs = node438
+needs = node514
 
 
 [task:node35]
 op = print
 text = "-- boxer | Standalone Swarm Package Bundled: Node 35 Archive 35 --"
-needs = node245
+needs = node438
 
 
 [task:node52]
@@ -53,112 +53,112 @@ needs = node481
 [task:node62]
 op = print
 text = "-- boxer | Standalone Swarm Package Bundled: Node 62 Archive 62 --"
-needs = node438
+needs = node16
 
 
 [task:node89]
 op = print
 text = "-- boxer | Standalone Swarm Package Bundled: Node 89 Archive 89 --"
-needs = consolidate
+needs = node62
 
 
 [task:node94]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_94.idx", "sync"
-needs = consolidate
+needs = node133
 
 
 [task:node103]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_103.idx", "sync"
-needs = node349
+needs = node481
 
 
 [task:node118]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_118.idx", "sync"
-needs = node133
+needs = node62
 
 
 [task:node133]
 op = print
 text = "-- boxer | Standalone Swarm Package Bundled: Node 133 Archive 133 --"
-needs = node94
+needs = node245
 
 
 [task:node137]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_137.idx", "sync"
-needs = node4
+needs = node35
 
 
 [task:node151]
 op = print
 text = "-- signer | Release Package Cryptographic Seal Generated: Block 151 ID 151 --"
-needs = node481
+needs = node20
 
 
 [task:node188]
 op = print
 text = "-- signer | Release Package Cryptographic Seal Generated: Block 188 ID 188 --"
-needs = node481
+needs = node16
 
 
 [task:node245]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_245.idx", "sync"
-needs = node349
+needs = node188
 
 
 [task:node341]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_341.idx", "sync"
-needs = node438
+needs = node89
 
 
 [task:node349]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_349.idx", "sync"
-needs = node341
+needs = node62
 
 
 [task:node429]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_429.idx", "sync"
-needs = node349
+needs = consolidate
 
 
 [task:node438]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_438.idx", "sync"
-needs = node133
+needs = node245
 
 
 [task:node481]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_481.idx", "sync"
-needs = node341
+needs = node35
 
 
 [task:node514]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_514.idx", "sync"
-needs = node20
+needs = node89
 
 
 [task:node530]
 op = call
 fn = write_file
 args = "aero_mesh_core/dist/global_swarm_index_530.idx", "sync"
-needs = node438
+needs = node429
