@@ -1,6 +1,6 @@
 {
   "ingress_mesh.txt": {
-    "node_count": 2,
+    "node_count": 16,
     "compiled_successfully": true
   },
   "processing_mesh.txt": {
