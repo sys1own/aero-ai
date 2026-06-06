@@ -33,21 +33,6 @@
       "POP"
     ],
     [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
       "HALT"
     ]
   ],
@@ -56,7 +41,6 @@
     "\"-- Initializing Ingress Nodes --\"",
     "print",
     "testbed/scans/raw_telemetry_0",
-    "read_file",
-    "\"-- Security Handshake Verification Shard #465782 Active --\""
+    "read_file"
   ]
 }
