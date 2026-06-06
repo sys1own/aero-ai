@@ -13,51 +13,52 @@ args = "aero_mesh_core/aero_mesh_core/dist/interim.tmp", "processed"
 needs = compute
 
 
-[task:matrix_solver_node_4]
-op = call
-fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_4.tmp", "bin"
+[task:dag_optimizer_node_27]
+op = print
+text = "-- Optimization Engine State Synchronized: Segment 27 Step 27 --"
 needs = transform
 
 
-[task:shared_memory_node_10]
+[task:dag_optimizer_node_38]
 op = print
-text = "-- Interlock Memory Latch Set: Range 10 Frame 10 --"
-needs = matrix_solver_node_4
+text = "-- Optimization Engine State Synchronized: Segment 38 Step 38 --"
+needs = dag_optimizer_node_27
 
 
-[task:shared_memory_node_20]
-op = print
-text = "-- Interlock Memory Latch Set: Range 20 Frame 20 --"
-needs = shared_memory_node_10
-
-
-[task:shared_memory_node_41]
-op = print
-text = "-- Interlock Memory Latch Set: Range 41 Frame 41 --"
-needs = shared_memory_node_20
-
-
-[task:matrix_solver_node_92]
+[task:matrix_solver_node_48]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/matrix_block_92.tmp", "bin"
-needs = shared_memory_node_41
+args = "build_sandbox/mesh_outputs/matrix_block_48.tmp", "bin"
+needs = dag_optimizer_node_38
 
 
-[task:dag_optimizer_node_103]
+[task:shared_memory_node_52]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 103 Step 103 --"
-needs = matrix_solver_node_92
+text = "-- Interlock Memory Latch Set: Range 52 Frame 52 --"
+needs = matrix_solver_node_48
 
 
-[task:dag_optimizer_node_111]
+[task:matrix_solver_node_73]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_73.tmp", "bin"
+needs = shared_memory_node_52
+
+
+[task:matrix_solver_node_108]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/matrix_block_108.tmp", "bin"
+needs = matrix_solver_node_73
+
+
+[task:shared_memory_node_141]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 111 Step 111 --"
-needs = dag_optimizer_node_103
+text = "-- Interlock Memory Latch Set: Range 141 Frame 141 --"
+needs = matrix_solver_node_108
 
 
-[task:dag_optimizer_node_124]
+[task:shared_memory_node_204]
 op = print
-text = "-- Optimization Engine State Synchronized: Segment 124 Step 124 --"
-needs = dag_optimizer_node_111
+text = "-- Interlock Memory Latch Set: Range 204 Frame 204 --"
+needs = shared_memory_node_141

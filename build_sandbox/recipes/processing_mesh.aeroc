@@ -42,15 +42,26 @@
     ],
     [
       "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       6
     ],
     [
       "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -61,26 +72,15 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       8
     ],
     [
       "PUSH_STRING",
-      1
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -106,7 +106,7 @@
     ],
     [
       "PUSH_STRING",
-      6
+      8
     ],
     [
       "PUSH_STRING",
@@ -125,11 +125,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      8
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -175,14 +179,14 @@
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",
     "write_file",
-    "build_sandbox/mesh_outputs/matrix_block_4.tmp",
+    "\"-- Optimization Engine State Synchronized: Segment 27 Step 27 --\"",
+    "\"-- Optimization Engine State Synchronized: Segment 38 Step 38 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_48.tmp",
     "bin",
-    "\"-- Interlock Memory Latch Set: Range 10 Frame 10 --\"",
-    "\"-- Interlock Memory Latch Set: Range 20 Frame 20 --\"",
-    "\"-- Interlock Memory Latch Set: Range 41 Frame 41 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_92.tmp",
-    "\"-- Optimization Engine State Synchronized: Segment 103 Step 103 --\"",
-    "\"-- Optimization Engine State Synchronized: Segment 111 Step 111 --\"",
-    "\"-- Optimization Engine State Synchronized: Segment 124 Step 124 --\""
+    "\"-- Interlock Memory Latch Set: Range 52 Frame 52 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_73.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_108.tmp",
+    "\"-- Interlock Memory Latch Set: Range 141 Frame 141 --\"",
+    "\"-- Interlock Memory Latch Set: Range 204 Frame 204 --\""
   ]
 }

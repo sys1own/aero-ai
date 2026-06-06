@@ -42,7 +42,22 @@
     ],
     [
       "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       6
+    ],
+    [
+      "PUSH_STRING",
+      7
     ],
     [
       "PUSH_STRING",
@@ -51,21 +66,6 @@
     [
       "CALL_DIRECT",
       2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
     ],
     [
       "POP"
@@ -76,15 +76,11 @@
     ],
     [
       "PUSH_STRING",
-      6
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -140,11 +136,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      7
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -155,11 +155,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      7
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -175,14 +179,14 @@
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
     "write_file",
-    "aero_mesh_core/dist/global_swarm_index_13.idx",
-    "sync",
     "\"-- Release Package Cryptographic Seal Generated: Block 14 ID 14 --\"",
-    "aero_mesh_core/dist/global_swarm_index_15.idx",
-    "\"-- Release Package Cryptographic Seal Generated: Block 44 ID 44 --\"",
-    "\"-- Release Package Cryptographic Seal Generated: Block 47 ID 47 --\"",
-    "\"-- Standalone Swarm Package Bundled: Node 59 Archive 59 --\"",
-    "\"-- Standalone Swarm Package Bundled: Node 72 Archive 72 --\"",
-    "\"-- Standalone Swarm Package Bundled: Node 78 Archive 78 --\""
+    "aero_mesh_core/dist/global_swarm_index_16.idx",
+    "sync",
+    "\"-- Standalone Swarm Package Bundled: Node 30 Archive 30 --\"",
+    "\"-- Standalone Swarm Package Bundled: Node 65 Archive 65 --\"",
+    "\"-- Release Package Cryptographic Seal Generated: Block 78 ID 78 --\"",
+    "\"-- Release Package Cryptographic Seal Generated: Block 82 ID 82 --\"",
+    "aero_mesh_core/dist/global_swarm_index_87.idx",
+    "aero_mesh_core/dist/global_swarm_index_99.idx"
   ]
 }
