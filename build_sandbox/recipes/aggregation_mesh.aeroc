@@ -23,30 +23,26 @@
     ],
     [
       "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
       3
     ],
     [
       "PUSH_STRING",
       4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
@@ -61,11 +57,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -76,11 +76,11 @@
     ],
     [
       "PUSH_STRING",
-      3
+      8
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -91,19 +91,15 @@
     ],
     [
       "PUSH_STRING",
-      8
-    ],
-    [
-      "PUSH_STRING",
       9
     ],
     [
       "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -129,15 +125,11 @@
     ],
     [
       "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -148,11 +140,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -178,11 +174,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -223,11 +223,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -238,11 +242,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -268,15 +276,11 @@
     ],
     [
       "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -287,11 +291,11 @@
     ],
     [
       "PUSH_STRING",
-      3
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -306,15 +310,11 @@
     ],
     [
       "PUSH_STRING",
-      3
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -325,11 +325,11 @@
     ],
     [
       "PUSH_STRING",
-      3
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -344,11 +344,11 @@
     ],
     [
       "PUSH_STRING",
-      3
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -363,11 +363,11 @@
     ],
     [
       "PUSH_STRING",
-      3
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -382,11 +382,11 @@
     ],
     [
       "PUSH_STRING",
-      3
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -401,11 +401,11 @@
     ],
     [
       "PUSH_STRING",
-      3
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -420,11 +420,11 @@
     ],
     [
       "PUSH_STRING",
-      3
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -441,32 +441,32 @@
   "constants": [
     "\"-- Aggregating Distributed State --\"",
     "print",
-    "aero_mesh_core/dist/global_swarm_index_297.idx",
+    "\"-- signer | Release Package Cryptographic Seal Generated: Block 87 ID 87 --\"",
+    "aero_mesh_core/dist/global_swarm_index_195.idx",
     "sync",
     "write_file",
-    "aero_mesh_core/dist/global_swarm_index_96.idx",
-    "\"-- signer | Release Package Cryptographic Seal Generated: Block 56 ID 56 --\"",
-    "aero_mesh_core/dist/global_swarm_index_239.idx",
+    "aero_mesh_core/dist/global_swarm_index_123.idx",
     "aero_mesh_core/aero_mesh_core/dist/index_manifest.txt",
     "state complete",
-    "\"-- boxer | Standalone Swarm Package Bundled: Node 95 Archive 95 --\"",
-    "aero_mesh_core/dist/global_swarm_index_1.idx",
+    "\"-- signer | Release Package Cryptographic Seal Generated: Block 56 ID 56 --\"",
     "\"-- boxer | Standalone Swarm Package Bundled: Node 125 Archive 125 --\"",
-    "\"-- signer | Release Package Cryptographic Seal Generated: Block 51 ID 51 --\"",
-    "\"-- boxer | Standalone Swarm Package Bundled: Node 22 Archive 22 --\"",
+    "\"-- boxer | Standalone Swarm Package Bundled: Node 82 Archive 82 --\"",
+    "aero_mesh_core/dist/global_swarm_index_1.idx",
     "\"-- signer | Release Package Cryptographic Seal Generated: Block 55 ID 55 --\"",
+    "aero_mesh_core/dist/global_swarm_index_120.idx",
+    "\"-- boxer | Standalone Swarm Package Bundled: Node 22 Archive 22 --\"",
+    "\"-- signer | Release Package Cryptographic Seal Generated: Block 51 ID 51 --\"",
+    "aero_mesh_core/dist/global_swarm_index_297.idx",
+    "aero_mesh_core/dist/global_swarm_index_239.idx",
     "\"-- boxer | Standalone Swarm Package Bundled: Node 59 Archive 59 --\"",
     "\"-- signer | Release Package Cryptographic Seal Generated: Block 65 ID 65 --\"",
-    "\"-- signer | Release Package Cryptographic Seal Generated: Block 87 ID 87 --\"",
-    "\"-- boxer | Standalone Swarm Package Bundled: Node 82 Archive 82 --\"",
-    "aero_mesh_core/dist/global_swarm_index_120.idx",
-    "aero_mesh_core/dist/global_swarm_index_123.idx",
+    "aero_mesh_core/dist/global_swarm_index_221.idx",
+    "\"-- boxer | Standalone Swarm Package Bundled: Node 95 Archive 95 --\"",
+    "aero_mesh_core/dist/global_swarm_index_96.idx",
     "aero_mesh_core/dist/global_swarm_index_173.idx",
     "aero_mesh_core/dist/global_swarm_index_191.idx",
-    "aero_mesh_core/dist/global_swarm_index_195.idx",
-    "aero_mesh_core/dist/global_swarm_index_221.idx",
-    "aero_mesh_core/dist/global_swarm_index_278.idx",
     "aero_mesh_core/dist/global_swarm_index_266.idx",
+    "aero_mesh_core/dist/global_swarm_index_278.idx",
     "aero_mesh_core/dist/global_swarm_index_299.idx"
   ]
 }
