@@ -23,11 +23,26 @@
     ],
     [
       "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       3
     ],
     [
       "PUSH_STRING",
       4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
@@ -38,7 +53,7 @@
     ],
     [
       "PUSH_STRING",
-      5
+      6
     ],
     [
       "PUSH_STRING",
@@ -53,15 +68,15 @@
     ],
     [
       "PUSH_STRING",
-      6
-    ],
-    [
-      "PUSH_STRING",
       7
     ],
     [
       "PUSH_STRING",
       4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
@@ -91,41 +106,11 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      10
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      11
-    ],
-    [
-      "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
       4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
@@ -136,15 +121,34 @@
     ],
     [
       "PUSH_STRING",
-      12
-    ],
-    [
-      "PUSH_STRING",
-      7
+      10
     ],
     [
       "PUSH_STRING",
       4
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      11
+    ],
+    [
+      "PUSH_STRING",
+      12
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
@@ -159,11 +163,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -174,15 +182,11 @@
     ],
     [
       "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -208,11 +212,11 @@
     ],
     [
       "PUSH_STRING",
-      7
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -227,11 +231,11 @@
     ],
     [
       "PUSH_STRING",
-      7
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -261,11 +265,11 @@
     ],
     [
       "PUSH_STRING",
-      7
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -310,15 +314,11 @@
     ],
     [
       "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -329,11 +329,11 @@
     ],
     [
       "PUSH_STRING",
-      7
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -348,11 +348,11 @@
     ],
     [
       "PUSH_STRING",
-      7
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -367,15 +367,11 @@
     ],
     [
       "PUSH_STRING",
-      7
-    ],
-    [
-      "PUSH_STRING",
-      4
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -386,11 +382,11 @@
     ],
     [
       "PUSH_STRING",
-      7
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -405,11 +401,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      4
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -420,11 +420,11 @@
     ],
     [
       "PUSH_STRING",
-      7
+      4
     ],
     [
       "PUSH_STRING",
-      4
+      5
     ],
     [
       "CALL_DIRECT",
@@ -441,32 +441,32 @@
   "constants": [
     "\"-- Processing Parallel Computations --\"",
     "print",
+    "\"-- memory | Interlock Memory Latch Set: Range 15 Frame 15 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_183.tmp",
+    "bin",
+    "write_file",
+    "\"-- memory | Interlock Memory Latch Set: Range 38 Frame 38 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_11.tmp",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 48 Step 48 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_18.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_307.tmp",
     "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
     "processed",
-    "write_file",
-    "\"-- memory | Interlock Memory Latch Set: Range 1 Frame 1 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_6.tmp",
-    "bin",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 9 Step 9 --\"",
-    "\"-- memory | Interlock Memory Latch Set: Range 49 Frame 49 --\"",
-    "\"-- memory | Interlock Memory Latch Set: Range 54 Frame 54 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_62.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_65.tmp",
-    "\"-- memory | Interlock Memory Latch Set: Range 83 Frame 83 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_87.tmp",
-    "\"-- memory | Interlock Memory Latch Set: Range 111 Frame 111 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_152.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_178.tmp",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 188 Step 188 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_191.tmp",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 192 Step 192 --\"",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 206 Step 206 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_212.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_215.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_216.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_225.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_227.tmp",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 230 Step 230 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_380.tmp"
+    "build_sandbox/mesh_outputs/matrix_block_22.tmp",
+    "\"-- memory | Interlock Memory Latch Set: Range 39 Frame 39 --\"",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 57 Step 57 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_85.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_470.tmp",
+    "\"-- memory | Interlock Memory Latch Set: Range 43 Frame 43 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_44.tmp",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 88 Step 88 --\"",
+    "\"-- memory | Interlock Memory Latch Set: Range 51 Frame 51 --\"",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 77 Step 77 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_312.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_454.tmp",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 107 Step 107 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_251.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_269.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_472.tmp"
   ]
 }
