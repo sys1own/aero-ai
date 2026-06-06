@@ -61,7 +61,7 @@
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file",
-    "testbed/scans/ingress_stream_shard_10925272.dat",
+    "testbed/scans/ingress_stream_shard_11124896.dat",
     "stream",
     "write_file"
   ]
