@@ -53,18 +53,33 @@
     ],
     [
       "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       5
     ],
     [
       "PUSH_STRING",
-      6
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
+    ],
+    [
+      "PUSH_STRING",
+      6
     ],
     [
       "PUSH_STRING",
@@ -72,30 +87,11 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
+      8
     ],
     [
       "CALL_DIRECT",
       2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      8
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
     ],
     [
       "POP"
@@ -121,11 +117,11 @@
     ],
     [
       "PUSH_STRING",
-      5
+      7
     ],
     [
       "PUSH_STRING",
-      6
+      8
     ],
     [
       "CALL_DIRECT",
@@ -170,26 +166,11 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
+      7
     ],
     [
       "PUSH_STRING",
-      14
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
+      8
     ],
     [
       "CALL_DIRECT",
@@ -200,7 +181,7 @@
     ],
     [
       "PUSH_STRING",
-      15
+      14
     ],
     [
       "PUSH_STRING",
@@ -209,6 +190,25 @@
     [
       "CALL_DIRECT",
       1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      15
+    ],
+    [
+      "PUSH_STRING",
+      7
+    ],
+    [
+      "PUSH_STRING",
+      8
+    ],
+    [
+      "CALL_DIRECT",
+      2
     ],
     [
       "POP"
@@ -234,11 +234,11 @@
     ],
     [
       "PUSH_STRING",
-      5
+      7
     ],
     [
       "PUSH_STRING",
-      6
+      8
     ],
     [
       "CALL_DIRECT",
@@ -270,21 +270,21 @@
   "constants": [
     "\"-- Initializing Ingress Nodes --\"",
     "print",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 78 Frame 78 --\"",
     "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 52 Frame 52 --\"",
-    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 45 Key 45 --\"",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_33.dat",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 91 Frame 91 --\"",
+    "\"-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --\"",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_32.dat",
     "stream",
     "write_file",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_16.dat",
-    "\"-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --\"",
     "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 9 Key 9 --\"",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_32.dat",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 37 Frame 37 --\"",
-    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 75 Key 75 --\"",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_16.dat",
     "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 48 Key 48 --\"",
+    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 45 Key 45 --\"",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_33.dat",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 37 Frame 37 --\"",
     "build_sandbox/mesh_outputs/buffer_ingress_stream_71.dat",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 78 Frame 78 --\"",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 91 Frame 91 --\"",
+    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 75 Key 75 --\"",
     "build_sandbox/mesh_outputs/buffer_ingress_stream_97.dat",
     "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 141 Frame 141 --\""
   ]
