@@ -17,14 +17,14 @@ needs = node25
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_17.tmp", "bin"
-needs = compute
+needs = transform
 
 
 [task:node25]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_25.tmp", "bin"
-needs = node85
+needs = node171
 
 
 [task:node28]
@@ -36,13 +36,13 @@ needs = node86
 [task:node38]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 38 Frame 38 --"
-needs = node246
+needs = node140
 
 
 [task:node46]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 46 Frame 46 --"
-needs = node76
+needs = node152
 
 
 [task:node76]
@@ -56,64 +56,64 @@ needs = node107
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_85.tmp", "bin"
-needs = node168
+needs = node150
 
 
 [task:node86]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_86.tmp", "bin"
-needs = node190
+needs = node224
 
 
 [task:node94]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 94 Frame 94 --"
-needs = node171
+needs = node224
 
 
 [task:node107]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_107.tmp", "bin"
-needs = node140
+needs = node190
 
 
 [task:node108]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 108 Frame 108 --"
-needs = node171
+needs = node168
 
 
 [task:node140]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 140 Step 140 --"
-needs = compute
+needs = node94
 
 
 [task:node150]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 150 Step 150 --"
-needs = compute
+needs = node94
 
 
 [task:node152]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_152.tmp", "bin"
-needs = node28
+needs = node150
 
 
 [task:node168]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 168 Step 168 --"
-needs = node108
+needs = node25
 
 
 [task:node169]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 169 Step 169 --"
-needs = node140
+needs = node190
 
 
 [task:node171]
@@ -126,7 +126,7 @@ needs = compute
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_190.tmp", "bin"
-needs = node94
+needs = node202
 
 
 [task:node202]
@@ -140,25 +140,25 @@ needs = node246
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_224.tmp", "bin"
-needs = node246
+needs = node108
 
 
 [task:node232]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_232.tmp", "bin"
-needs = node140
+needs = node202
 
 
 [task:node246]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_246.tmp", "bin"
-needs = node85
+needs = transform
 
 
 [task:node265]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_265.tmp", "bin"
-needs = node140
+needs = node17
