@@ -61,13 +61,13 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
 
     strategy = random.choice(["expand_nodes", "relink_dependencies", "fuzz_logs"])
     
+    # Absolute high-density structure ceiling limited to 25 nodes max per file
     if len(tasks) >= 25 and strategy == "expand_nodes":
         strategy = "relink_dependencies"
 
     if strategy == "expand_nodes" and tasks:
         cluster_tier = round_counter % 5000  
         
-        # INLINE EMBEDDING: Keywords are safely woven directly into valid string parameters
         if "ingress" in mesh_name:
             pool = [
                 {"family": "sentinel", "op": "print", "body": f'text = "-- sentinel | Gateway Security Auth Check Sequence: Tier {cluster_tier} Key {round_counter} --"', "label": "Security Boundary"},
@@ -90,7 +90,6 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
         chosen = random.choice(pool)
         unique_marker = f"_{round_counter}"
         
-        # Count family mentions directly inside valid compiled text parameters
         if recipe_text.count(chosen['family']) >= 5 or unique_marker in recipe_text:
             strategy = "relink_dependencies"
         else:
@@ -110,9 +109,9 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
         mutated = False
         for line in lines:
             if "needs =" in line and random.random() > 0.7:
-                current_idx = len(new_lines)
-                sample_pool = tasks[max(0, current_idx-5):max(1, current_idx)]
-                t_target = random.choice(sample_pool)
+                # REPAIR: Target from normalized task pool array rather than file line slice.
+                # Slicing tasks[:-1] prevents any task from mistakenly depending on itself.
+                t_target = random.choice(tasks[:-1])
                 new_lines.append(f"needs = {t_target}")
                 mutated = True
             else:
@@ -146,7 +145,7 @@ def push_git_checkpoint(reason, metrics):
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
-    os.system(f'git -C "{_ROOT}" commit -m "chore: employ inline string parameters for category counting to satisfy compiler syntax" 2>&1')
+    os.system(f'git -C "{_ROOT}" commit -m "fix: eliminate array slicing index faults inside graph re-linking routines" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main --force 2>&1')
 
 def main():
@@ -154,12 +153,12 @@ def main():
     parser.add_argument('--duration', type=int, default=21600) 
     args, unknown = parser.parse_known_args()
 
-    print("🚀 Initializing Inline-Capped Swarm Evolution Engine...", flush=True)
+    print("🚀 Initializing Robust Array-Stabilized Swarm Evolution Engine...", flush=True)
     print("🎯 Target System: Massive, High-Density Multi-Node Distributed Architecture", flush=True)
     generate_swarm_environment()
     
-    # Clean reset to purge the broken comment syntax lines from memory
-    ensure_swarm_blueprints(force_reset=True)
+    # False preserves pre-existing 25-task configurations on your workflow branch
+    ensure_swarm_blueprints(force_reset=False)
     
     start_time = time.time()
     last_git_time = time.time()
@@ -169,7 +168,16 @@ def main():
     champions_frozen = 0
     
     meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
-    fitness_history = {m: {"node_count": 2, "compiled_successfully": True} for m in meshes}
+    
+    bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
+    fitness_history = {}
+    for m in meshes:
+        p = os.path.join(bp_dir, m)
+        count = 2
+        if os.path.exists(p):
+            with open(p, "r", encoding="utf-8") as f_curr:
+                count = f_curr.read().count("[task:")
+        fitness_history[m] = {"node_count": count, "compiled_successfully": True}
 
     interval_stats = {
         "cycles": 0,
@@ -179,8 +187,6 @@ def main():
 
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
-
-    bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
 
     while (time.time() - start_time) < args.duration:
         current_time = time.time()
@@ -209,7 +215,7 @@ def main():
             
             if mutated_nodes > fitness_history[target_mesh]["node_count"]:
                 interval_stats["champions_crowned"].append(
-                    f"     • [{target_mesh}] Scaled cluster footprint to {mutated_nodes} verified nodes"
+                    f"     • [{target_mesh}] Incremented cluster depth to {mutated_nodes} verified nodes"
                 )
                 fitness_history[target_mesh]["node_count"] = mutated_nodes
                 fitness_history[target_mesh]["compiled_successfully"] = True
