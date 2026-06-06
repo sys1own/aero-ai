@@ -38,11 +38,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      5
+    ],
+    [
+      "PUSH_STRING",
+      6
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -57,6 +61,8 @@
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file",
-    "\"-- Traffic Pool Load Balancing Routine Cluster Shard 747 Frame 7705747 --\""
+    "testbed/scans/ingress_stream_shard_7907545.dat",
+    "stream",
+    "write_file"
   ]
 }
