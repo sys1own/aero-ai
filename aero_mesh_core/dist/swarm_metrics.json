@@ -4,11 +4,11 @@
     "compiled_successfully": true
   },
   "processing_mesh.txt": {
-    "node_count": 150,
+    "node_count": 10,
     "compiled_successfully": true
   },
   "aggregation_mesh.txt": {
-    "node_count": 150,
+    "node_count": 10,
     "compiled_successfully": true
   }
 }
