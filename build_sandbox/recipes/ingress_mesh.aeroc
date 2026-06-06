@@ -38,15 +38,11 @@
     ],
     [
       "PUSH_STRING",
-      5
-    ],
-    [
-      "PUSH_STRING",
-      6
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -61,8 +57,6 @@
     "print",
     "testbed/scans/raw_telemetry_0",
     "read_file",
-    "testbed/scans/ingress_pipeline_3373481.dat",
-    "stream",
-    "write_file"
+    "\"-- Traffic Intercept Pool Routing Shard #3409968 Confirmed --\""
   ]
 }
