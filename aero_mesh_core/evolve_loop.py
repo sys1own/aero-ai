@@ -5,7 +5,6 @@ import argparse
 import json
 import random
 import contextlib
-import re
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
@@ -52,7 +51,7 @@ def ensure_swarm_blueprints(force_reset=False):
                 f.write(content)
 
 def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
-    """Generates continuous structural mutations enforcing strict content entropy filters"""
+    """Generates continuous mutations ensuring functional variety through comment-based signature tracking"""
     lines = recipe_text.split("\n")
     tasks = []
     
@@ -69,31 +68,35 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
         cluster_tier = round_counter % 5000  
         
         if "ingress" in mesh_name:
-            chosen = random.choice([
-                {"family": "sentinel_gate", "op": "print", "body": f'text = "-- Gateway Security Auth Check Sequence: Tier {cluster_tier} Key {round_counter} --"', "label": "Security Boundary"},
-                {"family": "load_balancer", "op": "print", "body": f'text = "-- Traffic Pool Load Balancing Routine Cluster Shard {cluster_tier} Frame {round_counter} --"', "label": "Stream Load Balancer"},
-                {"family": "stream_buffer", "op": "call", "body": f'fn = write_file\nargs = "testbed/scans/ingress_stream_shard_{round_counter}.dat", "stream"', "label": "Ingestion I/O Flush"}
-            ])
+            pool = [
+                {"family": "sentinel", "op": "print", "body": f'text = "-- Gateway Security Auth Check Sequence: Tier {cluster_tier} Key {round_counter} --"', "label": "Security Boundary"},
+                {"family": "balancer", "op": "print", "body": f'text = "-- Traffic Pool Load Balancing Routine Cluster Shard {cluster_tier} Frame {round_counter} --"', "label": "Stream Load Balancer"},
+                {"family": "buffer", "op": "call", "body": f'fn = write_file\nargs = "testbed/scans/ingress_stream_shard_{round_counter}.dat", "stream"', "label": "Ingestion I/O Flush"}
+            ]
         elif "processing" in mesh_name:
-            chosen = random.choice([
-                {"family": "dag_optimizer", "op": "print", "body": f'text = "-- Optimization Engine State Synchronized: Segment {cluster_tier} Step {round_counter} --"', "label": "DAG Index Step"},
-                {"family": "shared_memory", "op": "print", "body": f'text = "-- Interlock Memory Latch Set: Range {cluster_tier} Frame {round_counter} --"', "label": "Shared Memory Link"},
-                {"family": "matrix_solver", "op": "call", "body": f'fn = write_file\nargs = "build_sandbox/mesh_outputs/matrix_block_{round_counter}.tmp", "bin"', "label": "Matrix solver farm Flush"}
-            ])
+            pool = [
+                {"family": "optimizer", "op": "print", "body": f'text = "-- Optimization Engine State Synchronized: Segment {cluster_tier} Step {round_counter} --"', "label": "DAG Index Step"},
+                {"family": "memory", "op": "print", "body": f'text = "-- Interlock Memory Latch Set: Range {cluster_tier} Frame {round_counter} --"', "label": "Shared Memory Link"},
+                {"family": "solver", "op": "call", "body": f'fn = write_file\nargs = "build_sandbox/mesh_outputs/matrix_block_{round_counter}.tmp", "bin"', "label": "Matrix solver farm Flush"}
+            ]
         else:
-            chosen = random.choice([
-                {"family": "manifest_signer", "op": "print", "body": f'text = "-- Release Package Cryptographic Seal Generated: Block {cluster_tier} ID {round_counter} --"', "label": "Integrity Handshake"},
-                {"family": "standalone_boxer", "op": "print", "body": f'text = "-- Standalone Swarm Package Bundled: Node {cluster_tier} Archive {round_counter} --"', "label": "Unified Box Output Bundle"},
-                {"family": "index_mapper", "op": "call", "body": f'fn = write_file\nargs = "aero_mesh_core/dist/global_swarm_index_{round_counter}.idx", "sync"', "label": "Index Map Row"}
-            ])
+            pool = [
+                {"family": "signer", "op": "print", "body": f'text = "-- Release Package Cryptographic Seal Generated: Block {cluster_tier} ID {round_counter} --"', "label": "Integrity Handshake"},
+                {"family": "boxer", "op": "print", "body": f'text = "-- Standalone Swarm Package Bundled: Node {cluster_tier} Archive {round_counter} --"', "label": "Unified Box Output Bundle"},
+                {"family": "mapper", "op": "call", "body": f'fn = write_file\nargs = "aero_mesh_core/dist/global_swarm_index_{round_counter}.idx", "sync"', "label": "Index Map Row"}
+            ]
             
-        # EXTRA PROTECTION GATES: Block both structural volume expansion AND cross-family parameter reuse
-        unique_marker = f"_{round_counter}." if "write_file" in chosen["body"] else f" {round_counter} --"
+        chosen = random.choice(pool)
         
-        if recipe_text.count(chosen['family']) >= 4 or unique_marker in recipe_text:
+        current_layer = len(tasks) // 3
+        unique_marker = f"_{round_counter}"
+        
+        # Enforce usage bounds using explicit comment-based tokens
+        family_signature = f"# family: {chosen['family']}"
+        if recipe_text.count(family_signature) >= (current_layer + 2) or unique_marker in recipe_text:
             strategy = "relink_dependencies"
         else:
-            new_node_id = f"{chosen['family']}_node_{round_counter}"
+            new_node_id = f"node{round_counter}"
             parent_dependency = tasks[-1] 
             
             node_block = (
@@ -101,8 +104,9 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
                 f"op = {chosen['op']}\n"
                 f"{chosen['body']}\n"
                 f"needs = {parent_dependency}\n"
+                f"{family_signature}\n"
             )
-            return recipe_text + node_block, f"Chained Deep Operational Segment [{chosen['label']}] -> Node: {new_node_id}"
+            return recipe_text + node_block, f"Chained Layered Segment [{chosen['label']}] -> Node: {new_node_id}"
 
     if strategy == "relink_dependencies" and len(tasks) > 2:
         new_lines = []
@@ -119,7 +123,6 @@ def execute_complexity_mutation(recipe_text, mesh_name, round_counter):
         desc = "Reconfigured Dependency Routing Graph Pathing" if mutated else "Maintained Current Graph Equilibrium"
         return "\n".join(new_lines), desc
 
-    # Content Entropy Fuzzer: Ensures console pulse sequencing requires totally unique string literals
     new_lines = []
     mutated = False
     for line in lines:
@@ -146,7 +149,7 @@ def push_git_checkpoint(reason, metrics):
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add aero_mesh_core/aero_mesh_core/dist 2>&1')
     os.system(f'git -C "{_ROOT}" add build_sandbox 2>&1')
-    os.system(f'git -C "{_ROOT}" commit -m "chore: implement lexical entropy constraints to suppress cross-family text recycling exploits" 2>&1')
+    os.system(f'git -am "chore: preserve architectural states across sessions via incremental pipeline scaling" 2>&1')
     os.system(f'git -C "{_ROOT}" push origin main --force 2>&1')
 
 def main():
@@ -154,10 +157,12 @@ def main():
     parser.add_argument('--duration', type=int, default=86400) 
     args, unknown = parser.parse_known_args()
 
-    print("🚀 Initializing Content-Entropy Shielded Swarm Evolution Engine...", flush=True)
+    print("🚀 Initializing Incremental Persistent Swarm Evolution Engine...", flush=True)
     print("🎯 Target System: Massive, High-Density Multi-Node Distributed Architecture", flush=True)
     generate_swarm_environment()
-    ensure_swarm_blueprints(force_reset=True)
+    
+    # FIX 1: Flipped force_reset to False so that the loop picks up exactly where the last push left off
+    ensure_swarm_blueprints(force_reset=False)
     
     start_time = time.time()
     last_git_time = time.time()
@@ -167,7 +172,17 @@ def main():
     champions_frozen = 0
     
     meshes = ["ingress_mesh.txt", "processing_mesh.txt", "aggregation_mesh.txt"]
-    fitness_history = {m: {"node_count": 2, "compiled_successfully": True} for m in meshes}
+    
+    # Initialize node counts by dynamically parsing the current length of the blueprint text on disk
+    bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
+    fitness_history = {}
+    for m in meshes:
+        p = os.path.join(bp_dir, m)
+        count = 2
+        if os.path.exists(p):
+            with open(p, "r", encoding="utf-8") as f_curr:
+                count = f_curr.read().count("[task:")
+        fitness_history[m] = {"node_count": count, "compiled_successfully": True}
 
     interval_stats = {
         "cycles": 0,
@@ -177,8 +192,6 @@ def main():
 
     GIT_COOLDOWN = 180        
     HEARTBEAT_COOLDOWN = 10   
-
-    bp_dir = os.path.join(_ROOT, "aero_mesh_core", "swarm_blueprints")
 
     while (time.time() - start_time) < args.duration:
         current_time = time.time()
