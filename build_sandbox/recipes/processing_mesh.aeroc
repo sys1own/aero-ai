@@ -23,14 +23,22 @@
     ],
     [
       "PUSH_STRING",
-      1
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "PUSH_STRING",
@@ -39,10 +47,6 @@
     [
       "PUSH_STRING",
       4
-    ],
-    [
-      "PUSH_STRING",
-      5
     ],
     [
       "CALL_DIRECT",
@@ -72,15 +76,30 @@
     ],
     [
       "PUSH_STRING",
-      8
+      3
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "CALL_DIRECT",
       2
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      8
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
     ],
     [
       "POP"
@@ -91,30 +110,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
-    ],
-    [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       10
     ],
     [
       "PUSH_STRING",
       4
-    ],
-    [
-      "PUSH_STRING",
-      5
     ],
     [
       "CALL_DIRECT",
@@ -129,41 +129,11 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      12
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      13
+      3
     ],
     [
       "PUSH_STRING",
       4
-    ],
-    [
-      "PUSH_STRING",
-      5
     ],
     [
       "CALL_DIRECT",
@@ -174,15 +144,49 @@
     ],
     [
       "PUSH_STRING",
-      14
+      12
+    ],
+    [
+      "PUSH_STRING",
+      3
     ],
     [
       "PUSH_STRING",
       4
     ],
     [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
       "PUSH_STRING",
-      5
+      13
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      14
+    ],
+    [
+      "PUSH_STRING",
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
@@ -197,15 +201,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -246,41 +246,11 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      19
-    ],
-    [
-      "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      20
+      3
     ],
     [
       "PUSH_STRING",
       4
-    ],
-    [
-      "PUSH_STRING",
-      5
     ],
     [
       "CALL_DIRECT",
@@ -291,15 +261,49 @@
     ],
     [
       "PUSH_STRING",
-      21
+      19
+    ],
+    [
+      "PUSH_STRING",
+      3
     ],
     [
       "PUSH_STRING",
       4
     ],
     [
+      "CALL_DIRECT",
+      2
+    ],
+    [
+      "POP"
+    ],
+    [
       "PUSH_STRING",
-      5
+      20
+    ],
+    [
+      "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      21
+    ],
+    [
+      "PUSH_STRING",
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
@@ -314,11 +318,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -329,11 +337,11 @@
     ],
     [
       "PUSH_STRING",
-      4
+      3
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "CALL_DIRECT",
@@ -348,15 +356,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -367,11 +371,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      3
+    ],
+    [
+      "PUSH_STRING",
+      4
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -382,15 +390,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -401,15 +405,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -420,11 +420,11 @@
     ],
     [
       "PUSH_STRING",
-      4
+      3
     ],
     [
       "PUSH_STRING",
-      5
+      4
     ],
     [
       "CALL_DIRECT",
@@ -441,32 +441,32 @@
   "constants": [
     "\"-- Processing Parallel Computations --\"",
     "print",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 23 Step 23 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_126.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_258.tmp",
     "bin",
     "write_file",
-    "\"-- memory | Interlock Memory Latch Set: Range 108 Frame 108 --\"",
-    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
-    "processed",
-    "build_sandbox/mesh_outputs/matrix_block_70.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_116.tmp",
-    "\"-- memory | Interlock Memory Latch Set: Range 288 Frame 288 --\"",
-    "\"-- memory | Interlock Memory Latch Set: Range 257 Frame 257 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_155.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_5.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_9.tmp",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 10 Step 10 --\"",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 18 Step 18 --\"",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 19 Step 19 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_338.tmp",
     "\"-- memory | Interlock Memory Latch Set: Range 22 Frame 22 --\"",
     "build_sandbox/mesh_outputs/matrix_block_86.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_331.tmp",
-    "\"-- optimizer | Optimization Engine State Synchronized: Segment 80 Step 80 --\"",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 23 Step 23 --\"",
+    "aero_mesh_core/aero_mesh_core/dist/interim.tmp",
+    "processed",
+    "build_sandbox/mesh_outputs/matrix_block_5.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_126.tmp",
+    "\"-- memory | Interlock Memory Latch Set: Range 108 Frame 108 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_9.tmp",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 19 Step 19 --\"",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 10 Step 10 --\"",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 18 Step 18 --\"",
     "build_sandbox/mesh_outputs/matrix_block_24.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_147.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_116.tmp",
     "\"-- memory | Interlock Memory Latch Set: Range 219 Frame 219 --\"",
-    "build_sandbox/mesh_outputs/matrix_block_258.tmp",
-    "build_sandbox/mesh_outputs/matrix_block_338.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_155.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_331.tmp",
+    "build_sandbox/mesh_outputs/matrix_block_70.tmp",
+    "\"-- optimizer | Optimization Engine State Synchronized: Segment 80 Step 80 --\"",
+    "build_sandbox/mesh_outputs/matrix_block_147.tmp",
+    "\"-- memory | Interlock Memory Latch Set: Range 257 Frame 257 --\"",
+    "\"-- memory | Interlock Memory Latch Set: Range 288 Frame 288 --\"",
     "build_sandbox/mesh_outputs/matrix_block_405.tmp"
   ]
 }
