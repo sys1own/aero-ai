@@ -9,93 +9,93 @@ text = "-- Initializing Ingress Nodes --"
 [task:ingest]
 op = print
 text = "-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --"
-needs = node52
-
-
-[task:node9]
-op = print
-text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 9 Key 9 --"
 needs = init
 
 
-[task:node16]
+[task:node7]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/buffer_ingress_stream_16.dat", "stream"
-needs = node97
+args = "build_sandbox/mesh_outputs/buffer_ingress_stream_7.dat", "stream"
+needs = node50
 
 
-[task:node32]
+[task:node25]
+op = print
+text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 25 Key 25 --"
+needs = node89
+
+
+[task:node26]
+op = print
+text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 26 Key 26 --"
+needs = node25
+
+
+[task:node29]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/buffer_ingress_stream_32.dat", "stream"
-needs = node48
+args = "build_sandbox/mesh_outputs/buffer_ingress_stream_29.dat", "stream"
+needs = node25
 
 
-[task:node33]
+[task:node38]
+op = print
+text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 38 Frame 38 --"
+needs = node171
+
+
+[task:node50]
 op = call
 fn = write_file
-args = "build_sandbox/mesh_outputs/buffer_ingress_stream_33.dat", "stream"
-needs = node71
+args = "build_sandbox/mesh_outputs/buffer_ingress_stream_50.dat", "stream"
+needs = node56
 
 
-[task:node37]
+[task:node53]
 op = print
-text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 37 Frame 37 --"
-needs = node9
+text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 53 Key 53 --"
+needs = node26
 
 
-[task:node45]
+[task:node56]
 op = print
-text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 45 Key 45 --"
-needs = node9
-
-
-[task:node48]
-op = print
-text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 48 Key 48 --"
-needs = node97
-
-
-[task:node52]
-op = print
-text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 52 Frame 52 --"
-needs = node45
+text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 56 Key 56 --"
+needs = init
 
 
 [task:node71]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_71.dat", "stream"
-needs = node16
-
-
-[task:node75]
-op = print
-text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 75 Key 75 --"
-needs = node71
-
-
-[task:node78]
-op = print
-text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 78 Frame 78 --"
-needs = node9
-
-
-[task:node91]
-op = print
-text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 91 Frame 91 --"
-needs = node16
-
-
-[task:node97]
-op = call
-fn = write_file
-args = "build_sandbox/mesh_outputs/buffer_ingress_stream_97.dat", "stream"
 needs = ingest
 
 
-[task:node141]
+[task:node89]
+op = call
+fn = write_file
+args = "build_sandbox/mesh_outputs/buffer_ingress_stream_89.dat", "stream"
+needs = init
+
+
+[task:node112]
 op = print
-text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 141 Frame 141 --"
-needs = node78
+text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 112 Frame 112 --"
+needs = node53
+
+
+[task:node171]
+op = print
+text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 171 Frame 171 --"
+needs = node112
+
+
+[task:node229]
+op = print
+text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 229 Frame 229 --"
+needs = node89
+
+
+[task:node231]
+op = print
+text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 231 Frame 231 --"
+needs = node25
