@@ -9,20 +9,20 @@ text = "-- Initializing Ingress Nodes --"
 [task:ingest]
 op = print
 text = "-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --"
-needs = node50
+needs = node112
 
 
 [task:node7]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_7.dat", "stream"
-needs = init
+needs = node171
 
 
 [task:node25]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 25 Key 25 --"
-needs = node229
+needs = node26
 
 
 [task:node26]
@@ -35,67 +35,67 @@ needs = node229
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_29.dat", "stream"
-needs = node50
+needs = node26
 
 
 [task:node38]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 38 Frame 38 --"
-needs = node29
+needs = node171
 
 
 [task:node50]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_50.dat", "stream"
-needs = node53
+needs = node7
 
 
 [task:node53]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 53 Key 53 --"
-needs = node7
+needs = node171
 
 
 [task:node56]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 56 Key 56 --"
-needs = node112
+needs = node26
 
 
 [task:node71]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_71.dat", "stream"
-needs = node56
+needs = node89
 
 
 [task:node89]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_89.dat", "stream"
-needs = node229
+needs = init
 
 
 [task:node112]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 112 Frame 112 --"
-needs = ingest
+needs = node29
 
 
 [task:node171]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 171 Frame 171 --"
-needs = node38
+needs = node229
 
 
 [task:node229]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 229 Frame 229 --"
-needs = node29
+needs = node89
 
 
 [task:node231]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 231 Frame 231 --"
-needs = node29
+needs = node38
