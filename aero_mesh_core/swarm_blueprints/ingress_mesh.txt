@@ -9,58 +9,58 @@ text = "-- Initializing Ingress Nodes --"
 [task:ingest]
 op = print
 text = "-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --"
-needs = node71
+needs = init
 
 
 [task:node7]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_7.dat", "stream"
-needs = node229
+needs = node38
 
 
 [task:node25]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 25 Key 25 --"
-needs = node112
+needs = ingest
 
 
 [task:node26]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 26 Key 26 --"
-needs = node229
+needs = node50
 
 
 [task:node29]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_29.dat", "stream"
-needs = node112
+needs = ingest
 
 
 [task:node38]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 38 Frame 38 --"
-needs = init
+needs = node29
 
 
 [task:node50]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_50.dat", "stream"
-needs = node29
+needs = ingest
 
 
 [task:node53]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 53 Key 53 --"
-needs = node89
+needs = node71
 
 
 [task:node56]
 op = print
 text = "-- sentinel | Gateway Security Auth Check Sequence: Tier 56 Key 56 --"
-needs = node112
+needs = node71
 
 
 [task:node71]
@@ -74,25 +74,25 @@ needs = init
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/buffer_ingress_stream_89.dat", "stream"
-needs = node229
+needs = ingest
 
 
 [task:node112]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 112 Frame 112 --"
-needs = node38
+needs = node50
 
 
 [task:node171]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 171 Frame 171 --"
-needs = node7
+needs = node53
 
 
 [task:node229]
 op = print
 text = "-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 229 Frame 229 --"
-needs = node50
+needs = node38
 
 
 [task:node231]
