@@ -10,155 +10,155 @@ text = "-- Processing Parallel Computations --"
 op = call
 fn = write_file
 args = "aero_mesh_core/aero_mesh_core/dist/interim.tmp", "processed"
-needs = node24
+needs = compute
 
 
 [task:node5]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_5.tmp", "bin"
-needs = node108
+needs = node18
 
 
 [task:node9]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_9.tmp", "bin"
-needs = node219
+needs = node257
 
 
 [task:node10]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 10 Step 10 --"
-needs = node86
+needs = node5
 
 
 [task:node18]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 18 Step 18 --"
-needs = node80
+needs = node86
 
 
 [task:node19]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 19 Step 19 --"
-needs = node219
+needs = node147
 
 
 [task:node22]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 22 Frame 22 --"
-needs = node258
+needs = node116
 
 
 [task:node23]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 23 Step 23 --"
-needs = node19
+needs = node22
 
 
 [task:node24]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_24.tmp", "bin"
-needs = node10
+needs = node22
 
 
 [task:node70]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_70.tmp", "bin"
-needs = node155
+needs = node116
 
 
 [task:node80]
 op = print
 text = "-- optimizer | Optimization Engine State Synchronized: Segment 80 Step 80 --"
-needs = node288
+needs = transform
 
 
 [task:node86]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_86.tmp", "bin"
-needs = node155
+needs = node70
 
 
 [task:node108]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 108 Frame 108 --"
-needs = node10
+needs = node338
 
 
 [task:node116]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_116.tmp", "bin"
-needs = node5
+needs = node338
 
 
 [task:node126]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_126.tmp", "bin"
-needs = node80
+needs = node338
 
 
 [task:node147]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_147.tmp", "bin"
-needs = node9
+needs = node257
 
 
 [task:node155]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_155.tmp", "bin"
-needs = node18
+needs = node147
 
 
 [task:node219]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 219 Frame 219 --"
-needs = node80
+needs = node10
 
 
 [task:node257]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 257 Frame 257 --"
-needs = transform
+needs = node5
 
 
 [task:node258]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_258.tmp", "bin"
-needs = node70
+needs = transform
 
 
 [task:node288]
 op = print
 text = "-- memory | Interlock Memory Latch Set: Range 288 Frame 288 --"
-needs = compute
+needs = node219
 
 
 [task:node331]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_331.tmp", "bin"
-needs = node147
+needs = node19
 
 
 [task:node338]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_338.tmp", "bin"
-needs = node257
+needs = node80
 
 
 [task:node405]
 op = call
 fn = write_file
 args = "build_sandbox/mesh_outputs/matrix_block_405.tmp", "bin"
-needs = node257
+needs = node80
