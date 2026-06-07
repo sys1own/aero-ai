@@ -38,18 +38,33 @@
     ],
     [
       "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       4
     ],
     [
       "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
+    ],
+    [
+      "PUSH_STRING",
+      5
     ],
     [
       "PUSH_STRING",
@@ -57,26 +72,11 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
       7
     ],
     [
-      "PUSH_STRING",
-      1
-    ],
-    [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -102,11 +102,11 @@
     ],
     [
       "PUSH_STRING",
-      4
+      6
     ],
     [
       "PUSH_STRING",
-      5
+      7
     ],
     [
       "CALL_DIRECT",
@@ -121,11 +121,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      6
+    ],
+    [
+      "PUSH_STRING",
+      7
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -136,15 +140,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -155,11 +155,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      6
+    ],
+    [
+      "PUSH_STRING",
+      7
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -170,15 +174,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -204,11 +204,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      6
+    ],
+    [
+      "PUSH_STRING",
+      7
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -219,15 +223,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -271,20 +271,20 @@
     "\"-- Initializing Ingress Nodes --\"",
     "print",
     "\"-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --\"",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_71.dat",
+    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 25 Key 25 --\"",
+    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 26 Key 26 --\"",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_50.dat",
     "stream",
     "write_file",
-    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 26 Key 26 --\"",
-    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 25 Key 25 --\"",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 171 Frame 171 --\"",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_7.dat",
     "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 112 Frame 112 --\"",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_71.dat",
     "build_sandbox/mesh_outputs/buffer_ingress_stream_29.dat",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 38 Frame 38 --\"",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_50.dat",
-    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 56 Key 56 --\"",
     "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 53 Key 53 --\"",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_7.dat",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 38 Frame 38 --\"",
+    "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 56 Key 56 --\"",
     "build_sandbox/mesh_outputs/buffer_ingress_stream_89.dat",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 171 Frame 171 --\"",
     "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 229 Frame 229 --\"",
     "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 231 Frame 231 --\""
   ]
