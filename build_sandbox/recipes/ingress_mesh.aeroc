@@ -38,6 +38,17 @@
     ],
     [
       "PUSH_STRING",
+      1
+    ],
+    [
+      "CALL_DIRECT",
+      1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
       4
     ],
     [
@@ -45,23 +56,12 @@
       5
     ],
     [
-      "CALL_DIRECT",
-      2
-    ],
-    [
-      "POP"
-    ],
-    [
       "PUSH_STRING",
       6
     ],
     [
-      "PUSH_STRING",
-      1
-    ],
-    [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -72,26 +72,11 @@
     ],
     [
       "PUSH_STRING",
-      1
-    ],
-    [
-      "CALL_DIRECT",
-      1
-    ],
-    [
-      "POP"
-    ],
-    [
-      "PUSH_STRING",
-      8
-    ],
-    [
-      "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
       5
+    ],
+    [
+      "PUSH_STRING",
+      6
     ],
     [
       "CALL_DIRECT",
@@ -102,7 +87,7 @@
     ],
     [
       "PUSH_STRING",
-      9
+      8
     ],
     [
       "PUSH_STRING",
@@ -111,6 +96,25 @@
     [
       "CALL_DIRECT",
       1
+    ],
+    [
+      "POP"
+    ],
+    [
+      "PUSH_STRING",
+      9
+    ],
+    [
+      "PUSH_STRING",
+      5
+    ],
+    [
+      "PUSH_STRING",
+      6
+    ],
+    [
+      "CALL_DIRECT",
+      2
     ],
     [
       "POP"
@@ -151,15 +155,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -170,11 +170,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      5
+    ],
+    [
+      "PUSH_STRING",
+      6
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -185,11 +189,15 @@
     ],
     [
       "PUSH_STRING",
-      1
+      5
+    ],
+    [
+      "PUSH_STRING",
+      6
     ],
     [
       "CALL_DIRECT",
-      1
+      2
     ],
     [
       "POP"
@@ -200,15 +208,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -219,15 +223,11 @@
     ],
     [
       "PUSH_STRING",
-      4
-    ],
-    [
-      "PUSH_STRING",
-      5
+      1
     ],
     [
       "CALL_DIRECT",
-      2
+      1
     ],
     [
       "POP"
@@ -270,22 +270,22 @@
   "constants": [
     "\"-- Initializing Ingress Nodes --\"",
     "print",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 229 Frame 229 --\"",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 38 Frame 38 --\"",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 112 Frame 112 --\"",
     "build_sandbox/mesh_outputs/buffer_ingress_stream_7.dat",
     "stream",
     "write_file",
-    "\"-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --\"",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 171 Frame 171 --\"",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_29.dat",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_89.dat",
     "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 25 Key 25 --\"",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_71.dat",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 171 Frame 171 --\"",
+    "\"-- sentinel | Ingesting Raw Telemetry Data Stream from testbed/scans/raw_telemetry_0 --\"",
     "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 26 Key 26 --\"",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 38 Frame 38 --\"",
+    "build_sandbox/mesh_outputs/buffer_ingress_stream_29.dat",
     "build_sandbox/mesh_outputs/buffer_ingress_stream_50.dat",
     "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 53 Key 53 --\"",
     "\"-- sentinel | Gateway Security Auth Check Sequence: Tier 56 Key 56 --\"",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_71.dat",
-    "build_sandbox/mesh_outputs/buffer_ingress_stream_89.dat",
-    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 112 Frame 112 --\"",
+    "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 229 Frame 229 --\"",
     "\"-- balancer | Traffic Pool Load Balancing Routine Cluster Shard 231 Frame 231 --\""
   ]
 }
